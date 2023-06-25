@@ -1,0 +1,90 @@
+\begin{problem}{0/1 Knapsack}
+    We are given N items where each item has some weight and profit associated with it. We are also given a bag with capacity W, [i.e., the bag can hold at most W weight in it]. The target is to put the items into the bag such that the sum of profits associated with them is the maximum possible. 
+\end{problem}
+
+\begin{solution}
+    Try thinking in term of findAns(..) function.\\
+
+    findAns(n,w,const arr) :: maximum profit associated when we have n items \& bag with capacity w.\\
+   
+    % //TO-DO: Make new environment to display them side by side
+    Solution1:
+    \begin{verbatim}
+       int findAns(int n,int w,const vector<int>& arr)
+       {
+            if(w<=0) return INF; //invalid case, bag capacity must always be +v
+            if(n<=0) return 0; //there is no item to chose from
+           
+
+            int inc = arr[n] + findAns(n-1,w-arr[w],arr);
+            int exc =  findAns(n-1,w,arr);
+
+            return max(inc,exc);
+       }
+    \end{verbatim}
+
+way2: Process element from end.
+    \begin{verbatim}
+        int findAns(int idx, int w, const vector<int> &arr)
+        {
+            if(w <= 0) return INF;
+            if(idx >= arr.size()) return 0;
+            
+
+            int inc = arr[idx] + findAns(idx+1,w-arr[idx],arr);
+            int exc = findAnsans(idx+1,w-arr[idx],arr);
+            
+            return max(inc,exc);
+        }
+    \end{verbatim}
+
+way3:(preferred) best for debugging \& visualization.
+
+    \begin{verbatim}
+        int findAns(int idx,int cw,const vector<int> &arr,const int W)
+        {
+            if(cw > W) return INVALID; //IMP: invalid case before valid case
+            if(idx >= size) return 0;
+           
+
+            int inc = arr[idx] + findAns(idx+1,cw + arr[idx], arr,W);
+            int exc = findAns(idx+1,cw,arr,W);
+
+            printf("[%d,%d] : VAL(%d,%d)\n",idx,arr[idx],inc,exc);
+            return max(inc,exc);
+        }
+    \end{verbatim}
+
+Issue: you need to make sure inc does not get out of bound. You can do it in various way.
+
+
+\begin{enumerate}[(i)]
+    \item Instead of setting INVALID as INTMAX, set it as INTMAX/2.
+    \item Instead of setting as extream large value. Set it to to some large value from question constrain. This way overflow can be avoided + you get your our INF for the given question.
+\end{enumerate} 
+
+
+way4:(preferred) Handling Invlaid cases during call itself (Hence, no need to handling invalid cases in base-case)
+
+    \begin{verbatim}
+        int findAns(int idx,int cw, const vector<int>& arr,int W)
+        {
+            if(idx >= 0) return 0;
+
+            int inc = INVALID,exc = INVALID;
+
+            if(cw + arr[idx] <= W)
+                inc = arr[idx] + findAns(idx+1,cw+arr[idx],arr,W);
+            
+            exc = findAns(idx+1,cw,arr,W);
+
+            printf("[%d,%d] : VAL(%d,%d)\n",idx,arr[idx],inc,exc);
+            return max(inc,exc);
+        }
+    \end{verbatim}
+
+    \paragraph{Summary Of Solutions:} All of the way written above shows same logic but implemented in different way.
+    way3 and way4 produces good code which is easy to debug.
+    Both is preferred way, if there are more decision making at current idx, then ideally way4 is preferred. (as you can see and modify all the decision at this step itself.)
+
+\end{solution}

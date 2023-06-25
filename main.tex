@@ -5,11 +5,38 @@
 \usepackage{layout}
 \usepackage{lipsum}
 \usepackage{blindtext}
+
+% Environment Here
+\usepackage{mdframed}
+\usepackage{xcolor}
+\newenvironment{problem}[2][Q:]
+    { \begin{mdframed}[backgroundcolor=gray!20] \textbf{#1 #2} \\}
+    {  \end{mdframed}}
+
+% Define solution environment
+\newenvironment{solution}
+    {\textit{Solution:}}
+    {}
+
+% Environment end here
+
+\settocdepth{section} % For numbering section & subsection
+\setsecnumdepth{subsection}
+
+
 \begin{document}
+\frontmatter
+% Three-level Table of Contents
+\setcounter{tocdepth}{3}
+
+
+
+\tableofcontents
 
 \mainmatter
 
-\include{dp}
+
+\include{dp.tex}
 
 \layout*
 

@@ -1,13 +1,41 @@
-% !TEX root = ../notes_template.tex
-\chapter{Discrete Math}\label{chp:discrete_math}
+\chapter{Dynamic Programming}\label{chp:dynamic_programming}
 
-Chapter
 % \lipsum[100]
-\blindtext[10]
+% \blindtext[10]
 
-\section{Proof}
 
-Proff Section
+
+The word \textbf{Dynamic} in Dynamic Programming refers that our computation complexity for the given problem can be reduced if:
+
+\begin{enumerate}[(i)]
+    \item Current state of the problem depends upon previous state solved.
+    \item previous state has been already precomputed \& we have also saved their state.
+\end{enumerate}
+
+
+As we know recursion is way, in which current problem can be expressed in term of smaller sub-problem. Hence, writing the current state of problem in recursive way is the main step in solving question by dynamic programming.
+
+\vspace{5mm}
+% \addvspace{10cm}
+Steps to Solve Dynamic Programming Question:
+\begin{enumerate}[(i)]
+    \itemsep0em 
+    \item Express the current state of problem in recurrance relation.
+    \item solve the problem in recursive way. (by considering all the edge case).
+    \item Compute time complexity of recursive solution. Then compute time complexity of memoized solution.
+    \item If memoized time complexiy is okay $\Rightarrow$ this is the solution.
+    \item If memoized time compleixy is not okay $\Rightarrow$ express solution in alternative recurrance (same as modifying the recursive function defination) way; such that less variable term are mentioned in the recurrance relation.
+\end{enumerate}
+
+\section{Dynamic Programming Questions}
+\paragraph{type1} We will list \& discuss some of the common question pattern from this paradigm.
+
+
+\subsection{Classic Dynamic Problems}
+
+\input{subset-sub.tex}
+
+
 
 \section{Quantifier}
 Quantifier Section
