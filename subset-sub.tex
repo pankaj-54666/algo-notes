@@ -60,6 +60,7 @@ Issue: you need to make sure inc does not get out of bound. You can do it in var
 
 \begin{enumerate}[(i)]
     \item Instead of setting INVALID as INTMAX, set it as INTMAX/2.
+    \item Use ulli where the overflow is happening. "ex: long long int inc = arr[idx] + f(..)"
     \item Instead of setting as extream large value. Set it to to some large value from question constrain. This way overflow can be avoided + you get your our INF for the given question.
 \end{enumerate} 
 

@@ -1,0 +1,32 @@
+\begin{problem}{Coin Change}
+    Given an integer array of coins[ ] of size N representing different types of currency and an integer sum, The task is to find the number of ways to make sum by using different combinations from coins[].
+\end{problem}
+
+\begin{solution}
+
+    let f(idx,sum) :: number of ways to make sum with [0..idx] coin from the array.
+
+    At index idx, we have two choice:
+    (a) chose the current coin
+    (b) do not chose the current coin
+    
+    \vspace{2mm}
+    Recurrance Relation: $f(idx,sum) = f(idx,sum+arr[idx]) + f(idx+1,sum)$;
+
+    Base Case: $idx >= 0 ,sum == SUM , sum > SUM$;
+
+    \begin{verbatim}
+        int findAns(int idx, int sum,const vector<int>& arr,const int SUM)
+        {
+            if(sum == SUM) return 1; //for current combination 1 SUM
+            if(idx >= size) return 0; //no element => no way to make SUM
+            if(sum > SUM) return 0;
+
+            int inc = findAns(idx,sum+arr[idx],arr,SUM);
+            int exc = findAns(idx+1,sum,arr,SUM);
+
+            return inc + exc;
+        }
+    \end{verbatim}
+  
+\end{solution}
