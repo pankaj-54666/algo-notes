@@ -12,20 +12,16 @@ of length n is large enough, an optimal solution may require no cutting at all.
     (1)
     \vspace{3mm}
     \hrule
-    
-    \begin{intution}
-        Similarity to unbounded knapsack if we consider the solution array(sarr) derived from cost[].
-    \end{intution}
+        % \includegraphics[width=10cm, height=5cm]{./diagram/rod-cutting-example.png
+       let $f(idx,\_) :=$ maximum revenu we can make when are allowed to use cost[0...idx] \textbf{only}.
+       considering that we have the answer for we are allowed to choose from cost[0...idx-1].
+       
+       Then at idx, we have the following option to chose from
+       (we will take the best of all):
 
-        % \includegraphics[width=10cm, height=5cm]{./diagram/rod-cutting-example.png}
-        
-       Considering the cost[], we will try to find sarr[]. \\
-       where sarr[idx] := maximum revenue we can get if we are allowed to cut rod from length cost[0..idx-1]
-       Now, for the sarr[] at index idx.
-       We have two options:
         \begin{enumerate}[(a)]
-            \item get the profit arr[idx] $\Rightarrow$ we can again cut the reduced rod with profit arr[idx] $val1 = cost[idx] + f(idx,n-(idx+1))$
-            \item do not get the profit arr[idx] $val2 = f(idx+1,n)$
+            \item take the profit at cost[idx]  $val1 = cost[idx] + f(idx,n-(idx+1))$
+            \item do not take the profit cost[idx] $val2 = f(idx+1,n)$
         \end{enumerate}
     \begin{verbatim}
         int findAns(int idx,int n ,const vector<int>& arr)
@@ -56,10 +52,11 @@ of length n is large enough, an optimal solution may require no cutting at all.
     
     \begin{intution}
         Consider the function signature as :
-        $f(n) :=$ maximum revenu we can make if we have a rod of lenght n
+        $f(n,\_) :=$ maximum revenu we can make if we have a rod of lenght n
     \end{intution}
 
-    If we have rod of lenght n, that we can do cost.size() number of operations on this rod. (i.e we will try to cut this at all possible place)
+    Hence at f(n), we have the following option: 
+    cut the rod with lenght (1,n-1), (2,n-2), (3,n-3) ... (n,0); we will take the best of all.
 
     \begin{verbatim}
         int findAnsTwo(int n,const vector<int>& arr)
