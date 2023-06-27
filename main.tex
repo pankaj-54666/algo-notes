@@ -5,6 +5,12 @@
 \usepackage{layout}
 \usepackage{lipsum}
 \usepackage{blindtext}
+\usepackage{marginnote}
+\usepackage{tikz}
+
+% for color
+\usepackage{xcolor}
+\usepackage{soul}
 
 % Environment Here
 \usepackage{mdframed}
@@ -14,8 +20,17 @@
     {  \end{mdframed}}
 
 % Define solution environment
+%guide: \newenvironment{name}[num]{before code}{after code}
 \newenvironment{solution}
     {\textit{Solution:}}
+    {}
+
+\newcommand{\texthighlight}[2]
+{\sethlcolor{#1}{\hl{#2}}}
+%hl stands for highlight
+
+\newenvironment{intution}
+    {\par\smallskip\noindent\underline{Intution:}\quad}
     {}
 
 % Environment end here
