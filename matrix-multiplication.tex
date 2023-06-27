@@ -13,7 +13,6 @@
 
     One way is that we try every possible split: 
     split at 1, split at 2, split at 3 
-    y
 
     % TO-DO:show below code in time
     $ val_k =( leftCost * arr[k] * rightCost )$
@@ -29,64 +28,51 @@
 
 \end{solution}
 
+\vspace{5mm}
 \begin{solution}
-    As we see f(0..idx) (also represented a f(idx)) was not sufficent to able to find our answer.
+    
+    As we see $f(0..idx)$ (also represented a $f(idx)$) was not sufficent to able to find our answer.
     and we needed a range of l \& r.
 
-    let follow up on that, and define our updated recurrance relation as:
-    $f(l,r,_):=$ multiplication cost when we are allowed to multiply in range arr[l..r] \textbf{only}
-\end{solution}
+    \vspace{2mm}
+    Lets follow up on that, and define our updated recurrance relation as:
+    $f(l,r,\_):=$ multiplication cost when we are allowed to multiply in range arr[l..r] \textbf{only}
 
-\begin{solution}
-    This is another important patter of dp. 
-    In this, generally the size of array be such that we require $O(n^3)$ time complexiy to solve the question.
-    
-    % TO-DO: fix the marginote overflow issue
-   \begin{marginnote}
-    The $O(n^3)$ complexity of problem itself suggest that you should try this solution.
-   \end{marginnote}
+    Now expressing f(l,r) in term of subproblem, we have:\\
+    In how many ways we can multiply matrix f(l,r)?
 
-   \vspace{2mm}
-   Here, instead of considering our question space to be [0..idx], we will consider it to be [l...r].
+    For above we have following option:
+        try splitting at all possible points.
+        i.e split at 1, split at 2, split at 3 ,\dots
 
+        Hence,
+        $val_k = leftCost * arr[k] * rightCost$
 
-   And after that we will try to find our the number of ways can fill the carr[idx].
+        $val_k = f(0,k-1) * arr[k] * f(k+1,r)$
 
-   \vspace{2mm}
-   For the given problem, if we have the array at arr[l..r] and we need to find the optimal cost to multiply.
-   Then we will try all possible way to multiply the matrix \& take the best amount them.
-   
-   \begin{verbatim}
+        We will take the best of all.
+
+\begin{verbatim}
         int matrixChainMultiplicatino(int l, int r, const vector<int>&arr)
         {
             if(l>=r)
                 return 0; //no element exist in arrr
 
             int bCost = INT_MAX; //best cost
-            
-            //Try out all possible place
+
+            //Try split at all possible place
             for(int k=l;k<r;k++)
             {
                 int leftCost =  matrixChainMultiplicatino(l,k,arr);
                 int rightCost = matrixChainMultiplicatino(k+1,r,arr);
 
                 cc printf("(%d,%d):: LeftCost = %d, RightCost = %d\n",l,r,leftCost,rightCost);
-
                 int splittingCost = (arr[l-1] * arr[k] * arr[r]) + leftCost + rightCost;
 
                 bCost = min(bCost,splittingCost);
             }
-        //  printf("Best Cost to Multiply %d = %d\n",l,bCost);
             return bCost;
         }
-   \end{verbatim}
+\end{verbatim}
 
 \end{solution}
-
-\begin{solution}
-    //TO-DO: Complete this
-    what if f(idx) := optimal multiplication cost when we have allowed only matrix arr[0...idx]
-
-    for sarr[idx], the cost will depedent upon ??
-\end{solution}
-    
