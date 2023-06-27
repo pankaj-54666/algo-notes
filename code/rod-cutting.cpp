@@ -22,7 +22,7 @@ int findAns(int idx,int n ,const vector<int>& arr)
     
     int cut_length = idx+1;
     if(n-cut_length>=0)
-        val1 = arr[idx] + findAns(idx,n-cut_length,arr); \\rod-lenght is reduced
+        val1 = arr[idx] + findAns(idx,n-cut_length,arr); //rod-lenght is reduced
         
     val2 = findAns(idx+1,n,arr);
     
