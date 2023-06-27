@@ -5,6 +5,39 @@
 \end{problem}
 
 \begin{solution}
+    let $f(idx,_):= $ multiplication cost when we are allowed to multipliy arr[0...idx] \textbf{only}.
+    Now at index idx, we want to include the arr[idx] in our solution range \& we already know answer of arr[0...idx-1].
+
+    Hence, at idx we have the following option:
+    \textit{can you think of recursive way as, how can we find the solution of $f(idx)$ using subproblem??}
+
+    One way is that we try every possible split: 
+    split at 1, split at 2, split at 3 
+    y
+
+    % TO-DO:show below code in time
+    $ val_k =( leftCost * arr[k] * rightCost )$
+
+    
+    $ val_k = f(k)*arr[k]* f(k...idx) $
+    
+    As you can see for rightCost calculation we need range 
+    But our function can only give $f(0..idx)$.  which we usually shorthand for $f(idx)$.
+
+    if you could devise a way to find rightCost, then we can find the answer with above function signature.
+
+
+\end{solution}
+
+\begin{solution}
+    As we see f(0..idx) (also represented a f(idx)) was not sufficent to able to find our answer.
+    and we needed a range of l \& r.
+
+    let follow up on that, and define our updated recurrance relation as:
+    $f(l,r,_):=$ multiplication cost when we are allowed to multiply in range arr[l..r] \textbf{only}
+\end{solution}
+
+\begin{solution}
     This is another important patter of dp. 
     In this, generally the size of array be such that we require $O(n^3)$ time complexiy to solve the question.
     
