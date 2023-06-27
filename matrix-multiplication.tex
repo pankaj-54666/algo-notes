@@ -31,15 +31,18 @@
 \vspace{5mm}
 \begin{solution}
     
+    \obeylines
     As we see $f(0..idx)$ (also represented a $f(idx)$) was not sufficent to able to find our answer.
     and we needed a range of l \& r.
 
-    \vspace{2mm}
+    % \vspace{2mm}
+    \medskip
     Lets follow up on that, and define our updated recurrance relation as:
-    $f(l,r,\_):=$ multiplication cost when we are allowed to multiply in range arr[l..r] \textbf{only}
+    \textbf{$f(l,r,\_):=$ multiplication cost when we are allowed to multiply in range arr[l..r] \textbf{only}.}
 
-    Now expressing f(l,r) in term of subproblem, we have:\\
-    In how many ways we can multiply matrix f(l,r)?
+    \bigskip
+    Now expressing $f(l,r)$ in term of subproblem, we have:
+    \marginnote{q: In how many ways we can multiply matrix f(l,r)?}
 
     For above we have following option:
         try splitting at all possible points.

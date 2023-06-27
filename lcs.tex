@@ -1,0 +1,69 @@
+% Longest Common subsequeuen
+
+\begin{problem}{Longest Common Subsequence(LCS)}
+    Given two string s1 and s2. Find a new string which is the longest common substring of the given string.
+    Practice: LC1143
+\end{problem}
+
+\begin{solution}
+    \obeylines
+    In all string problem, we require to create some final string.
+    In some of the problem, we are required to find the count (which is generally than 1e6).
+
+    \medskip
+    For all of problem in which we are asked max,min or count(below 1e6) we can try to construct the final string itself by following all the question constrain.
+
+    \bigskip
+    In current problem, let f(i,j,\_) := length of longest common subsequece when we are allowed to use s1[0..i] and s2[0...j] \textbf{only}.
+
+    lets suppose we are also keeping track of lcs string formed up till now. let string formed till now as[0...idx].
+
+    \medskip
+    Now if know the subproblem, then at index idx - \textbf {we need to know as in how many ways we can fill the as[idx]}.
+
+    \medskip
+    Ways to fill:
+    fill from s1, fill from s2. 
+    two case: both same, both different.
+
+   
+    \begin{verbatim}
+        \\Debug Version code
+        int findAns(int i,int j,string as, const string &s1, const string &s2)
+        {
+            if(i>= s1.size() || j>= s2.size())  //if one is empty => we cannot find anything common now
+                return 0; 
+                
+            //visualize the answer being created
+            cc printf("\t:: [%s] (%s,%s)\n",as.c_str(),s1.substr(i).c_str(),s2.substr(j).c_str()); 
+            
+            int &mans = mem[i][j];
+            int val1 = 0,val2=0,val3=0;
+            
+            if(s1[i] == s2[j])
+            {
+                val1 = 1 + findAns(i+1,j+1,as+s1[i],s1,s2);
+            }
+            else
+            {
+                val2 =  findAns(i+1,j,as+s1[i],s1,s2);
+                val3 = findAns(i,j+1,as+s2[j],s1,s2);
+            }
+            
+            //view all path computed at idx
+            cc printf("[%s,%d,%d]: (%d,%d,%d)\n",as.c_str(),i,j,val1,val2,val3); 
+            
+            return mans = max({val1,val2,val3});
+        }
+    \end{verbatim}
+
+\end{solution}
+
+% TO-DO: add follow up environment here
+% Follow-up Questions
+Follow-Up Questions:
+\begin{enumerate}[(a)]
+    \item Find out the lcs string using mem matrix.
+    \item  Find out the lcs string using dir matrix + iterative.
+    \item Find out the lcs string using dir matrix + recursive.
+\end{enumerate}
