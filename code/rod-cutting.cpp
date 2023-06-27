@@ -12,6 +12,15 @@ using namespace std;
 #define MAX_N 1003
 int mem[MAX_IDX][MAX_N];
 
+/*
+Rod-Cutting:  n, cost[]
+
+let f(idx,_) :: optimal cost to cut the rod, when we are allowed to pick cost[0...idx]
+
+now, at idx: we have following option
+(a) take the profit. f(idx,_) = arr[idx] + f(idx,_) //pass idx to function as cost[idx] is avaialble to be taken infinite time! (same as unbounded knapsack)
+(b) do not take the profit.
+*/
 int findAns(int idx,int n ,const vector<int>& arr)
 {
     if(idx >= arr.size()) return 0;
@@ -31,6 +40,11 @@ int findAns(int idx,int n ,const vector<int>& arr)
 }
 
 int memt[MAX_N];
+/*
+    f(n,_) :: total ways to cut rod of lenght n.
+    hence at n, we have the following option: 
+    cut the rod with lenght (1,n-1), (2,n-2), (3,n-3) ... (n,0); we will take the best of all.
+*/
 int findAnsTwo(int n,const vector<int>& arr)
 {
     if(n<=0) return 0;
@@ -47,6 +61,14 @@ int findAnsTwo(int n,const vector<int>& arr)
     return mans = profit;
 }
 
+/*
+    first solution consider the primary constrain as cost[] & hence define recurrance relation in term of cost.
+    for the second solution we consider the primary constrain as rod-lenght, hence we define the recurrance relation in term of rod-lenght.
+
+    in both case _ represent the secondary constrain. & firt parameter represent the primary constrain.
+    f(idx,_) :: cost[] is primary constrain, rest all is secondary constrain
+    f(n,_) :: n is primary constrain
+*/
 
 class Solution{
   public:

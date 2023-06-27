@@ -36,3 +36,29 @@ Steps to Solve Dynamic Programming Question:
 \input{subset-sub.tex}
 \input{coin-change.tex}
 \input{rod-cutting.tex}
+\input{matrix-multiplication.tex}
+
+
+Pratice Questions:
+(LC 1547) Minimum cost to cut a stick.
+
+Exercise Question:
+(a) For LC1547 print the optimal ordering.
+
+Pratice Hints:
+
+
+Exercise Solution:
+LC
+
+Please Categorize:
+\begin{enumerate}[(i)]
+    \item 
+     LC 2218 : $f(idx,\_)$ = maximum total value of coing we can pick if we are allowed to pick coins from from arr[0...idx]\\
+     now at idx, we have the option to chose either \begin{verbatim} {1}, {1,2}, {1,2,3}... {1,2,...min(k,size)} \end{verbatim} options
+        
+     we will take the best from all the option.
+    
+     \item LC 1105: with $f(idx,\_)$ defination as same as 2218.\\
+     At idx, we can chose either 1 or 2 or 3 books, ... n books. We will take the best of all.
+\end{enumerate}

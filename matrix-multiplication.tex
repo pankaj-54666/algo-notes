@@ -1,0 +1,59 @@
+\begin{problem}{Matrix Chain Multiplication}
+    Given a sequence of matrices, find the most efficient way to multiply these matrices together. The efficient way is the one that involves the least number of multiplications.
+    The dimensions of the matrices are given in an array arr[] of size N (such that N = number of matrices + 1) where the ith matrix has the dimensions (arr[i-1] x arr[i]).
+    \href{https://practice.geeksforgeeks.org/problems/matrix-chain-multiplication0303/1}{Pratice Link}
+\end{problem}
+
+\begin{solution}
+    This is another important patter of dp. 
+    In this, generally the size of array be such that we require $O(n^3)$ time complexiy to solve the question.
+    
+    % TO-DO: fix the marginote overflow issue
+   \begin{marginnote}
+    The $O(n^3)$ complexity of problem itself suggest that you should try this solution.
+   \end{marginnote}
+
+   \vspace{2mm}
+   Here, instead of considering our question space to be [0..idx], we will consider it to be [l...r].
+
+
+   And after that we will try to find our the number of ways can fill the carr[idx].
+
+   \vspace{2mm}
+   For the given problem, if we have the array at arr[l..r] and we need to find the optimal cost to multiply.
+   Then we will try all possible way to multiply the matrix \& take the best amount them.
+   
+   \begin{verbatim}
+        int matrixChainMultiplicatino(int l, int r, const vector<int>&arr)
+        {
+            if(l>=r)
+                return 0; //no element exist in arrr
+
+            int bCost = INT_MAX; //best cost
+            
+            //Try out all possible place
+            for(int k=l;k<r;k++)
+            {
+                int leftCost =  matrixChainMultiplicatino(l,k,arr);
+                int rightCost = matrixChainMultiplicatino(k+1,r,arr);
+
+                cc printf("(%d,%d):: LeftCost = %d, RightCost = %d\n",l,r,leftCost,rightCost);
+
+                int splittingCost = (arr[l-1] * arr[k] * arr[r]) + leftCost + rightCost;
+
+                bCost = min(bCost,splittingCost);
+            }
+        //  printf("Best Cost to Multiply %d = %d\n",l,bCost);
+            return bCost;
+        }
+   \end{verbatim}
+
+\end{solution}
+
+\begin{solution}
+    //TO-DO: Complete this
+    what if f(idx) := optimal multiplication cost when we have allowed only matrix arr[0...idx]
+
+    for sarr[idx], the cost will depedent upon ??
+\end{solution}
+    
