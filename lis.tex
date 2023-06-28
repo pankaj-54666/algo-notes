@@ -1,0 +1,55 @@
+\begin{problem}{Longest Increasing Subsequnce}
+    Given an integer array nums, return the length of the longest strictly increasing subsequence. LC 300\\
+    (a)Give $O(n^2)$ algorithm.\\
+    (b)Give $O(n*log(n))$ algorithm.
+\end{problem}
+
+\begin{solution}
+    \obeylines
+    \obeyspaces
+    This is one of the DP approach where we will build the solution in iterative fashion.
+
+    let dp[idx] := lenght of lis \textbf{ending at idx.}
+    \medskip
+    Considering case when dp[0...idx-1] is know:
+    Then for dp[idx], we can pair this up with all the dp[0...idx-1]. (with constrain satisfied)
+
+    \begin{verbatim}
+        int LISViaDP(vector<int>& arr)
+        {
+            int size = arr.size();
+            
+            vector<int> dp(size,1); //dp[idx] := lenght of longest lis which is ending at idx.
+            
+            for(int i=1;i<size;i++)
+            {
+                for(int j=0;j<i;j++)
+                {
+                    if(arr[i] > arr[j])
+                        dp[i] = max(dp[i] , dp[j] + 1);
+                }
+            }
+            
+            int mx = 0;
+            for(int i=0;i<dp.size();i++)
+                mx = max(mx,dp[i]); 
+            
+            return mx;
+        }
+    \end{verbatim}
+    
+
+\end{solution}
+
+
+\begin{solution}
+    \vspace{2mm}
+    \hrule
+    
+\end{solution}
+
+% //To-DO Add pratice question environment.
+Pratice Questions:
+\begin{enumerate}
+    \item LC2111  Minimum Operations to Make the Array K-Increasing
+\end{enumerate}
