@@ -1,7 +1,22 @@
 \documentclass{memoir}
 % \usepackage[a4paper,marginparwidth=80pt]{geometry} % to create a small page
-\usepackage[a4paper, inner=1.5cm, outer=3cm, top=2cm,
-bottom=3cm, bindingoffset=1cm]{geometry}
+% \usepackage[a4paper, inner=1.5cm, outer=3cm, top=2cm,
+% bottom=3cm, bindingoffset=1cm]{geometry}
+
+\usepackage[
+ paperheight=280mm,
+  paperwidth=250mm,
+            inner=20mm,
+            outer=90mm,% = marginparsep + marginparwidth 
+                       %   + 5mm (between marginpar and page border)
+            top=20mm,
+            bottom=25mm,
+            marginparsep=5mm,
+            marginparwidth=80mm,
+            showframe% for show your page design, normaly not used
+            ]{geometry}
+
+
 \usepackage{hyperref} % To use the \url command (in the footnote)
 \usepackage{marginnote}
 \usepackage{layout}
