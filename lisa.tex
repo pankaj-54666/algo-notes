@@ -49,7 +49,7 @@
 
 \end{solution}
 
-\begin{solution}[Recursive: subarray end at idx]
+\begin{solution}[Recursive: subarray end at idx | $O(n)$]
     Although solving subarray problem in recursive way makes the solution complex.
     Nonetheless, if you want to know how to solve it here is the code.\\[2mm]
 
@@ -89,7 +89,7 @@
     \end{code}
 \end{solution}
 
-\begin{solution}[Recursive: subarray start at idx]
+\begin{solution}[Recursive: subarray start at idx | $O(n)$]
     let 
     \intution{$f(idx,\_):=$maximum subarray that starts at idx \& MUST include idx.}
 
@@ -128,7 +128,7 @@
     TO-DO: can you find the solution?
 \end{solution}
 
-\begin{solution}[Divide and Conquer]
+\begin{solution}[Divide and Conquer |  $O(n*log(n))$]
     Split the problem in two parts AND build the solution by combing these part.
     
     \begin{code}
@@ -149,7 +149,7 @@
         
         rightSum = max(rightSum, curSum);        
 
-		// return max of 3 cases 
+        // return max of 3 cases 
         return max({ findAnsFour(A, L, mid-1), findAnsFour(A, mid+1, R), leftSum + A[mid] + rightSum });
     }	
     \end{code}
