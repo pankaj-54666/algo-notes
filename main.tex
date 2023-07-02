@@ -42,15 +42,23 @@
 \newcommand{\rfl}[1]{ \hl{#1}} %rfl = remember for later
 \newcommand{\intution}[1]{\hl{#1}} 
 
+% \newenvironment{foo}[2]
+%   {something with #1 and #2 to be performed at the beginning}
+%   {something to be performed at the end}
+
+%   \begin{foo}{arg1}{arg2}
+%     some stuff in the middle
+%     \end{foo}
+
 \newenvironment{problem}[2][Q:]
-    { \begin{mdframed}[backgroundcolor=yellow!40] \textbf{#1 #2} \\}
+    {  \begin{mdframed}[backgroundcolor=yellow!40] \textbf{#1 #2} \\}
     {  \end{mdframed}}
 
 % Define solution environment
 %guide: \newenvironment{name}[num]{before code}{after code}
-\newenvironment{solution}
-    {\textit{Solution:}}
-    {}
+\newenvironment{solution}[1][]
+    { \vspace{4mm} \noindent\textit{Solution: \hfill #1 } \\[2mm]}
+    {\rule{\textwidth}{1pt}}
 
 \newcommand{\texthighlight}[2]
 {\sethlcolor{#1}{\hl{#2}}}
