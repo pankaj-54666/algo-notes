@@ -20,7 +20,6 @@
 % Please ensure there is no binding offset
 % \usepackage{parskip}
 
-\usepackage{hyperref} % To use the \url command (in the footnote)
 \usepackage{marginnote}
 \usepackage{layout}
 \usepackage{lipsum}
@@ -40,6 +39,8 @@
 % Environment Here
 \usepackage{mdframed}
 \usepackage{xcolor}
+\usepackage{fancyvrb}
+\usepackage[hidelinks]{hyperref} 
 
 
 
@@ -75,6 +76,16 @@
 %     {}
 
 % Environment end here
+
+\newenvironment{code}
+{\Verbatim[samepage=true]}
+{\endVerbatim}
+
+
+% \newenvironment{code}
+% {\endgraf\noindent 
+% \endgraf\verbatim}
+% {\endverbatim}
 
 \settocdepth{section} % For numbering section & subsection
 \setsecnumdepth{subsection}
