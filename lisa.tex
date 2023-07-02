@@ -121,3 +121,42 @@
         }
     \end{code}
 \end{solution}
+
+\begin{solution}[Recursive]
+    Can you build up a solution which usages inclusive/exclusion of subsequence to solve this problem?
+    Example: at index idx we have option to continue current sequence OR do not continue.
+    TO-DO: can you find the solution?
+\end{solution}
+
+\begin{solution}[Divide and Conquer]
+    Split the problem in two parts AND build the solution by combing these part.
+    
+    \begin{code}
+    /* this is divide & conquere*/
+    int findAnsFour(vector<int>& A, int L, int R){
+        if(L > R) return INT_MIN;
+        int mid = (L + R) / 2, leftSum = 0, rightSum = 0;
+
+        // leftSum = max subarray sum in [L, mid-1] and starting from mid-1
+        for(int i = mid-1, curSum = 0; i >= L; i--)
+            curSum += A[i],
+        
+        leftSum=max(leftSum, curSum);
+
+        // rightSum = max subarray sum in [mid+1, R] and starting from mid+1
+        for(int i = mid+1, curSum = 0; i <= R; i++)
+            curSum += A[i],
+        
+        rightSum = max(rightSum, curSum);        
+
+		// return max of 3 cases 
+        return max({ findAnsFour(A, L, mid-1), findAnsFour(A, mid+1, R), leftSum + A[mid] + rightSum });
+    }	
+    \end{code}
+\end{solution}
+
+
+Similary Question List:
+\begin{asparaenum}[(a)]
+    \item LCXY
+\end{asparaenum}

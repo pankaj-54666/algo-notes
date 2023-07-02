@@ -7,6 +7,22 @@ int mem[MAX_IDX];
 #define cc if(0)
 class Solution {
     
+/* this is divide & conquere*/
+int findAnsFour(vector<int>& A, int L, int R){
+        if(L > R) return INT_MIN;
+        int mid = (L + R) / 2, leftSum = 0, rightSum = 0;
+        // leftSum = max subarray sum in [L, mid-1] and starting from mid-1
+        for(int i = mid-1, curSum = 0; i >= L; i--)
+            curSum += A[i],
+            leftSum=max(leftSum, curSum);
+        // rightSum = max subarray sum in [mid+1, R] and starting from mid+1
+        for(int i = mid+1, curSum = 0; i <= R; i++)
+            curSum += A[i],
+            rightSum = max(rightSum, curSum);        
+		// return max of 3 cases 
+        return max({ findAnsFour(A, L, mid-1), findAnsFour(A, mid+1, R), leftSum + A[mid] + rightSum });
+    }	
+    
     /* we will calculate dp[idx], where
     dp[idx]:= maximum subarray that starts at idx & MUST include idx.
     i.e idx is the starting point of the sequence*/
@@ -92,6 +108,8 @@ public:
          // findAns(arr.size()-1,arr);
         findAnsTwo(0,arr);
         return *max_element(mem,mem+arr.size());
+        
+         // return maxSubArray(nums, 0, size(nums)-1);
 
     }
 };

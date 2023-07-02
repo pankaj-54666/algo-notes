@@ -65,7 +65,7 @@
 %guide: \newenvironment{name}[num]{before code}{after code}
 \newenvironment{solution}[1][]
     { \setlength\parindent{0pt} \vspace{4mm} \noindent\textit{Solution: \hfill #1 } \\[2mm]}
-    {\rule{\textwidth}{1pt}}
+    {\hfill \\ \rule{\textwidth}{1pt}}
 
 \newcommand{\texthighlight}[2]
 {\sethlcolor{#1}{\hl{#2}}}
