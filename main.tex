@@ -1,4 +1,4 @@
-\documentclass{memoir}
+\documentclass[11pt]{memoir}
 % \usepackage[a4paper,marginparwidth=80pt]{geometry} % to create a small page
 % \usepackage[a4paper, inner=1.5cm, outer=3cm, top=2cm,
 % bottom=3cm, bindingoffset=1cm]{geometry}
@@ -38,6 +38,10 @@
 
 
 
+
+\newcommand{\rfl}[1]{ \hl{#1}} %rfl = remember for later
+\newcommand{\intution}[1]{\hl{#1}} 
+
 \newenvironment{problem}[2][Q:]
     { \begin{mdframed}[backgroundcolor=yellow!40] \textbf{#1 #2} \\}
     {  \end{mdframed}}
@@ -52,9 +56,9 @@
 {\sethlcolor{#1}{\hl{#2}}}
 %hl stands for highlight
 
-\newenvironment{intution}
-    {\par\smallskip\noindent\underline{Intution:}\quad}
-    {}
+% \newenvironment{intution}
+%     {\par\smallskip\noindent\underline{Intution:}\quad}
+%     {}
 
 % Environment end here
 
@@ -63,6 +67,7 @@
 
 
 \begin{document}
+% \renewcommand{\verbatim@font}{\tiny\ttfamily}
 \frontmatter
 % Three-level Table of Contents
 \setcounter{tocdepth}{3}
