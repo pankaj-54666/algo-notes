@@ -4,7 +4,7 @@
     (b)Give $O(n*log(n))$ algorithm.
 \end{problem}
 
-\begin{solution}
+\begin{solution}[Inclusion-Exclusion]
     \vspace{2mm}
     \hrule
     \vspace{2mm}
@@ -53,7 +53,7 @@
 
 \end{solution}
 
-\begin{solution}
+\begin{solution}[Ending at idx]
     \obeylines
     \obeyspaces
     This is one of the DP approach where we will build the solution in iterative fashion.
@@ -90,7 +90,7 @@
 
 \end{solution}
 
-\begin{solution}
+\begin{solution}[Patience Sorting | $O(n*log(n))$]
     DP + Greedy\\
     Following up with the above solution.
     
@@ -160,7 +160,7 @@
 
 \end{solution}
 
-\begin{solution}
+\begin{solution}[using lcs | $O(n^2)$]
     There is one more interesting solution.
     The intution is that if we sort the array (lets call it sortedArr). And then if we find the Longest Common Subsequence
     between arr[] and sortedArray[] then it will be our LongestIncreasingSubsequence!!

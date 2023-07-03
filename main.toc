@@ -1,7 +1,27 @@
-\changetocdepth {1}
 \contentsline {chapter}{Contents}{i}{section*.1}%
 \contentsline {chapter}{\chapternumberline {1}Dynamic Programming}{1}{chapter.1}%
-\contentsline {section}{\numberline {1.1}Dynamic Programming Questions}{1}{section.1.1}%
-\contentsline {paragraph}{type1}{1}{section*.2}%
-\contentsline {subsection}{\numberline {1.1.1}Classic Dynamic Problems}{1}{subsection.1.1.1}%
-\contentsline {paragraph}{Summary Of Solutions:}{3}{section*.3}%
+\contentsline {paragraph}{type1}{1}{section*.3}%
+\contentsline {section}{0/1 Knapsack}{1}{section*.3}%
+\contentsline {subsection}{Inclusion-Exclusion}{2}{section*.4}%
+\contentsline {paragraph}{Summary Of Solutions:}{3}{section*.5}%
+\contentsline {section}{Coin Change}{3}{section*.5}%
+\contentsline {subsection}{Inclusion-Exclusion Base | $log(n*SUM)$ }{3}{section*.6}%
+\contentsline {section}{Rod-Cutting}{4}{section*.6}%
+\contentsline {subsection}{Cost as primary constrain | $O(n^2)$}{4}{section*.7}%
+\contentsline {subsection}{Rod Lenght as Primary Constrain - $O(n^2)$}{5}{Item.12}%
+\contentsline {section}{Matrix Chain Multiplication}{5}{Item.12}%
+\contentsline {subsection}{Discuss}{6}{section*.8}%
+\contentsline {subsection}{Range Split | $O(n^2)$}{6}{section*.8}%
+\contentsline {section}{Longest Common Subsequence(LCS)}{7}{section*.8}%
+\contentsline {subsection}{Inclusion-Exclusion}{7}{section*.9}%
+\contentsline {section}{Longest Increasing Subsequnce}{8}{Item.15}%
+\contentsline {subsection}{Inclusion-Exclusion}{8}{section*.10}%
+\contentsline {subsection}{Ending at idx}{9}{section*.10}%
+\contentsline {subsection}{Patience Sorting | $O(n*log(n))$}{10}{section*.10}%
+\contentsline {subsection}{using lcs | $O(n^2)$}{11}{figure.1.1}%
+\contentsline {section}{Longest Increasing Subarray | Kadan's Algorithm}{12}{Item.23}%
+\contentsline {subsection}{Non Recursive DP}{12}{section*.11}%
+\contentsline {subsection}{Recursive: subarray end at idx | $O(n)$}{13}{Item.25}%
+\contentsline {subsection}{Recursive: subarray start at idx | $O(n)$}{14}{Item.27}%
+\contentsline {subsection}{Recursive}{14}{Item.29}%
+\contentsline {subsection}{Divide and Conquer | $O(n*log(n))$}{15}{Item.29}%

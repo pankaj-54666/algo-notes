@@ -4,7 +4,7 @@
     \href{https://practice.geeksforgeeks.org/problems/matrix-chain-multiplication0303/1}{Pratice Link}
 \end{problem}
 
-\begin{solution}
+\begin{solution}[Discuss]
     let $f(idx,_):= $ multiplication cost when we are allowed to multipliy arr[0...idx] \textbf{only}.
     Now at index idx, we want to include the arr[idx] in our solution range \& we already know answer of arr[0...idx-1].
 
@@ -29,7 +29,7 @@
 \end{solution}
 
 \vspace{5mm}
-\begin{solution}
+\begin{solution}[Range Split | $O(n^2)$]
     
     \obeylines
     As we see $f(0..idx)$ (also represented a $f(idx)$) was not sufficent to able to find our answer.

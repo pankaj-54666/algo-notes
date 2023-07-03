@@ -57,14 +57,14 @@
 %     \end{foo}
 
 \newenvironment{problem}[2][Q:]
-    {  \begin{mdframed}[backgroundcolor=yellow!40] \textbf{#1 #2} \\}
+    {  \begin{mdframed}[backgroundcolor=yellow!40] \addcontentsline{toc}{section}{#2} \textbf{#1 #2} \\}
     {  \end{mdframed}}
  
     % \setlength\parindent{0pt}
 % Define solution environment
 %guide: \newenvironment{name}[num]{before code}{after code}
 \newenvironment{solution}[1][]
-    { \setlength\parindent{0pt} \vspace{4mm} \noindent\textit{Solution: \hfill #1 } \\[2mm]}
+    { \addcontentsline{toc}{subsection}{#1} \setlength\parindent{0pt} \vspace{4mm} \noindent\textit{Solution:  \hfill #1 } \\[2mm]}
     {\hfill \\ \rule{\textwidth}{1pt}}
 
 \newcommand{\texthighlight}[2]
@@ -87,16 +87,16 @@
 % \endgraf\verbatim}
 % {\endverbatim}
 
-\settocdepth{section} % For numbering section & subsection
-\setsecnumdepth{subsection}
-
+% \settocdepth{section} % For numbering section & subsection
+% \setsecnumdepth{subsubsection}
+\setcounter{tocdepth}{3}
 
 
 \begin{document}
 % \renewcommand{\verbatim@font}{\tiny\ttfamily}
 \frontmatter
 % Three-level Table of Contents
-\setcounter{tocdepth}{3}
+
 
 
 
