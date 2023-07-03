@@ -57,7 +57,7 @@
 %     \end{foo}
 
 \newenvironment{problem}[2][Q:]
-    {  \begin{mdframed}[backgroundcolor=yellow!40] \addcontentsline{toc}{section}{#2} \textbf{#1 #2} \\}
+    { \newpage \begin{mdframed}[backgroundcolor=yellow!40] \addcontentsline{toc}{section}{#2} \textbf{#1 #2} \\}
     {  \end{mdframed}}
  
     % \setlength\parindent{0pt}
@@ -90,6 +90,10 @@
 % \settocdepth{section} % For numbering section & subsection
 % \setsecnumdepth{subsubsection}
 \setcounter{tocdepth}{3}
+
+% below: environemtn related to hints & solution of pratice + Exercise Question
+\newsavebox{\hints}
+\setbox\hints=\vbox{}
 
 
 \begin{document}
