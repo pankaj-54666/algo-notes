@@ -1,1 +1,6 @@
-Hello there PANKAJ
+CONSOLE LOG
+args:
+ [
+  'C:\\Program Files\\nodejs\\node.exe',
+  'd:\\Code\\alog-notes\\pratice-problems\\test.js'
+]
