@@ -4,8 +4,7 @@ int mem[MAX_IDX];
 #define INF INT_MIN/2
 class Solution {
     
-    int findAns(int idx,bool taken,vector<int>&arr)
-    {
+    int findAns(int idx,bool taken,vector<int>&arr){
         if(idx>=arr.size()) return INF;
         
         int inc=0; //take arr[idx] (if constrain allow)
@@ -22,25 +21,7 @@ class Solution {
         
         return max({inc,exc,arr[idx]});
     }
-   
-    /*
-    int findAns(int idx,vector<int>& arr)
-    {
-        if(idx >= arr.size()) return 0;
-        
-        if(mem[idx] != -1) return mem[idx];
-        
-        //maximum sum for range[idx,_] 
-        //i.e idx must be included
-        
-        int t = findAns(idx+1,arr);
-        if(t>0)
-            return mem[idx] = arr[idx] +t;
-        else
-            return mem[idx] = arr[idx] + 0;       
-        
-    }*/
-    
+
 public:
     int maxSubArray(vector<int>& arr) 
     {

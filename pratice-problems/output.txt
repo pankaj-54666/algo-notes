@@ -1,6 +1,18 @@
-CONSOLE LOG
-args:
- [
-  'C:\\Program Files\\nodejs\\node.exe',
-  'd:\\Code\\alog-notes\\pratice-problems\\test.js'
-]
+    int findAns(int idx,bool taken,vector<int>&arr){
+        if(idx>=arr.size()) return INF;
+        
+        int inc=0; //take arr[idx] (if constrain allow)
+        int exc=0; //do not take arr[idx]
+        
+        if(taken)
+        {
+            inc = arr[idx] + findAns(idx+1,1,arr);
+        }
+        
+        exc = findAns(idx+1,0,arr);
+        
+        printf("[%d]:(%d,%d)\n",idx,inc,exc);
+        
+        return max({inc,exc,arr[idx]});
+    }
+

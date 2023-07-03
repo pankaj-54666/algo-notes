@@ -106,7 +106,7 @@
 
 % \tableofcontents
 
-\mainmatter{}
+% \mainmatter{}
 
 Start of Document
 % \include{dp.tex}
@@ -121,14 +121,19 @@ Start of Document
 
 % \input{./outPa.txt}
 
+
+
+% \immediate\write18{node test.js>output.txt} /% VERY IMPORTANT note the differance, there should not be any space between >
+% \input{output.txt}
+
+
 \newcommand{\extractFunction}[3]{
-    \immediate\write18{node test.js > #3}
-    \input{#3}
+    \immediate\write18{node extract.js>#3 2>&1} %2>&1 will print error also to same file.
+    \verbatiminput{#3}
 }
 
-\immediate\write18{node test.js>output.txt} /% VERY IMPORTANT note the differance, there should not be any space between >
-\input{output.txt}
+\extractFunction{AA}{BB}{output.txt}
 
-% \extractFunction{AA}{BB}{outPa.txt}
+
 
 \end{document}
