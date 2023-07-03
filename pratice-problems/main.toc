@@ -1,0 +1,7 @@
+\contentsline {chapter}{Contents}{i}{section*.1}%
+\contentsline {chapter}{\chapternumberline {1}DP Problems}{1}{chapter.1}%
+\contentsline {section}{LC300 LIS}{2}{section*.2}%
+\contentsline {subsection}{Inclusion-Exclusion}{2}{section*.2}%
+\contentsline {subsection}{Ending at idx}{3}{section*.2}%
+\contentsline {subsection}{Patience Sorting | $O(n*log(n))$}{3}{section*.2}%
+\contentsline {subsection}{using lcs | $O(n^2)$}{5}{figure.1.1}%
