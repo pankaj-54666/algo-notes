@@ -1,6 +1,13 @@
     int findAns(int idx,bool taken,vector<int>&arr){
+
+        dfdf
+        decltypefd
+        falsedf
+        PANKAJ
+        KUMAR
+
         if(idx>=arr.size()) return INF;
-        
+
         int inc=0; //take arr[idx] (if constrain allow)
         int exc=0; //do not take arr[idx]
         
@@ -15,4 +22,3 @@
         
         return max({inc,exc,arr[idx]});
     }
-

@@ -2,11 +2,24 @@
 int mem[MAX_IDX];
 
 #define INF INT_MIN/2
-class Solution {
+class Solution{
     
+    decltypef
+    decltypefd
+    friendf
+    default
+    __cpp_user_defined_literalsd
+    dfdf
     int findAns(int idx,bool taken,vector<int>&arr){
+
+        dfdf
+        decltypefd
+        falsedf
+        PANKAJ
+        KUMAR
+
         if(idx>=arr.size()) return INF;
-        
+
         int inc=0; //take arr[idx] (if constrain allow)
         int exc=0; //do not take arr[idx]
         

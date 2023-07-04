@@ -16,6 +16,8 @@
             ]{geometry}
 \setlength{\marginparwidth}{50mm}
 
+\usepackage{pgfmath}
+
 \newcommand{\tab}{\hspace{8mm}}
 % Please ensure there is no binding offset
 % \usepackage{parskip}
@@ -127,13 +129,16 @@ Start of Document
 % \input{output.txt}
 
 
+% JS error will be written to file app.js
+% output will be written to #3
 \newcommand{\extractFunction}[3]{
-    \immediate\write18{node extract.js>#3 2>&1} %2>&1 will print error also to same file.
+    \immediate\write18{node extract.js>app.log 2>&1  --inputFile=#1 --functionName=#2 --outputFile=#3}  %2>&1 will print error also to same file.
     \verbatiminput{#3}
 }
 
-\extractFunction{AA}{BB}{output.txt}
 
+\extractFunction{data.cpp}{findAns}{output.txt}
+JJ
+Random number: \pgfmathrandominteger{\randomnumber}{1}{100}\randomnumber\
 
-
-\end{document}
+  \end{document}
