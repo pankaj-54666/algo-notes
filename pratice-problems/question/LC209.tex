@@ -1,0 +1,29 @@
+\begin{problem}{LC209}
+    LC209
+\end{problem}
+
+\begin{guide}
+    Can you divise a brute force solution? \\
+    Try generating all the possible substring? First try with \underline{fixing the start point \& vary the end point} then try with \underline{fixing the end point \& vary the start point}
+
+    Brute Force has complexity of ${O(n^2)}$ can you think something by computing prefix\_sum and then binary\_search to find index or r?
+
+    Very good task thinking of above $O(n*log(n))$ solution. Now as this is subarray problem, you must try to see if sliding window can be applied to solve this problem.
+
+\end{guide}
+
+\begin{solution}[Brute Force | $O(n^2)$]
+    
+    \includegraphics[width=\textwidth]{solution/LC209_S1.jpg}
+\end{solution}
+
+\begin{solution}[Prefix Sum + BS | $O(n*log n)$]
+
+    \includegraphics[width=\textwidth]{solution/LC209_S2.jpg}
+    
+\end{solution}
+
+\begin{solution}[Sliding Window | $O(n)$]
+    \includegraphics[width=\textwidth]{solution/LC209_S3.jpg}
+    
+\end{solution}

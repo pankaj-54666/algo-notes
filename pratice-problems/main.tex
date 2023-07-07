@@ -69,6 +69,18 @@
     { \addcontentsline{toc}{subsection}{#1} \setlength\parindent{0pt} \vspace{4mm} \noindent\textit{Solution:  \hfill #1 } \\[2mm]}
     {\hfill \\ \rule{\textwidth}{1pt}}
 
+\newcommand\Indent{ \par}
+\newcommand\UnIndent{\hspace*{-13pt}}
+
+\newcommand{\ltab}{\\ }
+
+\newenvironment{guide}
+{\noindent\setlength\parindent{0pt} \textcolor{green}{\rule{\textwidth}{2pt}} \textbf{Hints:}\\[2mm]}
+{\textcolor{green}{\rule{\textwidth}{2pt}}}
+
+
+
+
 \newcommand{\texthighlight}[2]
 {\sethlcolor{#1}{\hl{#2}}}
 %hl stands for highlight
@@ -100,21 +112,22 @@
 
 \begin{document}
 % \renewcommand{\verbatim@font}{\tiny\ttfamily}
-% \frontmatter
+\frontmatter
 % Three-level Table of Contents
 
 
 
 
-% \tableofcontents
+\tableofcontents
 
-% \mainmatter{}
+\mainmatter{}
 
 Start of Document
 % \include{dp.tex}
 % \chapter{DP Problems}
 
-% \include{question/LC300.tex}
+\include{question/LC300.tex}\
+\include{question/LC209}\
 % \include{design/architecture-one}
 
 % \input{./test.txt} % One point, input cannot be nested.
@@ -131,14 +144,14 @@ Start of Document
 
 % JS error will be written to file app.js
 % output will be written to #3
-\newcommand{\extractFunction}[3]{
-    \immediate\write18{node extract.js>app.log 2>&1  --inputFile=#1 --functionName=#2 --outputFile=#3}  %2>&1 will print error also to same file.
-    \verbatiminput{#3}
-}
+% \newcommand{\extractFunction}[3]{
+%     \immediate\write18{node extract.js>app.log 2>&1  --inputFile=#1 --functionName=#2 --outputFile=#3}  %2>&1 will print error also to same file.
+%     \verbatiminput{#3}
+% }
 
 
-\extractFunction{data.cpp}{findAns}{output.txt}
-JJ
-Random number: \pgfmathrandominteger{\randomnumber}{1}{100}\randomnumber\
+% \extractFunction{data.cpp}{findAns}{output.txt}
+% JJ
+% Random number: \pgfmathrandominteger{\randomnumber}{1}{100}\randomnumber\
 
   \end{document}
