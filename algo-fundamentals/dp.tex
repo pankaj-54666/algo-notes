@@ -58,7 +58,7 @@ Exercise Solution:
 LC
 
 Please Categorize:
-\begin{enumerate}[(i)]
+\begin{enumerate}
     \item 
      LC 2218 : $f(idx,\_)$ = maximum total value of coing we can pick if we are allowed to pick coins from from arr[0...idx]\\
      now at idx, we have the option to chose either \begin{verbatim} {1}, {1,2}, {1,2,3}... {1,2,...min(k,size)} \end{verbatim} options
@@ -69,12 +69,14 @@ Please Categorize:
      At idx, we can chose either 1 or 2 or 3 books, ... n books. We will take the best of all.
 
      \item LC 1547 (simple variation of rod-cutting)
-     \item (LC 1092- Shortest Common Supersequence)
+     \item LC 1092- Shortest Common Supersequence
      \item LC801 Minimum Swaps To Make Sequences Increasing 
+     \item LC139 Word Break\\ Given a string s and a dictionary of strings wordDict, return true if s can be segmented into a space-separated sequence of one or more dictionary words.
 \end{enumerate}
 
 \vspace{5cm}
 Comment About Excercise Problem (And possibly have hint too)
-\begin{enumerate}[(i)]
+\begin{enumerate}
     \item LC801: Nice problem where state information can be transferred to other variable + if we use base case to detect invalid case, then code can be greatly simplified.
+    \item LC139 Word Break \\Give (a) f(idx,\_) solution (b) f(l,r,\_) solution (c) BFS Solution (d) Trie Solution
 \end{enumerate}
