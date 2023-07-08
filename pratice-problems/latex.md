@@ -15,3 +15,5 @@ On the solution page follow these.
 In last link to solution.cpp file.
 
 GOAL: goal is to use LC300.cpp file as solution sheet You write them as you would have written in copy for future refereance. (and that's all)
+
+- use asparaenum for compact enumlist

@@ -1,0 +1,45 @@
+\begin{problem}{Edit Distance}
+    You are given two string s1 and s2. Your task is to convert s1 to s2. But you have permitted following operations: Insert,Delete and Replace.
+
+    \footnotetext{LC72}
+\end{problem}
+
+\begin{solution}[ways at idx]
+    First try to formulate the question in term of recursive ways.
+
+    We need to convert s1 to s2, but we have allowed only 3 operations.
+    Hence, \intution{think of ways to fill the ansString, when we are at index idx.}
+
+    \begin{code}
+        int findAns(int i,int j,const string &s1,const string &s2)
+        {
+            cc printf("[%d,%d]\n",i,j);
+            if(i==s1.size() && j==s2.size()) return 0;
+            if(i>=s1.size()) return s2.size()-j; //add this much entry to s1
+            if(j>=s2.size()) return s1.size()-i;  //delete this much entry from s1
+            
+            int &mans = mem[i][j];
+            if(mans != -1) return mans;
+            
+            //now try to create new ansString.
+            //to populate idx of answer string, you can have three operations
+            
+            int val1 = 1 + findAns(i,j+1,s1,s2); //insertion 
+            int val2 = 1+ findAns(i+1,j,s1,s2); //deletion
+            int val3 = 1 + findAns(i+1,j+1,s1,s2); //replacement
+            int val4 = INT_MAX; //do nothing
+            
+            if(s1[i] == s2[j])
+                val4 = findAns(i+1,j+1,s1,s2);
+            
+            return mans= min({val1,val2,val3,val4});
+        }
+    \end{code}
+    
+\end{solution}
+
+\begin{pratice}
+    \begin{asparaenum}
+        \item Follow-Up: Can you devise the solution if the iCost,rCost and dCost values are not same?
+    \end{asparaenum}
+\end{pratice}
