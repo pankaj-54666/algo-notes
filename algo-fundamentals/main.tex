@@ -46,7 +46,7 @@
 
 
 
-\newcommand{\rfl}[1]{ \hl{#1}} %rfl = remember for later
+\newcommand{\rfl}[1]{ \sethlcolor{yellow}\hl{#1}} %rfl = remember for later
 \newcommand{\intution}[1]{\sethlcolor{green!40}\hl{#1}} 
 
 % \newenvironment{foo}[2]
@@ -86,6 +86,11 @@
 {}
 {}
 
+\lstset{
+basicstyle=\ttfamily,
+columns=flexible,
+breaklines=true
+}
 
 % \newenvironment{code}
 % {\endgraf\noindent 

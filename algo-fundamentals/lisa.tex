@@ -99,6 +99,7 @@
         \item Do not extend the subarray dp[idx+1]. (ie. start a new subarray )
     \end{asparaenum}
 
+    
     \begin{code}
         /* we will calculate dp[idx], where
         dp[idx]:= maximum subarray that starts at idx & MUST include idx.
@@ -122,11 +123,113 @@
     \end{code}
 \end{solution}
 
-\begin{solution}[Recursive]
+\begin{solution}[Recursive | Past State Decision Making]
     Can you build up a solution which usages inclusive/exclusion of subsequence to solve this problem?
     Example: at index idx we have option to continue current sequence OR do not continue.
     TO-DO: can you find the solution?
+
+    % \medskip
+    \marginnote{
+    This falls under above medium level recursion problem, in which past state is used in current decision making. Up till now, for all question we have the option to either take or not take the element.
+
+    But, \textbf{now this will also be also be restricted based on past state.} accordingly some of the operations will be allowed and some will not.}
+
+    \intution{Let $f(idx,pstate,\_)$ := maximum subarray sum if we are allowed to use arr[idx,size-1]}
+
+    Now at idx, we have the option to \\
+    (a) include idx\\
+    (b) Do not include idx (Restriction: only if pstate == 0)
+
+    Observe that \rfl{pstate is previous state and not the state at idx.}\\
+    - $pstate==0 \implies$ previous element was not selected\\
+    - $pstate==1 \implies$ previous element was selected
+
+
+    \begin{minipage}{\textwidth}
+    \begin{lstlisting}
+/* f(idx,_) := maximum subarray length when you are allowed to use array arr[idx...last]. Here arr[idx] use is not compulsury.*/
+int findAns(int idx,int pstate,vector<int>&arr)
+{
+    if(idx>= arr.size() ) return pstate == 0? INT_MIN : 0; 
+
+    int &mans = mem[idx][pstate];
+    if(mans != -1) return mans;
+    
+    /* at each idx we have two option */
+    int val1=INT_MIN; //include the element 
+    int val2=INT_MIN; //do not include the element. (only possible if we have previously not included it)
+
+    if(pstate == 0)
+        val2 = findAns(idx+1,0,arr);
+    
+    // include the arr[idx] & MUST extend to right
+    val1 = arr[idx] + findAns(idx+1,1,arr); 
+
+    //include the arr[idx] & NOT extend to right = val11= arr[idx]
+    // if f(idx+1) is -ve, then no need to extend to right
+    val1 = max(arr[idx],val1); //or val1 = max(val1,val11);
+
+cc  printf("[%d,%d]: (%d,%d)\n",idx,pstate,val1,val2);
+    return mans = max({val1,val2});
+}
+
+/* pstate for 1st call is zero ,as there was no element to be selected*/
+//ans = findAns(0,0,arr); 
+
+\end{lstlisting}
+\end{minipage}
+
+
+
+\begin{minipage}{\textwidth}
+    \rfl{Pratice Problem2: LC2771 Solution, which is subarray problem.}
+\begin{lstlisting}
+
+    /* state=0 := no previous element was selected, state=1:= previous element was selected from A, state=2:= previous element was selected from B*/
+
+    /* pstate = previous state & NOT the current state, VERY important to make this observation*/
+    int findAnsFive(int idx,int pstate,vector<int>& A, vector<int>& B) 
+    {
+        if(idx >= A.size()) return 0;
+        
+        int &mans = mem[idx][pstate];
+        if(mans != -1) return mans;
+        
+        /* at this time we have three options:
+            (a) take from A
+            (b) take from B
+            (c) do not take (for subsequence this is always valid: but for subarray, this is only valid if we MUST HAVE  NOT PICKED any element previously)
+        */
+        /* Imp for subset sum, we was having two options: take from array , do not array*/
+        
+        int val1 = 0,val2=0,val3=0;
+        
+        int pelement = (pstate == 0) ? -1 :((pstate==1) ? A[idx-1]:B[idx-1]);
+        
+         if(pstate == 0) /* for subarray we can skip taking current element only if we have not taken any previous element*/
+            val3 = findAnsFive(idx+1,0,A,B);
+        
+        if(pelement <= A[idx])
+            val1 = 1 + findAnsFive(idx+1,1,A,B);
+        if(pelement <= B[idx])
+            val2 = 1 + findAnsFive(idx+1,2,A,B);
+        
+        return mans = max({val1,val2,val3});
+    }
+\end{lstlisting}
+\end{minipage}
 \end{solution}
+
+\begin{solution}[Recursion | Follow-Up]
+    Follow Up Question on State Base Recursion Solution.
+    \begin{asparaenum}[(a)]
+        \item Using above solution, can you first devise recursive kadan's similar solution? 
+        Hints: see file /resources/RecursiveToIterativeKadans.cpp
+        \item What is the relation between above and LC2771.
+        \item Removal of val2 requires us to compute a global maxima, explain what if f(idx) if we do not use val2.
+    \end{asparaenum}  
+\end{solution}
+    
 
 \begin{solution}[Divide and Conquer |  $O(n*log(n))$]
     Split the problem in two parts AND build the solution by combing these part.
