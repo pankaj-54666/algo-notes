@@ -49,81 +49,7 @@
 
 \end{solution}
 
-\begin{solution}[Recursive: subarray end at idx | $O(n)$]
-    Although solving subarray problem in recursive way makes the solution complex.
-    Nonetheless, if you want to know how to solve it here is the code.\\[2mm]
-
-    \rfl{
-    For subsequence problem, we have recurrance relations as $f(idx)$ := optimal answer for range [0...idx]
-    but as this is subarray problem, our $f(idx,_)$ SHOULD be valid only for arr[i...j]}.
-
-    \medskip
-    For subarray problem,the defination of recurrance relation changes as \\ \intution{$f(idx,\_)$:= maximum subarray length that ends at idx \& MUST include idx} 
-    \medskip
-
-    With above defination of f, at each index idx, we have following options:
-
-    \begin{asparaenum}[(a)]
-        \item extends the subarray dp[idx-1] at right \textbf{AND end at idx}.
-        \item do not extend the subarray \textbf{and end at idx}.
-    \end{asparaenum}
-
-    \begin{code}
-        /* we will calculate dp[idx], which is .
-        dp[idx] := maximum subarray lenght that ends at idx & MUST include idx*/
-        int findAns(int idx,vector<int>& arr)
-        {
-            if(idx<0) return 0;
-            
-            if(mem[idx] != INVALID)
-                return mem[idx];
-            
-            int val1 = arr[idx] + findAns(idx-1,arr); //extends the ongoing sub-array & end at idx [start,end] = [...,idx] //extend the subarray at right
-            int val2 = arr[idx]; //start the new sub-arrary from this position [start,end] = [idx,ex]
-            
-          cc  printf("[%d]: (%d,%d)\n",idx,val1,val2);
-            
-            return mem[idx] = max({val1,val2});
-            
-        }
-    \end{code}
-\end{solution}
-
-\begin{solution}[Recursive: subarray start at idx | $O(n)$]
-    let 
-    \intution{$f(idx,\_):=$maximum subarray that starts at idx \& MUST include idx.}
-
-    At each index, we have two option. 
-    \begin{asparaenum}[(a)]
-        \item Extend the subarray dp[idx+1] at left \textbf{AND start at idx}.
-        \item Do not extend the subarray dp[idx+1]. (ie. start a new subarray )
-    \end{asparaenum}
-
-    
-    \begin{code}
-        /* we will calculate dp[idx], where
-        dp[idx]:= maximum subarray that starts at idx & MUST include idx.
-        i.e idx is the starting point of the sequence*/
-        int findAnsTwo(int idx,vector<int>& arr)
-        {
-            if(idx >= arr.size()) return 0; //no array => 0 sum
-            
-            if(mem[idx] != INVALID)
-                return mem[idx];
-            
-            /* both start at arr[idx]*/
-            int val1; // use dp[idx+1] to extend the subarray on left side
-            int val2; //do not use dp[idx+1] to extend the subarray
-            
-            val1 = arr[idx] + findAnsTwo(idx+1,arr);
-            val2 = arr[idx];
-            
-            return mem[idx] = max(val1,val2);
-        }
-    \end{code}
-\end{solution}
-
-\begin{solution}[Recursive | Past State Decision Making]
+\begin{solution}[Recursive | (Imp) Past State Decision Making]
     Can you build up a solution which usages inclusive/exclusion of subsequence to solve this problem?
     Example: at index idx we have option to continue current sequence OR do not continue.
     TO-DO: can you find the solution?
@@ -220,15 +146,130 @@ cc  printf("[%d,%d]: (%d,%d)\n",idx,pstate,val1,val2);
 \end{minipage}
 \end{solution}
 
-\begin{solution}[Recursion | Follow-Up]
+\begin{solution}[Recursion | Follow-Up| Similar Questions]
     Follow Up Question on State Base Recursion Solution.
     \begin{asparaenum}[(a)]
         \item Using above solution, can you first devise recursive kadan's similar solution? 
         Hints: see file /resources/RecursiveToIterativeKadans.cpp
         \item What is the relation between above and LC2771.
         \item Removal of val2 requires us to compute a global maxima, explain what if f(idx) if we do not use val2.
+        \item Solve below problems using state based recursion:
+        \item LC2771 (recursion+iteration)
+        \item LC246 : as subsequence is required and not subarray. hence complexity be O(n*n) instead of O(n*2). (you need to maintain last taken pair)
+        \item LC354 Russian Doll Envelopes. This problem ask for just the lenght of the subsequence. Recall that their exist a $O(n*log(n))$ algorithm that can give you longest increasing subsequence length.
     \end{asparaenum}  
 \end{solution}
+
+\begin{solution}[Recursive: subarray start at idx | $O(n)$]
+    let 
+    \intution{$f(idx,\_):=$maximum subarray that starts at idx \& MUST include idx.}
+
+    At each index, we have two option. 
+    \begin{asparaenum}[(a)]
+        \item Extend the subarray dp[idx+1] at left \textbf{AND start at idx}.
+        \item Do not extend the subarray dp[idx+1]. (ie. start a new subarray )
+    \end{asparaenum}
+
+    
+    \begin{code}
+        /* we will calculate dp[idx], where
+        dp[idx]:= maximum subarray that starts at idx & MUST include idx.
+        i.e idx is the starting point of the sequence*/
+        int findAnsTwo(int idx,vector<int>& arr)
+        {
+            if(idx >= arr.size()) return 0; //no array => 0 sum
+            
+            if(mem[idx] != INVALID)
+                return mem[idx];
+            
+            /* both start at arr[idx]*/
+            int val1; // use dp[idx+1] to extend the subarray on left side
+            int val2; //do not use dp[idx+1] to extend the subarray
+            
+            val1 = arr[idx] + findAnsTwo(idx+1,arr);
+            val2 = arr[idx];
+            
+            return mem[idx] = max(val1,val2);
+        }
+    \end{code}
+
+    Another way to look at this is that, we want to generate f(idx).
+    Since arr[idx] must be included $\implies$ at idx we have only one option to include this element.
+
+    \begin{code}
+    //Code File: lisa-RecursiveToIterativeKadans.cpp
+        /* sequence start at idx & must include idx*/ /* need to scan for gmx*/
+        /* val2 removal requires us to find gmx amoung all answer. */
+        int findAnsTwo(int idx,vector<int>&arr)
+        {
+    
+            if(idx>= arr.size() ) return  0; 
+       
+            int &mans = mem[idx][0];
+            if(mans != -1) return mans;
+            
+/* considerating that we have solution of idx+1.
+    At idx we have follwing option
+    (a) start a subarray from this point & extend for f(idx+1,arr) (if we consider 
+    left to right) OR extend the subarray from dp[idx+1] on left side by including 
+    the current element(if we consider how we are processing the recursion result) <= whatever 
+    way we consider the end result is same.
+*/
+            int val1=INT_MIN; //subarray length that start at idx
+    
+            val1 = arr[idx] + findAns(idx+1,1,arr);
+            val1 = max(arr[idx],val1);
+            
+            gmx = max({gmx,val1});
+        cc  printf("[%d]: (%d)\n",idx,val1);
+            return mans = val1;
+        }
+    \end{code}
+\end{solution}
+
+\begin{solution}[Recursive: subarray end at idx | $O(n)$]
+    Although solving subarray problem in recursive way makes the solution complex.
+    Nonetheless, if you want to know how to solve it here is the code.\\[2mm]
+
+    \rfl{
+    For subsequence problem, we have recurrance relations as $f(idx)$ := optimal answer for range [0...idx]
+    but as this is subarray problem, our $f(idx,_)$ SHOULD be valid only for arr[i...j]}.
+
+    \medskip
+    For subarray problem,the defination of recurrance relation changes as \\ \intution{$f(idx,\_)$:= maximum subarray length that ends at idx \& MUST include idx} 
+    \medskip
+
+    With above defination of f, at each index idx, we have following options:
+
+    \begin{asparaenum}[(a)]
+        \item extends the subarray dp[idx-1] at right \textbf{AND end at idx}.
+        \item do not extend the subarray \textbf{and end at idx}.
+    \end{asparaenum}
+
+    \begin{code}
+        /* we will calculate dp[idx], which is .
+        dp[idx] := maximum subarray lenght that ends at idx & MUST include idx*/
+        int findAns(int idx,vector<int>& arr)
+        {
+            if(idx<0) return 0;
+            
+            if(mem[idx] != INVALID)
+                return mem[idx];
+            
+            int val1 = arr[idx] + findAns(idx-1,arr); //include idx + extend
+            int val2 = arr[idx]; //include idx + do NOT extend
+            
+          cc  printf("[%d]: (%d,%d)\n",idx,val1,val2);
+            
+            return mem[idx] = max({val1,val2});
+            
+        }
+    \end{code}
+\end{solution}
+
+
+
+
     
 
 \begin{solution}[Divide and Conquer |  $O(n*log(n))$]
