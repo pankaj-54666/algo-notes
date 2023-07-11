@@ -68,6 +68,12 @@
     { \addcontentsline{toc}{subsection}{#1} \setlength\parindent{0pt} \vspace{4mm} \noindent\textit{Solution:  \hfill #1 } \\[2mm]}
     {\hfill \\ \rule{\textwidth}{1pt}}
 
+
+\newenvironment{guide}
+{\noindent\setlength\parindent{0pt} \textcolor{green}{\rule{\textwidth}{2pt}} \textbf{Hints:}\\[2mm]}
+{\textcolor{green}{\rule{\textwidth}{2pt}}}
+
+
 \newcommand{\texthighlight}[2]
 {\sethlcolor{#1}{\hl{#2}}}
 %hl stands for highlight
@@ -78,19 +84,40 @@
 
 % Environment end here
 
-\newenvironment{code}
-{\Verbatim[samepage=true]}
-{\endVerbatim}
+
 
 \newenvironment{pratice}
 {}
 {}
 
+% Below define code environemnt
+
+\newenvironment{code}
+{\Verbatim[samepage=true]}
+{\endVerbatim}
+
+
 \lstset{
-basicstyle=\ttfamily,
-columns=flexible,
-breaklines=true
+  basicstyle=\ttfamily,
+  columns=fullflexible,
+  keepspaces=true,
+  frame=single,
+  breaklines=true
 }
+
+
+\lstnewenvironment{code2}[1][]
+{
+  \lstset{
+    basicstyle=\small\ttfamily,
+    columns=flexible,
+    breaklines=true,
+    #1
+  }
+}
+{}
+% code environemtn ends here
+
 
 % \newenvironment{code}
 % {\endgraf\noindent 

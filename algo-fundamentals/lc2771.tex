@@ -1,0 +1,103 @@
+\begin{problem}{LC2771 Longest Non-decreasing Subarray From Two Arrays}
+    You are give two array A and B of size n. $(n <= 10^5)$. Your task is to return the \textbf{maximum subarray length} in third array C. Where for c[i] in the range [0, n - 1], you can assign either A[i] or B[i].
+
+    \footnotetext{Excellent Problem depicting key concept of recursion + past state in dp + subsequence vs subarray in recursion.}
+\end{problem}
+
+\begin{solution}[Recursion | Ways at idx(aka Inclusion-Exclusion)]
+
+    Like all recursio problem subarray problem are not different.
+    The only differance they posses from subsequence is that their element must be picked continously. We can include this informatin into pastState variable and code our solution.
+
+    \medskip
+    \intution{let $f(idx,pstate):=$ maximum subarray length if we are allowed to use arr[idx...size-1]  ONLY.}
+
+    \medskip
+    \rfl{Now as this is a state problem, each of the operation has a constrain applied to them.}
+
+    \medskip
+    For this problem, we have following options:
+    \begin{enumerate}[(a)]
+        \item int val1: take from A. \\Restriction: can only be taken if its form a increasing subarray
+        \item int val2: take from B. \\Restriction: can only be taken if its form a increasing subarray
+        \item int val3: do not take.\\ 
+        Restriction(subarray): for subarray problem, for this to happen we must have not picked any element previously.\\
+        Restriction(subsequence):
+        For subseqeunce problem, there will be no restriction on this.
+    \end{enumerate}
+    
+    \begin{guide}
+        Here is sample hint.
+
+    \end{guide}
+
+    % \newgeometry{left=20mm,top=20mm,right=20mm,bottom=25mm,marginparsep=5mm,marginparwidth=10mm}%
+    \begin{lstlisting} %[caption=Python example]
+        
+/* state=0 := no previous element was selected, state=1:= previous element was selected from A, state=:= previous element was selected from B*/
+int findAnsFive(int idx,int pstate,vector<int>& A, vector<int>& B) /* pstate = previous state & NOT the current state, VERY important to make this observation*/
+{
+    if(idx >= A.size()) return 0;
+    
+    int &mans = mem[idx][pstate];
+    if(mans != -1) return mans;
+    
+    /* at this time we have three options:
+        (a) take from A
+        (b) take from B
+        (c) do not take (for subsequence this is always valid: but for subarray, this is only valid if we MUST HAVE  NOT PICKED any element previously)
+    */
+    /* Imp for subset sum, we was having two options: take from array , do not array*/
+    
+    int val1 = 0,val2=0,val3=0;
+    
+    int pelement = (pstate == 0) ? -1 :((pstate==1) ? A[idx-1]:B[idx-1]);
+    
+        if(pstate == 0) /* for subarray we can skip taking current element only if we have not taken any previous element*/
+        val3 = findAnsFive(idx+1,0,A,B);
+    
+    if(pelement <= A[idx])
+        val1 = 1 + findAnsFive(idx+1,1,A,B);
+    if(pelement <= B[idx])
+        val2 = 1 + findAnsFive(idx+1,2,A,B);
+    
+    
+    
+    return mans = max({val1,val2,val3});
+}
+\end{lstlisting}
+        
+\begin{verbatim}
+    /* state=0 := no previous element was selected, state=1:= previous element was selected from A, state=:= previous element was selected from B*/
+    int findAnsFive(int idx,int pstate,vector<int>& A, vector<int>& B) /* pstate = previous state & NOT the current state, VERY important to make this observation*/
+    {
+        if(idx >= A.size()) return 0;
+        
+        int &mans = mem[idx][pstate];
+        if(mans != -1) return mans;
+        
+        /* at this time we have three options:
+            (a) take from A
+            (b) take from B
+            (c) do not take (for subsequence this is always valid: but for subarray, this is only valid if we MUST HAVE  NOT PICKED any element previously)
+        */
+        /* Imp for subset sum, we was having two options: take from array , do not array*/
+        
+        int val1 = 0,val2=0,val3=0;
+        
+        int pelement = (pstate == 0) ? -1 :((pstate==1) ? A[idx-1]:B[idx-1]);
+        
+            if(pstate == 0) /* for subarray we can skip taking current element only if we have not taken any previous element*/
+            val3 = findAnsFive(idx+1,0,A,B);
+        
+        if(pelement <= A[idx])
+            val1 = 1 + findAnsFive(idx+1,1,A,B);
+        if(pelement <= B[idx])
+            val2 = 1 + findAnsFive(idx+1,2,A,B);
+        
+        
+        
+        return mans = max({val1,val2,val3});
+    }
+    \end{verbatim}
+\end{solution}
