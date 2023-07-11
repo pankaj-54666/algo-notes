@@ -42,7 +42,8 @@
 \usepackage{xcolor}
 \usepackage{fancyvrb}
 \usepackage[hidelinks]{hyperref} 
-\usepackage{cprotect}
+\usepackage{needspace}
+\usepackage{environ}
 
 
 
@@ -97,6 +98,9 @@
 {\Verbatim[samepage=true]}
 {\endVerbatim}
 
+% \makeatletter
+% \renewcommand{\mdf@prebreakhook}{\newpage}
+% \makeatother
 
 \lstset{
   basicstyle=\ttfamily,
@@ -108,7 +112,7 @@
 % use it like \begin{lstlisting} code \end{lstlisting}
 % or use it single line as \verb|int val1;|
 
-% use this for normal width with marginparwidth & images on side.
+% use this for normal width with marginparwidth & images on side. \code2{Code Caption}
 \lstnewenvironment{code2}[1][]
 {
     % see listing package documentation to learn about below/more options (https://ctan.org/pkg/listings?lang=en)
@@ -121,7 +125,7 @@
         backgroundcolor=\color{gray!10}, %to code background color
         breaklines=true, % for text autowrap around boundary
         % resetmargins=true,
-        caption=#1
+        caption=#1,
       }
 }
 {}

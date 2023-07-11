@@ -25,14 +25,16 @@
         Restriction(subsequence):
         For subseqeunce problem, there will be no restriction on this.
     \end{enumerate}
-    
+
     \begin{guide}
         Here is sample hint.
 
     \end{guide}
-
+    % \newpage % pagebreak => spread text on previous page \newpage will not spread out the text
     % \newgeometry{left=20mm,top=20mm,right=20mm,bottom=25mm,marginparsep=5mm,marginparwidth=10mm}%
-    \begin{lstlisting}[caption=Python example]
+    % \Needspace{\baselineskip}%
+    \begin{mdframed}%[beforebreak=\newpage]
+    \begin{code2}[Solution Captuion]
 
 /* state=0 := no previous element was selected, state=1:= previous element was selected from A, state=:= previous element was selected from B*/
 int findAnsFive(int idx,int pstate,vector<int>& A, vector<int>& B) /* pstate = previous state & NOT the current state, VERY important to make this observation*/
@@ -65,7 +67,8 @@ int findAnsFive(int idx,int pstate,vector<int>& A, vector<int>& B) /* pstate = p
     
     return mans = max({val1,val2,val3});
 }
-\end{lstlisting}
+\end{code2}
+\end{mdframed}
 
 \begin{code2}[Hello Code]
 
@@ -113,4 +116,14 @@ int findAnsFive(int idx,int pstate,vector<int>& A, vector<int>& B) /* pstate = p
         return mans = max({val1,val2,val3});
     }
     \end{code3}
+
+    \begin{minipage}{\textwidth}
+        Hello this text is inside minipage.
+    \end{minipage}
+    
+    \begin{minipage}{\linewidth}
+        Hello this text is inside minipage.
+    \end{minipage}
+
+
 \end{solution}
