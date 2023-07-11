@@ -130,6 +130,11 @@
 }
 {}
 
+% IMP: if you want it to on same page, one option is to use \newpage wher you want it (as for now mdframe cannot be used with lstenvironment)
+% tested with minipage , mdframe no simple solution found.
+% tested with calulcation of content width, but the issue is that code \BODY cannot be expande well.
+% tested with codeframe new envrionment, same issue as code body cannot be passed to new envrionemnt
+
 % use this for full width code display
 \lstnewenvironment{code3}[1][]
 {

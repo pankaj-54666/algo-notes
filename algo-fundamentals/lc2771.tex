@@ -31,9 +31,11 @@
 
     \end{guide}
     % \newpage % pagebreak => spread text on previous page \newpage will not spread out the text
-    % \newgeometry{left=20mm,top=20mm,right=20mm,bottom=25mm,marginparsep=5mm,marginparwidth=10mm}%
-    % \Needspace{\baselineskip}%
-    \begin{mdframed}%[beforebreak=\newpage]
+
+\begin{comment}
+        Expeiremnt with \newpage if content is greator
+    % \begin{mdframed}%[beforebreak=\newpage]
+    \newpage
     \begin{code2}[Solution Captuion]
 
 /* state=0 := no previous element was selected, state=1:= previous element was selected from A, state=:= previous element was selected from B*/
@@ -68,8 +70,8 @@ int findAnsFive(int idx,int pstate,vector<int>& A, vector<int>& B) /* pstate = p
     return mans = max({val1,val2,val3});
 }
 \end{code2}
-\end{mdframed}
 
+\begin{mdframed}[nobreak=true]
 \begin{code2}[Hello Code]
 
     /* state=0 := no previous element was selected, state=1:= previous element was selected from A, state=:= previous element was selected from B*/
@@ -82,8 +84,11 @@ int findAnsFive(int idx,int pstate,vector<int>& A, vector<int>& B) /* pstate = p
         
         }
 \end{code2}
+\end{mdframed}
         
-\begin{code3}
+\end{comment}
+
+\begin{code3}[Code]
     /* state=0 := no previous element was selected, state=1:= previous element was selected from A, state=:= previous element was selected from B*/
     int findAnsFive(int idx,int pstate,vector<int>& A, vector<int>& B) /* pstate = previous state & NOT the current state, VERY important to make this observation*/
     {
@@ -117,13 +122,39 @@ int findAnsFive(int idx,int pstate,vector<int>& A, vector<int>& B) /* pstate = p
     }
     \end{code3}
 
-    \begin{minipage}{\textwidth}
-        Hello this text is inside minipage.
-    \end{minipage}
-    
-    \begin{minipage}{\linewidth}
-        Hello this text is inside minipage.
-    \end{minipage}
-
-
 \end{solution}
+
+\begin{pratice}
+    Follow-Up and  Pratice problems:
+    \begin{asparaenum}[(a)]
+        \item Follow Up 1: Can you modify the above algorithm so that f(idx,pstate) defination changes as. \icode{f(idx,pstate)=  Maximum lenght of subarray that start at idx. and} \rfl{must include idx}
+        \item Can you implement the same code when we go from right to left in recurison. ie we start with \icode{f(n,pstate)} and its state depends upon n-1. (this is not much important, but just for case you should know that we can code this way also.)
+        
+        \item Can you devise iterative solution follwing the above code?
+        \item Can you devise iterative solution following the follow-up-1 code.
+        
+        \item How will you modify the solution if there are k arrays to chose from?? What will the time comlexity?
+        \item Explain how the solution changes if the question was about finding subsequence instead of subarray. Justify your logic and  code it.
+        \item For subsequnce problem, justify why code complexity increases to $O(n*n)$ where for array it was just $O(n*3)$
+        \item Their exist a patience sorting algorith for longest incerasing subsequence. which gives the lenght of lcs in $O(n*log(n))$ time. Which is better that our current $O(n^2)$ solution. Discuss how the question can be modified to force us use the patience sorting for lcs.
+    \end{asparaenum}
+\end{pratice}
+
+\vspace{1cm}
+\begin{pratice}
+    Hints for follow up:
+    \begin{asparaenum}[(a)]
+        \item Follow Up 1: if you remove the variable \icode{val3},  then \icode{f(idx,pstate)} changes such that it contains the maxium lenght that MUST stat from idx. and MUST include idx. \rfl{to get the answer now, you will need to have gmx}
+        \item See findAnsSix from file LC2771.cpp
+        \item for follow-up-1 iterative see function findIterative in file LC2771.cpp
+    \end{asparaenum}
+\end{pratice}
+
+\begin{pratice}
+    Similary Problem list, that is bases on pstate. (can require subarray or subsequence):
+    \begin{asparaenum}
+        \item LC354 Russian Doll Envelopes
+        \item LC646 Maximum Length of Pair Chain
+        \item TO-DO: Add more item
+    \end{asparaenum}
+\end{pratice}
