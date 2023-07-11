@@ -18,9 +18,9 @@
     \medskip
     For this problem, we have following options:
     \begin{enumerate}[(a)]
-        \item int val1: take from A. \\Restriction: can only be taken if its form a increasing subarray
-        \item int val2: take from B. \\Restriction: can only be taken if its form a increasing subarray
-        \item int val3: do not take.\\ 
+        \item \icode{int val1}: take from A. \\Restriction: can only be taken if its form a increasing subarray
+        \item \icode{int val2}: take from B. \\Restriction: can only be taken if its form a increasing subarray
+        \item \icode{int val3}: do not take.\\ 
         Restriction(subarray): for subarray problem, for this to happen we must have not picked any element previously.\\
         Restriction(subsequence):
         For subseqeunce problem, there will be no restriction on this.
@@ -68,7 +68,7 @@ int findAnsFive(int idx,int pstate,vector<int>& A, vector<int>& B) /* pstate = p
 \end{lstlisting}
 
 \begin{code2}[Hello Code]
-    
+
     /* state=0 := no previous element was selected, state=1:= previous element was selected from A, state=:= previous element was selected from B*/
     int findAnsFive(int idx,int pstate,vector<int>& A, vector<int>& B) /* pstate = previous state & NOT the current state, VERY important to make this observation*/
     {
@@ -80,7 +80,7 @@ int findAnsFive(int idx,int pstate,vector<int>& A, vector<int>& B) /* pstate = p
         }
 \end{code2}
         
-\begin{verbatim}
+\begin{code3}
     /* state=0 := no previous element was selected, state=1:= previous element was selected from A, state=:= previous element was selected from B*/
     int findAnsFive(int idx,int pstate,vector<int>& A, vector<int>& B) /* pstate = previous state & NOT the current state, VERY important to make this observation*/
     {
@@ -112,5 +112,5 @@ int findAnsFive(int idx,int pstate,vector<int>& A, vector<int>& B) /* pstate = p
         
         return mans = max({val1,val2,val3});
     }
-    \end{verbatim}
+    \end{code3}
 \end{solution}

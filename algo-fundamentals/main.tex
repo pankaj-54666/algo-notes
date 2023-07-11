@@ -42,6 +42,7 @@
 \usepackage{xcolor}
 \usepackage{fancyvrb}
 \usepackage[hidelinks]{hyperref} 
+\usepackage{cprotect}
 
 
 
@@ -110,9 +111,9 @@
 % use this for normal width with marginparwidth & images on side.
 \lstnewenvironment{code2}[1][]
 {
-    % see listing package documentation to learn about below/more options
+    % see listing package documentation to learn about below/more options (https://ctan.org/pkg/listings?lang=en)
     \lstset{
-        basicstyle=\ttfamily,
+        basicstyle=\ttfamily, %verbatium usages ttfamily font, hence setting it this means display be like verbatium
         columns=fullflexible,
         keepspaces=true,
         frame=single, %making is single will draw a border
@@ -143,6 +144,23 @@
       }
 }
 {\restoregeometry}
+
+% see listing package documentation for more
+\newcommand{\icode}[1]{\lstinline|#1|}
+\begin{comment}
+ use it like icode{your code here} <= code must not have {}
+
+ If your code has {}, you should use lstinline||. If you code does not have {} you can use either 
+ lstinline{} or \icode{}.
+
+ Example Usages:
+     \lstinline{int val1; [] int val2;} /% will not work if {} is in code, rest is okay
+
+    \lstinline|int {} [] val1; int val2;| % will work even if {} is in code
+
+    \icode{[]val1; int val2;}
+
+\end{comment}
 
 
 % code environemtn ends here
