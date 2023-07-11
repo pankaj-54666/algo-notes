@@ -32,8 +32,8 @@
     \end{guide}
 
     % \newgeometry{left=20mm,top=20mm,right=20mm,bottom=25mm,marginparsep=5mm,marginparwidth=10mm}%
-    \begin{lstlisting} %[caption=Python example]
-        
+    \begin{lstlisting}[caption=Python example]
+
 /* state=0 := no previous element was selected, state=1:= previous element was selected from A, state=:= previous element was selected from B*/
 int findAnsFive(int idx,int pstate,vector<int>& A, vector<int>& B) /* pstate = previous state & NOT the current state, VERY important to make this observation*/
 {
@@ -66,6 +66,19 @@ int findAnsFive(int idx,int pstate,vector<int>& A, vector<int>& B) /* pstate = p
     return mans = max({val1,val2,val3});
 }
 \end{lstlisting}
+
+\begin{code2}[Hello Code]
+    
+    /* state=0 := no previous element was selected, state=1:= previous element was selected from A, state=:= previous element was selected from B*/
+    int findAnsFive(int idx,int pstate,vector<int>& A, vector<int>& B) /* pstate = previous state & NOT the current state, VERY important to make this observation*/
+    {
+        if(idx >= A.size()) return 0;
+        
+        int &mans = mem[idx][pstate];
+        if(mans != -1) return mans;
+        
+        }
+\end{code2}
         
 \begin{verbatim}
     /* state=0 := no previous element was selected, state=1:= previous element was selected from A, state=:= previous element was selected from B*/

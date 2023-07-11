@@ -104,18 +104,47 @@
   frame=single,
   breaklines=true
 }
+% use it like \begin{lstlisting} code \end{lstlisting}
+% or use it single line as \verb|int val1;|
 
-
+% use this for normal width with marginparwidth & images on side.
 \lstnewenvironment{code2}[1][]
 {
-  \lstset{
-    basicstyle=\small\ttfamily,
-    columns=flexible,
-    breaklines=true,
-    #1
-  }
+    % see listing package documentation to learn about below/more options
+    \lstset{
+        basicstyle=\ttfamily,
+        columns=fullflexible,
+        keepspaces=true,
+        frame=single, %making is single will draw a border
+        framerule=0pt, %frame that is not visible (added to use margin)
+        backgroundcolor=\color{gray!10}, %to code background color
+        breaklines=true, % for text autowrap around boundary
+        % resetmargins=true,
+        caption=#1
+      }
 }
 {}
+
+% use this for full width code display
+\lstnewenvironment{code3}[1][]
+{
+    \newgeometry{left=15mm,right=15mm}  
+    % see listing package documentation to learn about below/more options
+    \lstset{
+        basicstyle=\ttfamily,
+        columns=fullflexible,
+        keepspaces=true,
+        frame=single, %making is single will draw a border
+        framerule=0pt, %frame that is not visible (added to use margin)
+        backgroundcolor=\color{gray!10}, %to code background color
+        breaklines=true, % for text autowrap around boundary
+        % resetmargins=true,
+        caption=#1
+      }
+}
+{\restoregeometry}
+
+
 % code environemtn ends here
 
 
