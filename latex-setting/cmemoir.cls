@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{myclass}[2023/07/05 Custom Class based on memoir]
+\ProvidesClass{cmemoir}[Customized algorithmic notes class]
 
 % Load the memoir class
 \LoadClass[11pt]{memoir}
