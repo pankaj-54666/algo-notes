@@ -110,7 +110,7 @@
     
     \begin{mdframed}[hidealllines=true,leftline=true, rightline=true,linewidth=2pt,linecolor=gray]
     
-    Pratice Problems: 
+    {\Large Pratice Problems:}
     % TO-DO: Increase the font-size of above text to make it stand out from the content.
 }
 {\end{mdframed}\restoregeometry\end{center}}
@@ -123,7 +123,7 @@
     \newgeometry{left=50mm,right=50mm,marginparwidth=10mm}  
     \begin{center}
     \begin{mdframed}[hidealllines=true,leftline=true, rightline=true,linewidth=2pt,linecolor=green!40]
-    Pratice Problems:
+    {\Large Pratice Problems Hints:}
 }
 {\end{mdframed}\restoregeometry\end{center}}
 
