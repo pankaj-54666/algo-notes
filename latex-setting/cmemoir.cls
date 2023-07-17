@@ -93,11 +93,6 @@
 % Environment end here
 
 
-
-\newenvironment{pratice}
-{\addcontentsline{toc}{subsection}{Pratice Questions} \newpage Pratice Problems: \newline}
-{}
-
 %------------------------------------------------------------
 % VARIOUS RULERS, SEPARATORS & DIVIDERS
 %------------------------------------------------------------
@@ -107,19 +102,49 @@
 \RequirePackage{multicol}
 \RequirePackage[twosidemode, needspace=3mm, outermargin=-\marginparsep-\marginparwidth]{fullwidth}
 
+\newenvironment{pratice}
+{  
+    \newgeometry{left=50mm,right=50mm,marginparwidth=10mm}  
+    \begin{center}
+    % \begin{fullwidth}[width=\linewidth] %+\marginparsep+\marginparwidth
+    
+    \begin{mdframed}[hidealllines=true,leftline=true, rightline=true,linewidth=2pt,linecolor=gray]
+    
+    Pratice Problems: 
+    % TO-DO: Increase the font-size of above text to make it stand out from the content.
+}
+{\end{mdframed}\restoregeometry\end{center}}
+
+\newenvironment{praticeHints}
+{  
+    
+    % \begin{fullwidth}[width=\linewidth] %+\marginparsep+\marginparwidth
+    \newpage
+    \newgeometry{left=50mm,right=50mm,marginparwidth=10mm}  
+    \begin{center}
+    \begin{mdframed}[hidealllines=true,leftline=true, rightline=true,linewidth=2pt,linecolor=green!40]
+    Pratice Problems:
+}
+{\end{mdframed}\restoregeometry\end{center}}
+
+
+
+
 % usage: \begin{problems}[heading]{problems}
-\newenvironment{exercise}[1][Exercises:]{
+\newenvironment{exercise}[1][Chapter Exercises:]{
+   
     \begin{fullwidth}[width=\linewidth+\marginparwidth] %+\marginparsep
     \rulethick\vspace*{-3mm}
     % \setlist[enumerate,1]{label=\arabic*.}
     % \setlist[myenum,2]{label=\alph*)}
     \section*{#1}
+    \addcontentsline{toc}{section}{#1}
     \begin{multicols}{2}
   }{
     \end{multicols}\end{fullwidth}
   }
 
-  \newenvironment{exerciseSolution}[1][Exercises Solutions:]{
+  \newenvironment{exerciseHints}[1][Exercises Solutions:]{
     \begin{fullwidth}[width=\linewidth+\marginparwidth] %+\marginparsep
     \rulethick[green!40]\vspace*{-3mm}
 
