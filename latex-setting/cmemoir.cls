@@ -24,7 +24,7 @@
 
 \newcommand{\tab}{\hspace{8mm}}
 % Please ensure there is no binding offset
-% \usepackage{parskip}
+\usepackage{parskip} %TO-DO: check why its effect not effecing in global, only affected within environment when used like as shown in \begin{guide}
 
 \usepackage{marginnote}
 \usepackage{layout}
@@ -50,9 +50,7 @@
 \usepackage[hidelinks]{hyperref} 
 \usepackage{needspace}
 \usepackage{environ}
-
-
-
+\usepackage{fontawesome5}
 
 \newcommand{\rfl}[1]{ \sethlcolor{yellow}\hl{#1}} %rfl = remember for later
 \newcommand{\intution}[1]{\sethlcolor{green!40}\hl{#1}} 
@@ -78,8 +76,11 @@
 
 
 \newenvironment{guide}
-{\noindent\setlength\parindent{0pt} \textcolor{green}{\rule{\textwidth}{2pt}} \textbf{Hints:}\\[2mm]}
-{\textcolor{green}{\rule{\textwidth}{2pt}}}
+{
+  \textcolor{green}{\rule{\textwidth}{2pt}} \textbf{Hints:}\newline \parskip=.6em
+  \renewcommand{\item}{\vspace{.7em}\faHandPointRight\hspace{2mm}} %VERT IMPORTANT: defining command within environment scope
+}
+{\par\textcolor{green}{\rule{\textwidth}{2pt}}\par}
 
 
 \newcommand{\texthighlight}[2]
@@ -110,6 +111,7 @@
     
     \begin{mdframed}[hidealllines=true,leftline=true, rightline=true,linewidth=2pt,linecolor=gray]
     
+    \addcontentsline{toc}{subsection}{Pratice More Problems}
     {\Large Pratice Problems:}
     % TO-DO: Increase the font-size of above text to make it stand out from the content.
 }

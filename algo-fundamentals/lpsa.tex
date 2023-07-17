@@ -1,0 +1,50 @@
+\begin{problem}{Longest Palindromic Subarray}
+    Given a string s, find the lenght of longest palindromic subarray in s.
+
+    \footnotetext{LC5}
+    
+\end{problem}
+
+\begin{solution}
+
+    \begin{guide}
+        TO-DO: Remove parenthesis guides hints.
+        
+        \item First try with generating all substring. Can you do it in $O(n^2)$ ?
+
+        \item
+        If you define your problem statement with l..r range. You have the following defination \verb|f(l,r):= | length of longest valid palindromic substring when you are allowed to use \verb|arr[l..r]| \textbf{only}. \\
+        The drawback of this is that it convert your complexity to $O(n^2)$
+
+        \item
+        \rfl{If you can define what will be the increment during inclusion of idx. Then you can use Inclusion-Exclusion pattern to solve this problem.}
+        
+        way1: \verb|f(idx,_):=| lenght of longest palindormic subarray when we are allowed to use $arr[0..idx]$ \textbf{only}.
+
+        way2: \verb|f(idx,_):=| length of longest palindromic subarray ending at idx \textbf{that must include idx}. (OR startign at idx and must include idx). 
+
+       \intution{As we know way1 is preferred with subsequence problem and way2 is preferred for subarray problem.}
+       Lets try to solve current subarray via way2.
+
+       \item Can you think of a solution using stack?
+       
+       \item Can you think of a solution that usages expand around center approach?
+       
+       \item Do you know about Manacher's Algorithm? Which solves this problem in linear time.
+    
+
+
+    \end{guide}
+\end{solution}
+
+\begin{pratice}
+
+    \begin{enumerate}
+        \item 
+    \end{enumerate}
+
+\end{pratice}
+
+\begin{praticeHints}
+    \item LC32 
+\end{praticeHints}
