@@ -95,8 +95,39 @@
 
 
 \newenvironment{pratice}
+{\addcontentsline{toc}{subsection}{Pratice Questions} \newpage Pratice Problems: \newline}
 {}
-{}
+
+%------------------------------------------------------------
+% VARIOUS RULERS, SEPARATORS & DIVIDERS
+%------------------------------------------------------------
+\newcommand{\rulethick}[1][darkgray]{\par\textcolor{#1}{\rule{\linewidth}{4pt}}\par}
+\newcommand{\rulethin}[1][black]{\par\textcolor{#1}{\rule{\linewidth}{1pt}}\par}
+
+\RequirePackage{multicol}
+\RequirePackage[twosidemode, needspace=3mm, outermargin=-\marginparsep-\marginparwidth]{fullwidth}
+
+% usage: \begin{problems}[heading]{problems}
+\newenvironment{exercise}[1][Exercises:]{
+    \begin{fullwidth}[width=\linewidth+\marginparwidth] %+\marginparsep
+    \rulethick\vspace*{-3mm}
+    % \setlist[enumerate,1]{label=\arabic*.}
+    % \setlist[myenum,2]{label=\alph*)}
+    \section*{#1}
+    \begin{multicols}{2}
+  }{
+    \end{multicols}\end{fullwidth}
+  }
+
+  \newenvironment{exerciseSolution}[1][Exercises Solutions:]{
+    \begin{fullwidth}[width=\linewidth+\marginparwidth] %+\marginparsep
+    \rulethick[green!40]\vspace*{-3mm}
+
+    \section*{#1}
+    \begin{multicols}{2}
+  }{
+    \end{multicols}\end{fullwidth}
+  }
 
 % Below define code environemnt
 
