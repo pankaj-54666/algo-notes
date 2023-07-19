@@ -54,6 +54,7 @@
 
 \newcommand{\rfl}[1]{ \sethlcolor{yellow}\hl{#1}} %rfl = remember for later
 \newcommand{\intution}[1]{\sethlcolor{green!40}\hl{#1}} 
+\newcommand{\constrain}[1]{\hfill\begin{math} #1 \end{math}}
 
 % \newenvironment{foo}[2]
 %   {something with #1 and #2 to be performed at the beginning}

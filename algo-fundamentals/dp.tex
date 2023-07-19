@@ -80,6 +80,27 @@ Steps to Solve Dynamic Programming Question:
     \item LC801 Minimum Swaps To Make Sequences Increasing 
     \item LC139 Word Break\\ Given a string s and a dictionary of strings wordDict, return true if s can be segmented into a space-separated sequence of one or more dictionary words.
 \end{enumerate}
+
+
+    { \Large Palindrome Pattern \\}
+    In this pattern, range is decided by arr[l..r]. Or arr[0..l] for some case.
+    \begin{enumerate}
+        \item (LC131) Palindrome Partioning \\Given a string s, partition s such that every substring of the partition is a palindrome. Return all possible palindrome partitioning of s. 
+        \constrain{s.lenght<=16, s[i] \in [a,z]}
+        
+        \item (LC132) Palindrom Paritioning II \\ For above question, return minimum cuts needed to perform the operation.
+        \constrain{s.lenght\leq2000,s\in[a-z]}
+
+        \item (LC1216) Valid Palindrome \\A string is k-palindrome if it can be transformed into a palindrome by removing at most k characters from it. Given a string s and an integer k, return true if s is a k-palindrome.
+        \constrain{s.lenght \leq 1000, k \leq s.length, s \in [a-z]}
+
+        \item (LC1246) Palindrome Removal\\ You are given an integer array arr.
+        In one move, you can select a palindromic subarray \verb|arr[i], arr[i + 1], ..., arr[j] where i <= j|, and remove that subarray from the given array.
+        Return the minimum moves to remove all element from the array.
+        \constrain{arr.length \leq 100, arr[i] \in [1,20]}
+
+    \end{enumerate}
+
 \end{exercise}
 
 \begin{exerciseHints}[Solutions/Comments:]
@@ -88,4 +109,28 @@ Steps to Solve Dynamic Programming Question:
         \item LC801: Nice problem where state information can be transferred to other variable + if we use base case to detect invalid case, then code can be greatly simplified.
         \item LC139 Word Break \\Give (a) f(idx,\_) solution (b) f(l,r,\_) solution (c) BFS Solution (d) Trie Solution
     \end{enumerate}
+
+    { \Large Palindrome Pattern(almost all dp pattern here) \\}
+    \begin{enumerate}
+        \item (LC131) Palindrome Partioning \\As the constrain is less, can you backtract all possible combination? Let \verb|f(idx):=| generate the answer when you are given \verb|arr[idx:]| only.
+        
+        \item (LC132) You can try brute forcing, but now as the constrain reqirement suggest us to use $O(n^2)$ algorithm.
+        
+        Let \verb|f(l,r):=| minimum cut needed to partion all substring as plaindrome, when you are allowed to use \verb|arr[l..r]| only. Then for each \verb|f(l,r)| you can try cutting at all places and take the best of cost.
+        Explain why the complexity is $O(n^2)$ even though we haved used two variable l and r. And we are splittin at all k places also.
+        
+        If you think your recursive function defination as \verb|f(idx):=| minimum cut need when you are allowed to use \verb|arr[idx:]| only. Then at each idx, you can try to form a substring \verb|s[idx:k]|. If this substring is itself a plaindrome, the problem to \verb|f(k)|.
+
+        There exist other approach, expand around the center. Can you write the code for all 3 above approaches?
+
+        \item (LC1216) Valid Palindrome\\ Try to solve it just like you have solved Edit Distance. Start with l and r pointer, if both equal then no cost to delete. if equal then try deleting left, then right.
+        take minimum cost from all three operation.
+
+        LCS way:Alternative approach is to reverse the given string and find maximum subsequence length between the two. The string is k-palindromic if the difference between the string length and subsequence length is not more then k.
+        
+        \item (LC1246) Palindrome Removal \\Key Observation: A[i] can be deleted either alone or can make a pair. Now in normal \verb|palindrome length| calculation, we make A[l] pair with A[r] (A[r] is first occurrance from right side for arr[l..r]). But, in current case A[i] can me made to pair with all ch which occurr at any index.
+        
+        \includegraphics[width=\marginparwidth]{./resources/LC1246_p1.jpg}
+    \end{enumerate}
+    
 \end{exerciseHints}
