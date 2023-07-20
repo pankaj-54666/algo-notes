@@ -136,7 +136,8 @@
 % usage: \begin{problems}[heading]{problems}
 \newenvironment{exercise}[1][Chapter Exercises:]{
    
-    \begin{fullwidth}[width=\linewidth+\marginparwidth] %+\marginparsep
+    % \begin{fullwidth}[width=\linewidth+\marginparwidth] %+\marginparsep
+    \newgeometry{inner=10pt,outer=20pt}  
     \rulethick\vspace*{-3mm}
     % \setlist[enumerate,1]{label=\arabic*.}
     % \setlist[myenum,2]{label=\alph*)}
@@ -144,7 +145,7 @@
     \addcontentsline{toc}{section}{#1}
     \begin{multicols}{2}
   }{
-    \end{multicols}\end{fullwidth}
+    \end{multicols}\restoregeometry
   }
 
   \newenvironment{exerciseHints}[1][Exercises Solutions:]{

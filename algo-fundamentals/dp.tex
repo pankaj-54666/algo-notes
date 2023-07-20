@@ -99,6 +99,23 @@ Steps to Solve Dynamic Programming Question:
         Return the minimum moves to remove all element from the array.
         \constrain{arr.length \leq 100, arr[i] \in [1,20]}
 
+        \item (LC1147) Longest Chunked Palindrome Decomposition \\You are given a string text. You should split it to k non-empty substrings (subtext1, subtext2, ..., subtextk) such that:
+        $subtexti == subtextk - i + 1$ for all valid values of i.
+        Return the largest possbile value of k.
+        \constrain{text.lengt \leq 1000}
+
+        \item (LC1278) Palindrom Paritioning III \\You are given string s and integer k. You need to divide s into k substring,such that each substring is palindrome. Return the minimum character change you require to complete the task. (Similar LC1312,LC1745)
+        \constrain{s,k \leq 100}
+
+        \item (LC1771) Maximize Palindrome Length From Subsequences\\ You are given two strings, word1 and word2. You want to construct a string in the following manner:
+        Choose some non-empty subsequence subsequence1 from word1.
+        Choose some non-empty subsequence subsequence2 from word2.
+        Concatenate the subsequences: subsequence1 + subsequence2, to make the string.
+        Return the length of the longest palindrome that can be constructed in the described manner. If no palindromes can be constructed, return 0.
+        \constrain{array.size \leq 1000}
+       
+
+
     \end{enumerate}
 
 \end{exercise}
@@ -129,8 +146,24 @@ Steps to Solve Dynamic Programming Question:
         LCS way:Alternative approach is to reverse the given string and find maximum subsequence length between the two. The string is k-palindromic if the difference between the string length and subsequence length is not more then k.
         
         \item (LC1246) Palindrome Removal \\Key Observation: A[i] can be deleted either alone or can make a pair. Now in normal \verb|palindrome length| calculation, we make A[l] pair with A[r] (A[r] is first occurrance from right side for arr[l..r]). But, in current case A[i] can me made to pair with all ch which occurr at any index.
+        (this is tough question to formulate the subproblem, leave it for now.)
         
         \includegraphics[width=\marginparwidth]{./resources/LC1246_p1.jpg}
+
+        \item (LC1147) Straight implemention of the question will pass the tc.
+        
+        \item LC1278 Palindrom Paritioning III \\ Can you think in term of edit distance.
+        
+        \item (LC1771) Maximize Palindrome Length From Subsequences\\ After s = s1+s2. You can easily find the longest palindrome from s when there is not restriction to pick character.
+        Now with restriction, how can you be sure that you pick at least one character from each one of them?
+
+        To must take at least one character from both. we can find the palindromic length of cases for which s1[i] = s2[j] only.
+
+Question: What about case when this character (s1[i]==s2[i]:= ch) is not taken and longest subsequence if formed without this??
+
+Analysis: This case won't happen. As we are picking up the subsequence. We must take this character as it will always add +2 to our answer.
+
+        
     \end{enumerate}
     
 \end{exerciseHints}
