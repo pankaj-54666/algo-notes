@@ -17,3 +17,9 @@ In last link to solution.cpp file.
 GOAL: goal is to use LC300.cpp file as solution sheet You write them as you would have written in copy for future refereance. (and that's all)
 
 - use asparaenum for compact enumlist
+
+# Including subfolder files
+- import{./subfolder/}{subfolder-file-name.tex}
+- input{current-folder-file-name.tex}
+
+For more refer `import` package documentation. [doc](https://ctan.org/pkg/import?lang=en)
