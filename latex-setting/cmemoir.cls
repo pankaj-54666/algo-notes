@@ -239,7 +239,37 @@
 % }
 % {\restoregeometry}
 
+% Create a new environment without borders
+\newenvironment{mdframed2}{
+  \begin{mdframed}[
+    hidealllines=true,
+    innertopmargin=0pt,
+    innerbottommargin=0pt,
+    skipabove=0pt,
+    skipbelow=0pt,
+  ]
+}{
+  \end{mdframed}
+}
+
 \lstnewenvironment{code3}[1][]
+{
+  \newgeometry{left=15mm,right=15mm,bottom=2.5cm}
+  \lstset{
+        basicstyle=\ttfamily,
+        columns=fullflexible,
+        keepspaces=true,
+        frame=single, %making is single will draw a border
+        framerule=0pt, %frame that is not visible (added to use margin)
+        backgroundcolor=\color{gray!10}, %to code background color
+        breaklines=true, % for text autowrap around boundary
+        resetmargins=true,
+        caption=#1
+        } 
+}
+{\restoregeometry}
+
+\lstnewenvironment{code4}[1][]
 {
   \newgeometry{left=15mm,right=15mm,bottom=2.5cm}
   \lstset{

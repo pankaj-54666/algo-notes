@@ -25,5 +25,84 @@
 \begin{solution}[Stack | O(n)]
     Lets use stack to solve this problem.
 
-    Recall
+    Recall that, stack can help us find previousGreatorElement and nextGreatorElement in linear time.
+    
+    If you focus on nge and pge for element arr[i], then you need to first find pgarr[] and ngarr[] then solve your problem.
+
+    But, if you focus on nge and pge \textbf{for element being popped}. Then you know the nge and pge just after the element is being popped.
+
+    \begin{code3}
+        int trapStack(vector<int>& arr) 
+        {
+            vector<int> st;
+           
+            int sum = 0;
+            for(int i=0;i<arr.size();i++)
+            {
+                while(!st.empty() && arr[tidx]<arr[i])
+                {
+                    int eidx = tidx; //popped element
+                    st.pop_back();
+                    
+                    if(st.empty() == true)
+                        continue;
+                    
+                    /* for popped stack element*/
+                    int pgei = tidx; //previous greator element
+                    int ngei = i; //next greator element
+     
+                    int water = min(arr[pgei],arr[ngei]) - arr[eidx];
+                    water = water*(ngei-pgei-1);
+                                 
+                    sum += water;
+                    
+        //            printf("%d,%d,%d: %d\n",arr[pgei],arr[eidx],arr[ngei],water);
+                }
+                
+                st.push_back(i);
+            }
+            
+            return sum;
+        }
+    \end{code3}
+
+After mdfamed
+
+\lipsum[1-10]
+\end{solution}
+
+\begin{solution}[Two Pointer | $O(1) space$]
+    
+    \begin{code}
+//time: O(n)
+//space: O(1) 
+//BETTER
+int twoPointerLogical(vector<int> height)
+{
+    int size = height.size();
+    int left = 0,right = size-1;
+    int leftMax = 0,rightMax = 0;
+    
+    int totalWater = 0;
+    
+    while(left < right)
+    {
+        if(leftMax < height[left] ) leftMax = height[left];
+        if(height[right] > rightMax) rightMax = height[right];
+        
+        if(leftMax < rightMax)
+        {
+            totalWater += max(0,leftMax - height[left]);
+            left++;
+        }
+        else
+        {
+            totalWater += max(0,rightMax - height[right]);
+            right--;
+        }
+    }
+    
+    return totalWater; 
+}
+    \end{code}
 \end{solution}
