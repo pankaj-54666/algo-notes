@@ -34,6 +34,7 @@
 \usepackage{listings}
 \usepackage{paracol}
 \usepackage{amsmath} 
+\usepackage{import}
 % \usepackage{enumitem}
 % \usepackage{paralist}
 % amsmath have \text{}
@@ -72,7 +73,7 @@
 % Define solution environment
 %guide: \newenvironment{name}[num]{before code}{after code}
 \newenvironment{solution}[1][]
-    { \addcontentsline{toc}{subsection}{#1} \setlength\parindent{0pt} \vspace{4mm} \noindent\textit{Solution:  \hfill #1 } \\[2mm]}
+    { \addcontentsline{toc}{subsection}{#1} \setlength\parindent{0pt} \vspace{4mm} \noindent\textit{Solution:  \hfill #1 } \\[2mm]\parskip=.6em}
     {\hfill \\ \rule{\textwidth}{1pt}}
 
 

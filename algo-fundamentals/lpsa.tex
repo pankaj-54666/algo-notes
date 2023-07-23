@@ -37,14 +37,100 @@
     \end{guide}
 \end{solution}
 
+\begin{solution}[Recursion | must include boundary]
+
+    As this is subarray problem, lets try to solve it as ending pattern.
+    let \verb|arr[l,r]| be the lenght of longest subarray that start at l, end at r and \textbf{must include l and r}.
+
+    Now for \verb|f(l,r)| we have two option:\\
+    (a) s[l] == s[r] \verb|val1 = 2 + f(l+1,r-1) OR val1 = INF|\\
+    (b) s[l] != s[r] \verb|val2 = INF|
+
+    For first case, 2 will be added to subproblem only if substring f(l+1,r-1) is also a palindromic substring. If its not a palindromic then current substring will also not be palindromic.
+
+    \begin{code2}[lpsa recursion | way1]
+        int findAnsTwo(int l,int r,const string &s)
+        {
+            if(l==r) return 1;
+            if(l>r) return 0;
+            
+            int &mans = mem[l][r];
+            if(mans != -1) return mans;
+            
+            int val1=INF;
+            int t = findAnsTwo(l+1,r-1,s);
+            if(s[l] == s[r])
+            {
+                if(t != INF)
+                    val1 = 2 + t;
+            }
+            
+            return mans = val1;
+        }
+
+        //main.cpp
+        for(int l=0;l<s.size();l++)
+        {
+            for(int r=l;r<s.size();r++)
+            {
+                int mx = findAnsTwo(l,r,s); \\Amortized O(1)
+                if(mx >= gmx)
+                {
+                    gmx = mx;
+                    start = l;
+                }
+            }
+        }
+         return s.substr(start,gmx);
+        
+    \end{code2}
+
+    \begin{code2}[lpsa recursion | way2]
+        int findAns(int l,int r,const string &s)
+        {
+            if(l==r) return 1;
+            if(l>r) return 0; 
+            
+            int &mans = mem[l][r];
+            if(mans != -1) return mans;
+            
+            int val1=INF;
+            int val2 = INF;
+            int val3 = INF;
+            
+            int t = findAns(l+1,r-1,s);
+            if(s[l] == s[r])
+            { 
+                if(t!=INF)
+                    val1 = 2 + t;
+            }
+            
+            {
+                 val2 = findAns(l+1,r,s); //just call for subproblem calculation, no use of
+                 val3 = findAns(l,r-1,s);
+            }
+            
+            if(val1>=gmx)
+            {
+                start = l;
+                gmx = val1;
+            }
+          cc printf("[%d,%d]: %d\n",l,r,val1);
+            return mans = val1;       
+        }
+    \end{code2}
+
+
+\end{solution}
+
 \begin{pratice}
 
     \begin{enumerate}
-        \item 
+        \item LC2472
     \end{enumerate}
 
 \end{pratice}
 
 \begin{praticeHints}
-    \item LC32 
+    \item LC2472 palindromice subarray + jump game
 \end{praticeHints}
