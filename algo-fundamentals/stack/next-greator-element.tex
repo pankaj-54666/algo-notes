@@ -1,5 +1,112 @@
 \begin{problem}{Next Greator Element}
-    Hello Problem PANKAJ
+    For a given arr[], find the next greater element for each element of the array in order of their appearance in the array.
+
+    Example: arr[] = [6 8 0 1 3], sarr[] = [8 -1 1 3 -1].
+    \footnotetext{gfg or LC496}
 \end{problem}
 
-Hello, i am PANKAJ Problem sample.
+\begin{solution}[Brute Force | $O(n^2)$]
+
+    In the brute force , you will have two for loop and second loop will be depednet upon first for loop.
+
+    \begin{code}
+        //all of these are related and one can be 
+        //easiely convertible to other.
+        (a) for(int i=0;i<size;i++) 
+            for(j=i;j<size;j++)
+
+        (b) for(int i=0;i<size;i++)
+            for(j=0;j>=0;j--)
+        
+        (c) for(int i=size-1;i>=0;i--)
+            for(j=0;j<i;j++)
+        
+        (d) for(int i=size-1;i>=0;i--)
+            for(int j=i;j<size;j++)
+    \end{code}
+
+    The above type of pattern has high chance(~as Aditya its 100\%) of applying stack to select the 2nd index j.
+    \footnote{https://www.youtube.com/watch?v=P1bAPZg5uaE}
+
+    \begin{code2}[Select One j for all i]
+        vector<lli> firstGreator(vector<lli> arr)
+        {
+            int size = arr.size();
+            vector<lli> ans(size,-1);
+            
+           for(int i=0;i<size;i++)
+           {    
+               for(int j=i+1;j<size;j++)
+               {
+                   if(arr[j] >arr[i])
+                   {
+                       ans[i] = arr[j];
+                       break;
+                   }
+               }
+           }
+           
+           return ans;
+        }
+    \end{code2}
+
+\end{solution}
+
+\begin{solution}[Stack | $O(n)$]
+    We will maintain a monotonic decreasing stack.
+   
+    \begin{figure}[ht]
+        \includegraphics[width=\textwidth]{./resources/mono-decreasing-stack.png}
+        \caption{monotonic stack state for arr=[9,7,3,3,6]}
+
+    \end{figure}
+        
+    For a monotonic decreasing stack.\\
+    \faHandPointRight\hspace{2mm}{we push array element to stack if current element is smaller than stack tidx}.\\
+    \faHandPointRight\hspace{2mm}{we pop a element from stack if current element is greator than stack tidx.}
+   
+    You can understand this as, \rfl{we are maintaing a decreasing stack. we must be ensure that stack element at all time must be decreasing + we \textbf{must} push current element to stack.}
+
+    \includegraphics[width=0.7\textwidth]{./resources/monotonic-decreasing-stack.jpg}
+
+    \begin{code3}[Reference Code]
+        typedef long long int lli;
+        #define tidx st.back()
+        vector<lli> findGreatorStack(vector<lli> arr)
+        {
+            int size = arr.size();
+            vector<lli> ans(size,-1);
+            
+            vector<int> st;  
+            for(int i=0;i<size;i++)
+            {
+                //step(a):prepare stack for the insertion of arr[i]
+                while(!st.empty() && arr[tidx]<arr[i])
+                {
+                    ans[tidx] = arr[i];
+                    st.pop_back();
+                }
+                
+                //step(b): insert
+                st.push_back(i);
+            }
+            
+            return ans;
+        }
+
+    /* few points to consider for above implemention*/
+    (a) we have used vector in place of stack. (as printing st durign debugging will be easy this way)
+    (b) we are pushing index to st, instead of index values.
+    (c) the popping is same like incrementing l in two pointer. (we first ensure that l..r-1 is ready to accept r, then include r in range.)
+
+    (d) How it is different from two pointer?
+    (e) Can i say that st can have any subsequence depending upon the initial array? 
+
+    /* places of interest*/
+    There are 3 places where the knowledge of index tidx & i can be used.
+    (a) Before popping. (nge problem series)
+    (b) After popping. (rain water problem) (for element being popped. tidx is left_max, i is righ_max)
+    (c) Before insertion.  (?)
+    \end{code3}
+
+\end{solution}

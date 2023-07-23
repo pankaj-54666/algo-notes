@@ -1,0 +1,29 @@
+\begin{problem}{Trapping Rain Water}
+    Given n non-negative integers representing height of building in one-dimension. Assuming width of each building as 1unit. Compute how much water will be trapped by these building.
+
+    \footnotetext{LC42}
+\end{problem}
+
+\begin{solution}[solution summary]
+    There are various ways to solve this problem.
+
+    \begin{guide}
+
+        \item For current building, if you could find what is leftmost building which is just greator than arr[i] and what is rightmost building which is just greator then arr[i]. (i.e previousGreatorElement + nextGreatorElement).
+        
+        Then, water trapped by arr[i] would be \verb|min(pg,ng)-arr[i]|
+
+        Try to use DP to calculate pgarr and ngarr.
+
+        \item Can you use stack to find pg and ng for arr[i]?
+        
+        \item Can you try to use two-pointer?
+    \end{guide}
+
+\end{solution}
+
+\begin{solution}[Stack | O(n)]
+    Lets use stack to solve this problem.
+
+    Recall
+\end{solution}

@@ -180,7 +180,7 @@
 % or use it single line as \verb|int val1;|
 
 % use this for normal width with marginparwidth & images on side. \code2{Code Caption}
-\lstnewenvironment{code2}[1][]
+\lstnewenvironment{code2c}[1][]
 {
     % see listing package documentation to learn about below/more options (https://ctan.org/pkg/listings?lang=en)
     \lstset{
@@ -197,17 +197,52 @@
 }
 {}
 
+\lstnewenvironment{code2}[1][]
+{
+    % see listing package documentation to learn about below/more options (https://ctan.org/pkg/listings?lang=en)
+    \lstset{
+        basicstyle=\ttfamily, %verbatium usages ttfamily font, hence setting it this means display be like verbatium
+        columns=fullflexible,
+        keepspaces=true,
+        frame=single, %making is single will draw a border
+        framerule=0pt, %frame that is not visible (added to use margin)
+        % backgroundcolor=\color{gray!10}, %to code background color
+        breaklines=true, % for text autowrap around boundary
+        % resetmargins=true,
+        caption=#1,
+      }
+}
+{}
+
 % IMP: if you want it to on same page, one option is to use \newpage wher you want it (as for now mdframe cannot be used with lstenvironment)
 % tested with minipage , mdframe no simple solution found.
 % tested with calulcation of content width, but the issue is that code \BODY cannot be expande well.
 % tested with codeframe new envrionment, same issue as code body cannot be passed to new envrionemnt
 
 % use this for full width code display
+% \lstnewenvironment{code3}[1][]
+% {
+%     \newgeometry{left=15mm,right=15mm}
+%     % see listing package documentation to learn about below/more options
+   
+%     \lstset{
+%         basicstyle=\ttfamily,
+%         columns=fullflexible,
+%         keepspaces=true,
+%         frame=single, %making is single will draw a border
+%         framerule=0pt, %frame that is not visible (added to use margin)
+%         backgroundcolor=\color{gray!10}, %to code background color
+%         breaklines=true, % for text autowrap around boundary
+%         resetmargins=true,
+%         caption=#1
+%       } 
+% }
+% {\restoregeometry}
+
 \lstnewenvironment{code3}[1][]
 {
-    \newgeometry{left=15mm,right=15mm}  
-    % see listing package documentation to learn about below/more options
-    \lstset{
+  \newgeometry{left=15mm,right=15mm,bottom=2.5cm}
+  \lstset{
         basicstyle=\ttfamily,
         columns=fullflexible,
         keepspaces=true,
@@ -215,9 +250,9 @@
         framerule=0pt, %frame that is not visible (added to use margin)
         backgroundcolor=\color{gray!10}, %to code background color
         breaklines=true, % for text autowrap around boundary
-        % resetmargins=true,
+        resetmargins=true,
         caption=#1
-      }
+      } 
 }
 {\restoregeometry}
 
