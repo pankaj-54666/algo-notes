@@ -127,10 +127,14 @@
 {  
     \begin{fullwidth}[width=\linewidth +\marginparsep+\marginparwidth]
     
-    \begin{mdframed}[leftline=true, rightline=true,linewidth=2pt,linecolor=gray] %hidealllines=true add it to default do show any border
+    \begin{mdframed}[leftline=true,
+      leftmargin=100pt,
+      rightmargin=100pt,
+      frametitle={Pratice Problems},
+      frametitlealignment=\centering,
+       rightline=true,linewidth=2pt,linecolor=gray] %hidealllines=true add it to default do show any border
     \begin{center}
     \addcontentsline{toc}{subsection}{Pratice More Problems}
-    {\Large Pratice Problems:}
     % TO-DO: Increase the font-size of above text to make it stand out from the content.
 }
 {\end{center}\end{mdframed}\end{fullwidth}}
@@ -139,9 +143,13 @@
 {  
     \begin{fullwidth}[width=\linewidth +\marginparsep+\marginparwidth]
     
-    \begin{mdframed}[leftline=true, rightline=true,linewidth=2pt,linecolor=green!40]
+    \begin{mdframed}[leftline=true, 
+      leftmargin=100pt,
+      rightmargin=100pt,
+      frametitle={Hints},
+      frametitlealignment=\centering,
+      rightline=true,linewidth=2pt,linecolor=green!40]
     \begin{center}
-    {\Large Pratice Problems Hints:}
 }
 {\end{center}\end{mdframed}\end{fullwidth}}
 
