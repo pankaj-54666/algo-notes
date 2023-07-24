@@ -2,7 +2,7 @@
 \ProvidesClass{cmemoir}[Customized algorithmic notes class]
 
 % Load the memoir class
-\LoadClass[11pt]{memoir}
+\LoadClass[11pt,oneside]{memoir}
 
 % Define your own setting
 % \usepackage[a4paper,marginparwidth=80pt]{geometry} % to create a small page
@@ -107,7 +107,21 @@
 \newcommand{\rulethin}[1][black]{\par\textcolor{#1}{\rule{\linewidth}{1pt}}\par}
 
 \RequirePackage{multicol}
-\RequirePackage[twosidemode, needspace=3mm, outermargin=-\marginparsep-\marginparwidth]{fullwidth}
+% \RequirePackage[twosidemode, needspace=3mm, outermargin=-\marginparsep-\marginparwidth]{fullwidth}
+
+% % TUFLE BASES FULL WIDTH ENVIRONMENT
+% % (WILL NOT WORKING with twoside page]
+\newlength{\fullwidthlen}
+\setlength{\fullwidthlen}{\marginparwidth}
+\addtolength{\fullwidthlen}{\marginparsep}
+
+% \newenvironment{fullwidth}[1][]{%
+%   \begin{adjustwidth*}{}{-\fullwidthlen}%
+% }{%
+%   \end{adjustwidth*}%
+% }
+
+\newenvironment{fullwidth}[1][]{}{}
 
 \newenvironment{pratice}
 {  
@@ -124,11 +138,12 @@
 \newenvironment{praticeHints}
 {  
     \begin{fullwidth}[width=\linewidth +\marginparsep+\marginparwidth]
-    \begin{center}
+    
     \begin{mdframed}[leftline=true, rightline=true,linewidth=2pt,linecolor=green!40]
+    \begin{center}
     {\Large Pratice Problems Hints:}
 }
-{\end{mdframed}\end{center}\end{fullwidth}}
+{\end{center}\end{mdframed}\end{fullwidth}}
 
 
 
@@ -136,8 +151,8 @@
 % usage: \begin{problems}[heading]{problems}
 \newenvironment{exercise}[1][Chapter Exercises:]{
    
-    \begin{fullwidth}[width=\linewidth+\marginparwidth] %+\marginparsep
-    % \newgeometry{inner=10pt,outer=20pt}  
+    % \begin{fullwidth}[width=\linewidth+\marginparwidth] %+\marginparsep
+    \newgeometry{inner=10pt,outer=20pt}  
     \rulethick\vspace*{-3mm}
     % \setlist[enumerate,1]{label=\arabic*.}
     % \setlist[myenum,2]{label=\alph*)}
@@ -145,17 +160,18 @@
     \addcontentsline{toc}{section}{#1}
     \begin{multicols}{2}
   }{
-    \end{multicols}\end{fullwidth}%\restoregeometry
+    \end{multicols}\restoregeometry
   }
 
   \newenvironment{exerciseHints}[1][Exercises Solutions:]{
-    \begin{fullwidth}[width=\linewidth+\marginparwidth] %+\marginparsep
+    % \begin{fullwidth}[width=\linewidth+\marginparwidth] %+\marginparsep
+      \newgeometry{inner=10pt,outer=20pt}  
     \rulethick[green!40]\vspace*{-3mm}
 
     \section*{#1}
     \begin{multicols}{2}
   }{
-    \end{multicols}\end{fullwidth}
+    \end{multicols}\restoregeometry
   }
 
 % Below define code environemnt
@@ -253,7 +269,7 @@
 
 \lstnewenvironment{code3}[1][]
 {
-  \newgeometry{left=15mm,right=15mm,bottom=2.5cm}
+  % \newgeometry{left=15mm,right=15mm,bottom=2.5cm}
   \lstset{
         basicstyle=\ttfamily,
         columns=fullflexible,
@@ -266,11 +282,11 @@
         caption=#1
         } 
 }
-{\restoregeometry}
+{}
 
 \lstnewenvironment{code4}[1][]
 {
-  \newgeometry{left=15mm,right=15mm,bottom=2.5cm}
+  % \newgeometry{left=15mm,right=15mm,bottom=2.5cm}
   \lstset{
         basicstyle=\ttfamily,
         columns=fullflexible,
@@ -283,7 +299,7 @@
         caption=#1
       } 
 }
-{\restoregeometry}
+{}
 
 % see listing package documentation for more
 \newcommand{\icode}[1]{\lstinline|#1|}
