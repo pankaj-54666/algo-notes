@@ -212,7 +212,7 @@
         keepspaces=true,
         frame=single, %making is single will draw a border
         framerule=0pt, %frame that is not visible (added to use margin)
-        backgroundcolor=\color{gray!10}, %to code background color
+        backgroundcolor=\color{gray!30}, %to code background color
         breaklines=true, % for text autowrap around boundary
         % resetmargins=true,
         caption=#1,
@@ -229,7 +229,7 @@
         keepspaces=true,
         frame=single, %making is single will draw a border
         framerule=0pt, %frame that is not visible (added to use margin)
-        % backgroundcolor=\color{gray!10}, %to code background color
+        backgroundcolor=\color{gray!20}, %to code background color
         breaklines=true, % for text autowrap around boundary
         % resetmargins=true,
         caption=#1,
@@ -275,9 +275,12 @@
   \end{mdframed}
 }
 
+\newenvironment{widepar}%
+  {\setlength{\rightskip}{-\marginparsep}\addtolength{\rightskip}{-\marginparwidth}}{\par}
+
 \lstnewenvironment{code3}[1][]
 {
-  % \newgeometry{left=15mm,right=15mm,bottom=2.5cm}
+  % \begin{widepar}
   \lstset{
         basicstyle=\ttfamily,
         columns=fullflexible,
@@ -286,7 +289,7 @@
         framerule=0pt, %frame that is not visible (added to use margin)
         backgroundcolor=\color{gray!10}, %to code background color
         breaklines=true, % for text autowrap around boundary
-        resetmargins=true,
+        % resetmargins=true,
         caption=#1
         } 
 }
@@ -294,7 +297,6 @@
 
 \lstnewenvironment{code4}[1][]
 {
-  % \newgeometry{left=15mm,right=15mm,bottom=2.5cm}
   \lstset{
         basicstyle=\ttfamily,
         columns=fullflexible,
@@ -303,9 +305,9 @@
         framerule=0pt, %frame that is not visible (added to use margin)
         backgroundcolor=\color{gray!10}, %to code background color
         breaklines=true, % for text autowrap around boundary
-        resetmargins=true,
-        caption=#1
-      } 
+        caption=#1,
+        marginparwidth=0pt % Remove marginparwidth just for this environment
+        } 
 }
 {}
 
