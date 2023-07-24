@@ -20,6 +20,10 @@
             marginparwidth=50mm,
             % showframe% for show your page design, normaly not used
             ]{geometry}
+
+% \RequirePackage{geometry}
+% \geometry{includeall, top=14mm, bottom=14mm, inner=20mm, outer=60mm, headheight=16pt, marginparwidth=50mm, marginparsep=5mm}
+
 \setlength{\marginparwidth}{50mm}
 
 \newcommand{\tab}{\hspace{8mm}}
@@ -107,29 +111,24 @@
 
 \newenvironment{pratice}
 {  
-    \newgeometry{left=50mm,right=50mm,marginparwidth=10mm}  
+    \begin{fullwidth}[width=\linewidth +\marginparsep+\marginparwidth]
+    
+    \begin{mdframed}[leftline=true, rightline=true,linewidth=2pt,linecolor=gray] %hidealllines=true add it to default do show any border
     \begin{center}
-    % \begin{fullwidth}[width=\linewidth] %+\marginparsep+\marginparwidth
-    
-    \begin{mdframed}[hidealllines=true,leftline=true, rightline=true,linewidth=2pt,linecolor=gray]
-    
     \addcontentsline{toc}{subsection}{Pratice More Problems}
     {\Large Pratice Problems:}
     % TO-DO: Increase the font-size of above text to make it stand out from the content.
 }
-{\end{mdframed}\restoregeometry\end{center}}
+{\end{center}\end{mdframed}\end{fullwidth}}
 
 \newenvironment{praticeHints}
 {  
-    
-    % \begin{fullwidth}[width=\linewidth] %+\marginparsep+\marginparwidth
-    \newpage
-    \newgeometry{left=50mm,right=50mm,marginparwidth=10mm}  
+    \begin{fullwidth}[width=\linewidth +\marginparsep+\marginparwidth]
     \begin{center}
-    \begin{mdframed}[hidealllines=true,leftline=true, rightline=true,linewidth=2pt,linecolor=green!40]
+    \begin{mdframed}[leftline=true, rightline=true,linewidth=2pt,linecolor=green!40]
     {\Large Pratice Problems Hints:}
 }
-{\end{mdframed}\restoregeometry\end{center}}
+{\end{mdframed}\end{center}\end{fullwidth}}
 
 
 
@@ -137,8 +136,8 @@
 % usage: \begin{problems}[heading]{problems}
 \newenvironment{exercise}[1][Chapter Exercises:]{
    
-    % \begin{fullwidth}[width=\linewidth+\marginparwidth] %+\marginparsep
-    \newgeometry{inner=10pt,outer=20pt}  
+    \begin{fullwidth}[width=\linewidth+\marginparwidth] %+\marginparsep
+    % \newgeometry{inner=10pt,outer=20pt}  
     \rulethick\vspace*{-3mm}
     % \setlist[enumerate,1]{label=\arabic*.}
     % \setlist[myenum,2]{label=\alph*)}
@@ -146,7 +145,7 @@
     \addcontentsline{toc}{section}{#1}
     \begin{multicols}{2}
   }{
-    \end{multicols}\restoregeometry
+    \end{multicols}\end{fullwidth}%\restoregeometry
   }
 
   \newenvironment{exerciseHints}[1][Exercises Solutions:]{
