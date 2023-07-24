@@ -2,7 +2,8 @@
 \ProvidesClass{cmemoir}[Customized algorithmic notes class]
 
 % Load the memoir class
-\LoadClass[11pt,oneside]{memoir}
+% \LoadClass[11pt,oneside]{memoir}
+\LoadClass{tufle-book}
 
 % Define your own setting
 % \usepackage[a4paper,marginparwidth=80pt]{geometry} % to create a small page
