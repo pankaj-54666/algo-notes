@@ -115,13 +115,13 @@
 \setlength{\fullwidthlen}{\marginparwidth}
 \addtolength{\fullwidthlen}{\marginparsep}
 
-% \newenvironment{fullwidth}[1][]{%
-%   \begin{adjustwidth*}{}{-\fullwidthlen}%
-% }{%
-%   \end{adjustwidth*}%
-% }
+\newenvironment{fullwidth}[1][]{%
+  \begin{adjustwidth}{}{-\fullwidthlen}%
+}{%
+  \end{adjustwidth}%
+}
 
-\newenvironment{fullwidth}[1][]{}{}
+% \newenvironment{fullwidth}[1][]{}{}
 
 \newenvironment{pratice}
 {  
@@ -151,8 +151,8 @@
 % usage: \begin{problems}[heading]{problems}
 \newenvironment{exercise}[1][Chapter Exercises:]{
    
-    % \begin{fullwidth}[width=\linewidth+\marginparwidth] %+\marginparsep
-    \newgeometry{inner=10pt,outer=20pt}  
+    \begin{fullwidth}[width=\linewidth+\marginparwidth] %+\marginparsep
+    % \newgeometry{inner=10pt,outer=20pt}  
     \rulethick\vspace*{-3mm}
     % \setlist[enumerate,1]{label=\arabic*.}
     % \setlist[myenum,2]{label=\alph*)}
@@ -160,7 +160,7 @@
     \addcontentsline{toc}{section}{#1}
     \begin{multicols}{2}
   }{
-    \end{multicols}\restoregeometry
+    \end{multicols}\end{fullwidth}
   }
 
   \newenvironment{exerciseHints}[1][Exercises Solutions:]{
