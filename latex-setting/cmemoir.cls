@@ -69,6 +69,9 @@
 %     some stuff in the middle
 %     \end{foo}
 
+\setlength\parindent{0pt} %this line will modify the default indent level
+\setlength\parskip{.6em}% this will constrol the line spacing when entering empty line in code
+
 \newenvironment{problem}[2][Q:]
     { \newpage \begin{mdframed}[backgroundcolor=yellow!40] \addcontentsline{toc}{section}{#2} \textbf{#1 #2} \\}
     {  \end{mdframed}}
