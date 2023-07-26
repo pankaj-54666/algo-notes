@@ -8,24 +8,71 @@ In generally we proces arr[0..idx] elements and push them onto the stack.
 \caption{stack in action}
 \end{marginfigure}
 
+\includegraphics[width=2\marginparwidth]{resources/monotonic-decreasing-stack.jpg}
+
+
 The stack can keep the subsequence or the subarray, depending upon the pop strategy.
 
-Stack is used when you want to have relative sorting of data w.r.t \verb|arr[idx]|
+There are many appliations of stack and varities of question pattern that usages most known stack pattern.
+Please go through below quesioin list to understand \verb|must solve stack problems|.
 
-Problems to understand stack.
-\begin{exercise}
+\begin{exercise}[Must Solve Stack List]
+
+    Monotonic Queue and its variations:
+    \begin{compactenum}
+        \item Next Greator To Right Calculation. \href{https://www.geeksforgeeks.org/next-greater-element}{link}
+        \item NGL ad NGR simultaneous calculation.
+        \item Pratice: \newline LC739(Daily Temperature), \\LC901(Stock Span),\\LC1762(Ocean View),\\LC1019(Next Greator in LinkedList) \\(LC853)(Car fleet) \footnote{find timearr first.}
+        \item LC1063 (Number of Valid Subarrays) \footnote{try utilizing property and diagram of NSL,NGL} \\(LC2345) Finding the Number of Visible Mountains
+    \end{compactenum}
+
+    Direct Application of NGL pattern:
+    \begin{compactenum}
+        \item Area Under Histogram.
+        \item Rain Water Harvesting.
+    \end{compactenum}
+
+    NGL + one side max/min pattern:
+    \begin{compactenum}
+        \item 132 pattern.
+    \end{compactenum}
+
+    All subarray count problem(Find either max, min or sum or substract):
+    \begin{compactenum}
+        \item LC907 (Sum of Subarray Minimums) \footnote{Builds on LC1063, but this time you will need to have left boundary also.}
+        \item LC2104 (Sum of Subarray Ranges) \footnote{min all subarray sum + max all subarray sum}
+        \item Pratice:\\
+        LC1856 Maximum Subarray Min-Product, \\Maximum of Minimum Values in All Subarrays\\(LC2281) Sum of Total Strength of Wizards
+    \end{compactenum}
+
+    Uncategorized:
     \begin{enumerate}
-        \item Rain water harvesting.
         \item Palindromic Check, Longest Palindromic Length
         \item Valid Parenthesis, Longest Valid Parenthesis
-        \item Next Greator Element (and related)
-        \item all subarray sum(with constrain on max/min element of subarray) without caluclating all subarray. (i.e expected complexiy is linear)
+        \item (LC962) Maximum Width Ramp (\textit{superhard,ignore for now})
+        
+        \item (LC581) Shortest Unsorted Continous Subarray \footnote{key idea is to that, we need to determine the correct position of the minimum and the maximum element in the unsorted subarray to determine the boundaries of the required unsorted subarray.
+        Can you do above by analysis the rising and desending slope of monotonic stack?
+        }
+    \end{enumerate}
+
+    Pratice:(Move it to chapter end exercise list)
+    \begin{enumerate}
+        \item second next Greator
+        \item kth next Greator
     \end{enumerate}
 \end{exercise}
 
+\hrulefill Visualization Summary \hrulefill
+
+Monotonic Queue:    
+In this type of problem, the question can be solved with NextGreatorToLeft(NGL), NGR Or NSL,NSR.
+
+Understanding of NGL,NGR is sufficient to solve all of these problem variations.
+Please see picx on how to calculate and visualize NGL.
+
 % Pratice problem list
-second next Greator
-kth next Greator
+
 Widard Strenght.
 
 % TO-DO: Convert marginfigure to a environemtn acceptin g width & hegiht. use xparse package for flexible input
@@ -35,3 +82,5 @@ Widard Strenght.
 
 \input{next-greator-element.tex} % this will work too
 \input{rain-water-trapping.tex}
+
+% Problem List Referance: https://leetcode.com/discuss/study-guide/2703748/Monotonic-stack-study-summary

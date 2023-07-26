@@ -56,6 +56,7 @@
 \usepackage{needspace}
 \usepackage{environ}
 \usepackage{fontawesome5}
+\usepackage{wrapfig}
 
 \newcommand{\rfl}[1]{ \sethlcolor{yellow}\hl{#1}} %rfl = remember for later
 \newcommand{\intution}[1]{\sethlcolor{green!40}\hl{#1}} 
@@ -119,6 +120,9 @@
 \addtolength{\fullwidthlen}{\marginparsep}
 
 \newenvironment{fullwidth}[1][]{%
+% Important: you need to set \textwidth = \textwidth + \marginparwidth & set marginparwidth to zero.
+% Alos, you need to restore them after the end of environment.
+% maybe also set linewidth
   \begin{adjustwidth}{}{-\fullwidthlen}%
 }{%
   \end{adjustwidth}%
@@ -347,8 +351,6 @@
 % below: environemtn related to hints & solution of pratice + Exercise Question
 \newsavebox{\hints}
 \setbox\hints=\vbox{}
-
-
 
 
 
