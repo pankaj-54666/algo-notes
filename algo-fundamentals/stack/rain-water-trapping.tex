@@ -9,6 +9,8 @@
 
     \begin{guide}
 
+        TO-DO: Add images in guide/hint section.
+
         \item For current building, if you could find what is leftmost building which is just greator than arr[i] and what is rightmost building which is just greator then arr[i]. (i.e previousGreatorElement + nextGreatorElement).
         
         Then, water trapped by arr[i] would be \verb|min(pg,ng)-arr[i]|
@@ -31,6 +33,9 @@
 
     But, if you focus on nge and pge \textbf{for element being popped}. Then you know the nge and pge just after the element is being popped.
 
+    \begin{marginfigure}
+        \includegraphics[width=\marginparwidth]{resources/stack-rain-water-harvesting-1.jpg}
+    \end{marginfigure}
     \begin{code3}
         int trapStack(vector<int>& arr) 
         {
@@ -65,12 +70,19 @@
             return sum;
         }
     \end{code3}
-
-After mdfamed
-
-\lipsum[1-10]
 \end{solution}
 
+\begin{solution}[DP | O(n)]
+    Find lmax[] and rmax[].
+    Then water bar trapped above each element be\\
+    \verb|min(lmax[i],rmax[i])-arr[i]|.
+    The sum of all such water is the answer.
+
+    \begin{marginfigure}
+        \includegraphics[width=\marginparwidth]{resources/stack-rain-water-harverstin-2.jpg}
+    \end{marginfigure}
+\end{solution}
+    
 \begin{solution}[Two Pointer | $O(1) space$]
     
     \begin{code}
