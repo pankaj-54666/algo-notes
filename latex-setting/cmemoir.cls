@@ -14,8 +14,8 @@
             inner=20mm,
             outer=60mm,% = marginparsep + marginparwidth 
                        %   + 5mm (between marginpar and page border)
-            top=20mm,
-            bottom=25mm,
+            top=15mm,
+            bottom=10mm,
             marginparsep=5mm,
             marginparwidth=50mm,
             % showframe% for show your page design, normaly not used
