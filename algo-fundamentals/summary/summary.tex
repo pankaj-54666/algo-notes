@@ -1,0 +1,108 @@
+\chapter{Problem Summary}{\label{summary}}
+
+Summarization of various problem and their pragamatic solutions.
+\begin{compactenum}
+    \item recursion 
+    \item backtracking
+    \item binary search
+    \item divide and conquere
+    \item sorting: quick sort, merge sort, bubble sort, radix sort, insertion sort
+    \item Tree Algorithms
+    \item  Dynamic Programming
+    \item Graph Algorithms
+    \item Stack,Monotonic Stack
+    \item Queue, Monotonic Queue, Sliding Window
+    \item He
+\end{compactenum}
+
+Topic wise fundamental problem list.
+
+{\smaller[1] 
+\begin{exercise}[Most Important Concept]
+    \begin{description}
+    \item [Dynamic Programming:] Has a lot of variation, but basic is same. i.i to caculate the answer via recursion first, then memoize or further optimize then memoize.
+    
+        \begin{compactenum}[(a)]
+            \item dp without state: subset sum,coin change
+            \item dp with l,r pointer: longest palindromic string,longest valid parenthesis
+            \item dp with l,r and k: matrix chain multiplication, burst bullon
+            
+            \item dp with state: stock problem series, paint fence, smallest possible team.
+            \item memoization with backtracking
+            
+            \item palindromic pattern 
+            \item valid parenthesis pattern 
+        \end{compactenum}
+
+    \item[Tree Algorithms:] Tree has various problem bases on them.
+        \begin{compactenum}[(a)]
+            \item tree traversal. (inorder,preorder,postorder)
+            \item tree traversal level order, zig zag level order, 
+            \item LCA, root to leaf path, diagmeter of tree, is tree symmetrical, is tree mirror image
+        \end{compactenum}
+
+    \item[Trie Implementation:] Implement trie bases on knowlege of tree.
+    
+    \item[Graph Algorithms:] Refer Shai Simonson graph copy notes.(its sufficent)
+    \begin{compactenum}[a]
+        \item DFS
+        \item BFS
+        \item BackEdge of graph
+        \item isCycle
+        \item Dijakstra, Bellman Ford
+        \item Topological Sort
+        \item Articulation Point
+        \item Number of disconnected compoonent.
+        \item TO-DO: add more
+    \end{compactenum}
+
+    \item[Stack:] To check if monotonic can be applied to problem, checkif finding NGL,NGR will help you solve the problem.
+        \begin{compactenum}[a]
+            \item implement monotonic stack, slope of monotonic stack
+            \item minimum element contricution in monotonic increasing stack, max element contricution in monotonic decreasing stack.
+            \item NGL,NGR; NSL,NSR calcualtion. 
+            
+            \item stack supporting basic + getMin: solution using two stack, solution using single variable.
+            \item implement stack using queue.
+        \end{compactenum}
+
+
+        \item[Binary Search:] There are a lot of various and this usually can combine with any other algorihtm.
+            \begin{compactenum}[a]
+                \item Recursive binary search code, iterative binary search code
+                \item implement lowerbound, implement upperbound
+                \item implement find,lowerbound,infliction point when array is rotated or shifted.
+            \end{compactenum}
+
+
+        \item[Range Bases Query:] Various Data structure.
+        \begin{compactenum}
+            
+            \item Fenwick tree : range query + point update (very small code and quick to implement)
+            \item Segment Tree: range query + point update + range update (all in $log(n)$)
+            \item sqrt decompoisiton
+        \end{compactenum}
+        
+        \item[Union Find] Disjoin unit set, union by rank, path compression.
+
+        \item[Specilized String Algorithms:] Advanced string search algorithms.
+        \begin{compactenum}[(a)]
+            \item string hashing. \footnote{https://cp-algorithms.com/string/string-hashing.html}
+            \item KMP
+            \item Robin-Karp
+            \item Suffix Tree (used for Pattern search)
+        \end{compactenum}
+
+        \item[bit-manupulation tricks] Tips and Tricks for bit dp / bit problems / bit combined to other problems
+        \footnote{https://cp-algorithms.com/algebra/bit-manipulation.html}
+        \begin{compactenum}
+            \item set bit, pop count
+        \end{compactenum}
+        
+
+       
+        
+        
+        
+\end{description}
+\end{exercise}}

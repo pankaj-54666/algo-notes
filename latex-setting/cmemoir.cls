@@ -57,6 +57,7 @@
 \usepackage{environ}
 \usepackage{fontawesome5}
 \usepackage{wrapfig}
+\usepackage{relsize}
 
 \newcommand{\rfl}[1]{ \sethlcolor{yellow}\hl{#1}} %rfl = remember for later
 \newcommand{\intution}[1]{\sethlcolor{green!40}\hl{#1}} 
