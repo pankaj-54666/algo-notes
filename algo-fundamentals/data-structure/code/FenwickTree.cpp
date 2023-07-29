@@ -188,12 +188,12 @@ public:
  
     void update(lli idx, lli val)
     {
-     cc   printf("update[%lld]=%lld :: ",idx,val);
+     cc printf("update[%lld]=%lld :: ",idx,val);
         tree[idx].val += val;
  
         while(idx <= treeSize)
         {
-    cc        printf("%lld-> ",idx); //print node update sequence (for better debugging purpose)
+    cc      printf("%lld-> ",idx); //print node update sequence (for better debugging purpose)
             tree[idx].lsum += val;
             idx = getFirstAncestorForWhichCurrentNodeIsInLeftSideOfTheSubtree(idx);
         }
