@@ -1,6 +1,48 @@
 \chapter{Fenwick Tree}\label{chp:fenwick_tree}
 
-For rangeQuery and pointUpdate both in $log(n)$ time, we use fenwick tree.
+For \verb|range_update| and \verb|point_update| both in $log(n)$ time, we use fenwick tree.
 Fenwick tree has very low code footprint. \footnote{but you must understand the tree strucutre and uppdate sequence to understand how it works.}
 \footnote{
 \href{https://cs.stackexchange.com/questions/10538/bit-what-is-the-intuition-behind-a-binary-indexed-tree-and-how-was-it-thought-a}{link:Intution Behind Fenwick Tree}}
+\footnote{fenwick tree is not suitable for range update}
+
+\intution{Intution: Just like carr[] gives us rangeQuery in O(1), but point update is still O(n). What if we store the array element itself in a balanced binary tree, where each node contains the sum of all its left child nodes.}
+With this defination, \verb|q[0,idx]| can be done in log(n) time, and so does point update in log(n). (think it like in both the operations we traversal from leaf node to root)
+\newpage
+% \begin{fullwidth}
+
+%     \begin{figure}
+%         \begin{minipage}[c]{0.5\fullwidthlen}
+%             \includegraphics[width=.3\textwidth]{resources/dsa-fenwick-tree-visualization.jpg}
+%         \end{minipage}
+%         \begin{minipage}[c]{0.3\fullwidthlen}
+%           \caption{some caption}
+%         \end{minipage}
+
+%       \end{figure}
+
+      
+% \end{fullwidth}
+
+
+    % \begin{figure}
+    %     \begin{fullwidth}
+    %     \begin{minipage}[c]{0.4\fullwidthlen}
+    %         \includegraphics[width=\textwidth]{example-image}
+    %     \end{minipage}\hspace{5mm}
+    %     \begin{minipage}[c]{0.6\fullwidthlen}
+    %            \lipsum[2]
+    %            % Hello
+    %     \end{minipage}
+    % \end{fullwidth}
+    % \end{figure}
+
+\begin{lfigure}{resources/dsa-fenwick-tree-visualization.jpg}{0.6}{0.38}
+    Any node in the tree has sum of all node in its leftsubtree.
+    \vspace{1cm}
+    
+    \verb|query_parent = idx + [idx & (-idx)]|
+
+    \verb|update_parent = idx - [idx & (-idx)]|
+
+\end{lfigure}

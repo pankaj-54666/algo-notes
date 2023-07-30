@@ -94,6 +94,22 @@
 {\par\textcolor{green}{\rule{\textwidth}{2pt}}\par}
 
 
+\newenvironment{lfigure}[3]
+{    \begin{figure}
+     \begin{fullwidth}
+     
+        \begin{minipage}[c]{#2\fullwidthlen}
+            \includegraphics[width=\textwidth]{#1}
+        \end{minipage}\hspace{5mm}
+        \begin{minipage}[c]{#3\fullwidthlen} 
+}
+{ 
+   \end{minipage}    
+   \end{fullwidth}
+   \end{figure}
+}
+
+
 \newcommand{\texthighlight}[2]
 {\sethlcolor{#1}{\hl{#2}}}
 %hl stands for highlight
@@ -118,7 +134,9 @@
 % % (WILL NOT WORKING with twoside page]
 \newlength{\fullwidthlen}
 \setlength{\fullwidthlen}{\marginparwidth}
-\addtolength{\fullwidthlen}{\marginparsep}
+% \addtolength{\fullwidthlen}{\marginparsep}
+\addtolength{\fullwidthlen}{\textwidth}
+
 
 \newenvironment{fullwidth}[1][]{%
 % Important: you need to set \textwidth = \textwidth + \marginparwidth & set marginparwidth to zero.
