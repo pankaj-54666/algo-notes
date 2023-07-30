@@ -37,12 +37,37 @@ With this defination, \verb|q[0,idx]| can be done in log(n) time, and so does po
     % \end{fullwidth}
     % \end{figure}
 
+\codecaption{Fenwick Tree Visualization}
 \begin{lfigure}{resources/dsa-fenwick-tree-visualization.jpg}{0.6}{0.38}
     Any node in the tree has sum of all node in its leftsubtree.
     \vspace{1cm}
-    
+
     \verb|query_parent = idx + [idx & (-idx)]|
 
     \verb|update_parent = idx - [idx & (-idx)]|
+
+\end{lfigure}
+
+\codecaption{Point Update with Fenwick Tree}
+\begin{lfigure}{resources/dsa-fenwick-point-update.jpg}{0.5}{0.5}
+
+    \begin{code3}
+    void update(lli idx, lli val)
+    {
+        tree[idx].val += val;
+
+        while(idx <= treeSize)
+        {
+            tree[idx].lsum += val;
+            idx = update_parent_idx(idx);
+        }
+    }
+
+  
+    inline lli update_parent_idx(lli idx)
+    {
+        return  idx + (idx & (-idx));
+    }
+    \end{code3}
 
 \end{lfigure}

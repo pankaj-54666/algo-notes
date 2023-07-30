@@ -94,19 +94,26 @@
 {\par\textcolor{green}{\rule{\textwidth}{2pt}}\par}
 
 
+\newcommand{\codecaption}[1]{ 
+{\LARGE \textbf{#1}} 
+\par\textcolor{gray} 
+{\rule{\linewidth}{2pt}} 
+\par\vspace{2pt}}
+
 \newenvironment{lfigure}[3]
-{    \begin{figure}
+{    
+  % \begin{figure}
      \begin{fullwidth}
-     
         \begin{minipage}[c]{#2\fullwidthlen}
             \includegraphics[width=\textwidth]{#1}
-        \end{minipage}\hspace{5mm}
+        \end{minipage}\hspace{4mm}
         \begin{minipage}[c]{#3\fullwidthlen} 
 }
 { 
    \end{minipage}    
    \end{fullwidth}
-   \end{figure}
+   \vspace{2cm}
+  %  \end{figure}
 }
 
 
