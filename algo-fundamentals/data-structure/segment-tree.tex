@@ -4,6 +4,38 @@ Segment tree without lazy.
 Segment tree with lazy propagation.
 Segment tree where common \textbf{combine} is used in update and query.
 
+\medskip
+\codecaption{Segment Tree Visualization/Debug}
+\begin{lfigure}{resources/dsa-segment-tree-8-nodes.jpg}
+{0.6}{0.4} 
+\textbf{A segment tree visualization when number of node is power of 2.}
+\end{lfigure}
+
+\codecaption{Segment Tree with 11 Nodes}
+\begin{lfigure}{resources/dsa-segment-tree-11-nodes.jpg}
+    {0.7}{0.3} 
+    
+    In case of 11 nodes, is it not not $2^k$. The rest of node is distributed evenly below.
+\end{lfigure}
+
+\codecaption{Segment Tree Update Visualization}
+\begin{lfigure}{resources/dsa-segment-tree-update.jpg}
+{0.6}{0.4} 
+Function Strucutre: \newline
+\verb|update(idx,left,right,START,END,val)|
+\verb|query(idx,left,right,START,END)|
+
+\medskip
+Main point to note is, \verb|[left,right]| is the range which $idx^{th}$ node represent.
+
+\medskip
+To do either operation,we will go from root to leaf. When going down the tree, if the current node is inside the query range \verb|[START,END]| $\Rightarrow$ we will return this node itself. 
+
+\medskip 
+Otherwise, we will call for the result of leftsubtree and righttree part seperately. Once the result are available, we will combine them and return it.
+\end{lfigure}
+
+\newpage
 \begin{fullwidth}
     \begin{figure}
         \caption{Segment Tree Implementation with Array}
