@@ -116,7 +116,6 @@
   %  \end{figure}
 }
 
-
 \newcommand{\texthighlight}[2]
 {\sethlcolor{#1}{\hl{#2}}}
 %hl stands for highlight

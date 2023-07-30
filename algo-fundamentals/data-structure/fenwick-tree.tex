@@ -89,7 +89,8 @@ With this defination, \verb|q[0,idx]| can be done in log(n) time, and so does po
 \end{lfigure}
 
 \codecaption{Range Query}
-\begin{lfigure}{resources/dsa-fenwick-range-query.jpg}{0.5}{0.5}
+\begin{fullwidth}
+\begin{minipage}[c]{0.5\fullwidthlen}
     \begin{code3}
     lli query(lli idx)
     {
@@ -108,4 +109,8 @@ With this defination, \verb|q[0,idx]| can be done in log(n) time, and so does po
         return query(right) - query(left-1);
     }
     \end{code3}
-\end{lfigure}
+\end{minipage}\hspace{10pt}
+\begin{minipage}[c]{0.47\fullwidthlen}
+    \includegraphics[width=\textwidth]{resources/dsa-fenwick-range-query.jpg}
+\end{minipage}
+\end{fullwidth}
