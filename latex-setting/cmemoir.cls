@@ -103,10 +103,10 @@
 {    
   % \begin{figure}
      \begin{fullwidth}
-        \begin{minipage}[c]{#2\fullwidthlen}
+        \begin{minipage}[c]{#2\fullfigurelen}
             \includegraphics[width=\textwidth]{#1}
         \end{minipage}\hspace{4mm}
-        \begin{minipage}[c]{#3\fullwidthlen} 
+        \begin{minipage}[c]{#3\fullfigurelen} 
 }
 { 
    \end{minipage}    
@@ -139,8 +139,12 @@
 % % (WILL NOT WORKING with twoside page]
 \newlength{\fullwidthlen}
 \setlength{\fullwidthlen}{\marginparwidth}
-% \addtolength{\fullwidthlen}{\marginparsep}
-\addtolength{\fullwidthlen}{\textwidth}
+\addtolength{\fullwidthlen}{\marginparsep}
+
+\newlength{\fullfigurelen}
+\setlength{\fullfigurelen}{\marginparwidth}
+% \addtolength{\fullfigurelen}{\marginparsep}
+\addtolength{\fullfigurelen}{\textwidth}
 
 
 \newenvironment{fullwidth}[1][]{%
