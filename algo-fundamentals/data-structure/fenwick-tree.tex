@@ -37,7 +37,7 @@ With this defination, \verb|q[0,idx]| can be done in log(n) time, and so does po
     % \end{fullwidth}
     % \end{figure}
 
-\codecaption{Fenwick Tree Visualization}
+\codecaption{Fenwick Tree Visualization/Debug}
 \begin{lfigure}{resources/dsa-fenwick-tree-visualization.jpg}{0.6}{0.38}
     Any node in the tree has sum of all node in its leftsubtree.
     \vspace{1cm}
@@ -45,6 +45,22 @@ With this defination, \verb|q[0,idx]| can be done in log(n) time, and so does po
     \verb|query_parent = idx + [idx & (-idx)]|
 
     \verb|update_parent = idx - [idx & (-idx)]|
+
+    \vspace{2cm}
+    Class Skeleton
+    \begin{code3}
+
+    vector<treeNode> tree;
+    lli treeSize;
+
+    public:
+    FT(vector<lli>& arr)
+    {
+        treeSize = arr.size()+1;
+        tree = 
+        vector<treeNode>(treeSize)
+    }
+    \end{code3}
 
 \end{lfigure}
 
@@ -70,4 +86,26 @@ With this defination, \verb|q[0,idx]| can be done in log(n) time, and so does po
     }
     \end{code3}
 
+\end{lfigure}
+
+\codecaption{Range Query}
+\begin{lfigure}{resources/dsa-fenwick-range-query.jpg}{0.5}{0.5}
+    \begin{code3}
+    lli query(lli idx)
+    {
+        lli sum = 0;
+        lli p = 0;
+        while(idx>0)
+        {
+            sum += tree[idx].lsum;
+            idx = idx - (idx & (-idx));        
+        } 
+        return sum;
+    }
+    
+    lli range_query(lli left,lli right)
+    {
+        return query(right) - query(left-1);
+    }
+    \end{code3}
 \end{lfigure}
