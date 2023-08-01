@@ -139,7 +139,7 @@
 % % (WILL NOT WORKING with twoside page]
 \newlength{\fullwidthlen}
 \setlength{\fullwidthlen}{\marginparwidth}
-\addtolength{\fullwidthlen}{\marginparsep}
+% \addtolength{\fullwidthlen}{\marginparsep}
 
 \newlength{\fullfigurelen}
 \setlength{\fullfigurelen}{\marginparwidth}

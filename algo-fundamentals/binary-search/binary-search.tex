@@ -14,11 +14,25 @@ To binary search we need to sort our input first. There are different sorting al
 
 \begin{exercise}[Binary Search Fundamental Question List:]
     Given a sorted array write the code for following:
-    \lipsum[3]
+
    \begin{compactenum}
         \item Check if element exist or not.
-        \item If the element exist, return it's index.
-        \item 
+        \item If the element exist, return it's index else -1.
+        \item If the element exist return its index,else its \verb|lower_bound|.
+        \item Return \verb|lower_bound| when the array may have duplicate elements.
+        \item Return \verb|upper_bound| when the array may have duplicate. How will the code change when the array do not have duplicates?
+        \item use \verb|c++ stl lower_bound| to give lower bound with duplicates element.
+   \end{compactenum}
+
+   \medskip
+   \begin{compactenum}      
+        \item First and last occurrance of an element. (this combines all above question concept) pratice: (LC34)
+        \item Find minimum element in rotate + sorted array. (LC153)
+        \item (LC154) minimum in rotate+sorted when duplicate allowed.
+        \item find element idx in rotate+sorted array. (LC33)
+        \item find element idx in rotate+sorted array,when duplicate allowed.(LC34)
    \end{compactenum}
 \end{exercise}
+
+TO-DO: Addlower bound and upper bound image.
 
