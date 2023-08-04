@@ -103,6 +103,12 @@ Steps to Solve Dynamic Programming Question:
 
 \end{exercise}
 
+\begin{exercise}[Extra Pratice]
+    \begin{enumerate}
+        \item (LC2361) Minimum Costs Using the Train Line
+    \end{enumerate}
+\end{exercise}
+
 \begin{exerciseHints}[Solutions/Comments:]
     % Comment About Excercise Problem (And possibly have hint too)
     \begin{enumerate}
@@ -131,6 +137,16 @@ Steps to Solve Dynamic Programming Question:
         \item (LC1246) Palindrome Removal \\Key Observation: A[i] can be deleted either alone or can make a pair. Now in normal \verb|palindrome length| calculation, we make A[l] pair with A[r] (A[r] is first occurrance from right side for arr[l..r]). But, in current case A[i] can me made to pair with all ch which occurr at any index.
         
         \includegraphics[width=\marginparwidth]{./resources/LC1246_p1.jpg}
+    \end{enumerate}
+
+    Extra Pratice:
+    \begin{enumerate}
+        \item (LC2361) Can you deduce the ways at idx? If question were to find total cost to reach end, then you can either use \verb|f(0,_) or f(size-1,_)|. But this time question strongely emphasis to use \verb|f(size-1,_)| as you require \verb|f(1,_), f(2,_)| etc.
+        
+        In the below figure can you reason as why \verb|A->Change->Move->Change| this move is already embedded on move BA?
+        
+        \includegraphics[width=\marginparwidth]{resources/LC2361.jpg}
+        
     \end{enumerate}
     
 \end{exerciseHints}
