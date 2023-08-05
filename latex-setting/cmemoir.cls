@@ -107,6 +107,7 @@
             \includegraphics[width=\textwidth]{#1}
         \end{minipage}\hspace{4mm}
         \begin{minipage}[c]{#3\fullfigurelen} 
+        \parskip=.6em
 }
 { 
    \end{minipage}    

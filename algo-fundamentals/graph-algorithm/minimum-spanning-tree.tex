@@ -1,0 +1,36 @@
+\section{Minimum Spanning Tree}\label{ch:minimum-spanning-tree}
+
+Minimum spanning tree is a really  baisc graph algorithm, it requires a little more than the brute-force algorithm that we just applied on topolocial sorting.
+
+It serves as a fine example on how data-strucutre and algorithm go altogether.
+
+There are two algorithm to solve this, and they are \textbf{Prim} and \textbf{Kruskal}.
+
+\codecaption{Prims Algorithm | DS: Heap+Graph}
+Prim's algorithm create the minimum-spanning-tree in incremental manner. It select a node which has minimum cost and include that in growing tree forest.
+
+\begin{lfigure}{resources/topological.png}{0.3}{0.67}
+    Let,\\
+    \verb|parent[v]:= parent node of vertex v in minimum spanning tree|
+    \verb|cost[v]:= cost to pay if we want to include vertex v in minimum spanning set.|
+
+    Before start, set \verb|parent[u]=-1, cost[u]=INF|
+
+    \begin{compactenum}
+        \item set cost[0] = 0
+        \item Pick a node from heap that has lowest cost. Let this node be u.
+        \item Process this node. Processing means, update the cost[v] and parent[v]. where \verb| u-(w)>v| represent edge from u to v with weight w.
+        \item Delete this node and go to step2 again. Repeate this until there is no node in heap. 
+    \end{compactenum}
+
+\end{lfigure}
+
+\codecaption{Kruskal Algorithm | DS: union-find+Graph}
+\begin{lfigure}{resources/Kruskal.png}{0.3}{0.67}
+
+    In Kruskal's agorithm we select the edge which has minimum weight and include it in tree forest. If the selected edge causes to form a cycle, then we discard such edge and continue processing rest of the edge.
+
+    Kruskal Algorithm usages union-find data-structure to detect if including the edge will result in cycle or not.
+\end{lfigure}
+
+Disjoint Union Find with path compression (union-find) is really good example to show  how amortized complexity works.

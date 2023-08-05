@@ -1,0 +1,92 @@
+\chapter{Graph Algorithm}\label{ch:graph}
+
+New data-strucuture that will lead us to algorithm on graphs.
+
+The reason why graph algorithm are cool behides having tons and tons of applications is because they force you from a programmers point of view to really distinguish between some intutive idea you have about how to do something and actually making that implementation work.
+
+A algorithm is about two things, clear ideads and getting that intutive idea out of you and describing it, but once you've described it there's  still a way to go and defining that data-structure and make it work.
+
+\section{Graph Representation}
+
+\begin{lfigure}{example-image}{0.5}{0.5}
+    \lipsum[3]
+\end{lfigure}
+
+\codecaption{Adjancency List}
+\begin{lfigure}
+    {example-image}{0.5}{0.5}
+    
+\end{lfigure}
+
+There are general techniquie on how to traverse the graph, namely depth-first-search(dfs) and breadth-first-search(bfs).
+
+DFS and BFS are basic tools that becomes the building block of other fancy graph algorithm.\\
+ex: finding  a cycle can be done using a variant of dfs.
+
+A cool example using dfs tool is finding strongely disconnected component in class.
+
+Other graph algorihtms:
+\begin{exercise}[Graph Algorithm Summarization]
+    \textbf{Famous Graph Algorithms:}
+    \begin{compactenum}
+        \item  Shortest path
+        \item Minium Spanning tree
+    \end{compactenum}
+
+    \textbf{Non Famous Algorithms:}
+    \begin{compactenum}
+        \item Given a graph, can you tell if its a plainer graph or not.
+        
+        A graph is plainer graph, if you could draw it without crossing any edges. (its importatnt because, some algorithm run faster on plainer graph)
+    \end{compactenum}
+\end{exercise}
+
+\newpage
+\section*{Topological Sorting}
+A topological sort of graph make sense only when the graph is directed.
+
+\begin{marginfigure}
+    \raggedright
+\textbf{algorithm and data-structure tradeoff.}
+
+There is always a trade-off between data strucutre and algorithms.
+\vspace*{2mm}
+
+The more fancy things you keep in your data-structure usually the less work your algorithm has to do. Conversly, the less fancy things you keep in your data structure, the more work your algorihtm has to do.
+\end{marginfigure}
+
+ For topological sorting, we will first try to solve it without storign anything, then notice that its works a little than we like. Then later when we make our data-strucutre fancier and do a extra work in beginning, then the work we do later is little less.
+
+\begin{marginfigure}
+    \vspace{2mm}
+    
+    \raggedright
+    \textbf{
+        Never think of a algorithm without a data-structure}.
+\end{marginfigure}
+
+\vspace{5cm}
+\begin{lfigure}{example-image}{0.5}{0.47}
+    You can visualize each node as course of a university, and to complete a course you must complete all course before it.
+
+    Basic Idea:
+    \begin{compactenum}
+        \item Find all nodes that have no arrow going into them. (indegree)
+        \item Delete it. Output it.
+        \item Got to step 1 till graph is not empty.
+    \end{compactenum}
+\end{lfigure}
+
+Will the above algorithm works always? what if you cannot fund a node with 0 indegree but the graph is not dempty.
+
+Above case will only happen if there is cycle is a graph. In fact this is a good way to detect cycle in a direct graph.(though it wont tell you what is the cycle.)
+
+\textbf{Topological sorting only works on DAG.} If the graph has cycle, then Topological orderting has no meaning for that graph.
+
+\medskip
+\begin{code3}[Topological Sorting]
+    Topological Sorting Code Here
+\end{code3}
+
+\input{minimum-spanning-tree.tex}
+\input{graph-traversal.tex}

@@ -1,7 +1,0 @@
-\contentsline {chapter}{Contents}{i}{section*.1}%
-\contentsline {section}{LC209}{3}{section*.2}%
-\contentsline {subsection}{Brute Force | $O(n^2)$}{3}{section*.2}%
-\contentsline {subsection}{Prefix Sum + BS | $O(n*log n)$}{3}{section*.2}%
-\contentsline {subsection}{Sliding Window | $O(n)$}{4}{section*.2}%
-\contentsline {section}{DP | LC2361 | Minimum Costs Using the Train Line }{6}{section*.2}%
-\contentsline {subsection}{Dynamic Programming | ways at idx}{6}{section*.3}%
