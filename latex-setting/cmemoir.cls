@@ -95,7 +95,7 @@
 
 
 \newcommand{\codecaption}[1]{ 
-{\Large \textbf{#1}} 
+{\vspace{.5cm}\Large \textbf{#1}} 
 \textcolor{gray}{\newline\rule{\linewidth}{2pt}}%
 }
 
@@ -112,7 +112,7 @@
 { 
    \end{minipage}    
    \end{fullwidth}
-   \vspace{2cm}
+   \vspace{1cm}
   %  \end{figure}
 }
 
