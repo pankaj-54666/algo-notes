@@ -1,0 +1,42 @@
+\section{Shortest Path (TC: greedy)}
+% TC is Alogrithm Techniqueue
+\marginnote{An anology of -ve weight on graph can be pusing water up the hill.}
+
+\marginnote{Finding shortest from single source to single target, also finds out shortest path to all other nodes. And nobody is able to devise a algorithm that does better for first case only.}[2cm]
+
+There are a lot of versiion of shortest path.
+\begin{compactenum}
+    \item graph is undirected
+    \item graph is directed.
+    \item All +ve Edges (aka Dijkastra Algorithm)\\$O(n^2)$ with matrix representatio. and $O(nlog(n))$ with Adjacency List with Heap.
+    \item On DAG. (algo. Breadth First Scanning and Bellman Ford) (directed graph but no cycle) (even with -ve edge weight) | $O(e)$
+    \item General Case. (-ve weight and can have cycle) (what we are not allowing is that a cycle that has -ve weigh.) |a polynomial time algoritm | $O(n*e)$
+    
+    Having a -ve weight cycle, means you can have -INF shortest path, which has no pratical meaning.
+
+    \item with -ve weight, and can have -ve weight cycle, but you are not allowed to use such cycle. | a NP Complete Problem.
+    
+\end{compactenum}
+
+\rule{\linewidth}{0.2em}
+\rfl{Shortest path works on Greedy Technique}
+\intution{we are gonna keep track of current distance[] and parent[] of the shortest path tree. And we are going to update as we move along. We are gonna in a greedy way by taking local minimuma, if later we found out a new local minimuma for same node, we will scan that node again.  When we are all done with local minima, then we will have our overall best shortest path.}
+
+Order of scan for DAG?\\
+If you scan the nodes in topological order, then you are sure that a given node never me scanned twice!
+
+Longest Path vs Shortest Path.\\
+Change the edge sign and find shortest path of the DAG.
+
+Longest path in a tree?\\
+This is well known problem, known as Diameter of a tree.
+
+\rfl{A tree is a special graph, that does not have a cycle. It means a tree does not have any back edge, and we don't talk about shortest path in tree, we talk about only one path.}
+
+Diameter of a graph?\\
+Take any two node of the graph, find the shortet path between them. Then the longest of those will be the diameter.(A graph can have more than one path to other node, while tree has always unique path)
+\\This is longest we have ever have to traverl from going one node to other.
+
+Breath First Scanning: Scan node in their BFS order.
+
+\rule{\linewidth}{0.2em}

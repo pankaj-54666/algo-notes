@@ -10,3 +10,91 @@ The data strucutre that go with BFS is queue, the data strucutre that go with DF
 \marginnote{DFS has much more use than BFS due to its recursive structure.}
 
 \rfl{The key thing about DFS is that, it start going down first, so when it backs its way up, it go so much information, that  the node which has called it can use this data to process node and make decision.}
+
+\subsection{DFS}
+Terminology associated with dfs:
+\begin{compactenum}
+    \item tree edge, back edge, forward edge, cross edge
+    \item start time, finish time,
+    \item parent[] to keep track of tree structure.
+\end{compactenum}
+marked edge are tree edge.
+ED: is cross edge (edge that go from one end of tree to another end of tree.)
+
+If there be edge EA than that would a back edge. (back edge exist if there is cycle in the graph.) Back edge goes backward in the tree, forward edge goes forward in the depth-first-tree.
+
+For a undirected graph, we have only tree edge and back edge.
+Distinguistion betwwen tree edge and back edge is of most important.
+
+\codecaption{DFS Traversal}
+\begin{lfigure}{resources/dfs.png}{0.35}{0.62}
+    \textbf{Types of tree edge:}
+   \begin{compactenum}
+        \item Highlighted edge are \textbf{tree-edge}. They are the edge which form the dfs-forest.
+        \item Edge FE,ED etc are \textbf{cross-edge}.
+        \item Edge EA is a \textbf{back-edge}. (this graph does not have this edge)
+        \item GH is \textbf{forward-edge}. It connect to a node forward in the dfs-tree.
+   \end{compactenum}
+
+   The time at which the node is first visited is called \textbf{start time}.
+
+   The time at which the exploration of node is completed is called \textbf{finish time}.
+
+   Any thing that can be done with start time, can be done via BFS.
+\end{lfigure}
+
+\codecaption{DFS Code Skeleton}
+
+\begin{lfigure}{resources/dfs-skeleton.png}{0.35}{0.62}
+   This is the bare minimum code. With graph algorithm you do not re-invent the wheel, instead you use this dfs-skeleton and put on material at possible places as per your requirement.
+   
+   There a lot of places to put code, some of which are:
+   \begin{compactenum}
+        \item During visited marking.
+        \item During child visit.
+        \item At the end of DFS stack.
+        \item You can also make dfs return some value and use it in code. (ex: sum of child below current node. or in DP)
+   \end{compactenum}
+\end{lfigure}
+
+\codecaption{DFS Code in Depth}
+\begin{fullwidth}
+    % \verbatiminput{code/graph-traversal.cpp}
+    \lstinputlisting[frame=none,breaklines=true,basicstyle=\small\ttfamily]{code/graph-traversal.cpp}
+
+\end{fullwidth}
+
+Applications of DFS:
+\begin{compactenum}[(i)]
+\item Topological sort and finishting time relationship. (finishing time in revese will give us topolocial sort of the given graph.)
+\item Graph Coloring Problems
+\item Find start time and finish time of visited.
+\item Detect Cycle in Directed Graph
+\item Detect Cycle is Undirected Graph. (basicall add extra check to check that v is not par[u])
+\item Find all strongely connected component of a given Graph.(there is no such thing as strongely connected component of undirected graph.)
+\end{compactenum}
+
+\codecaption{Topological Sorting}
+\begin{lfigure}{example-image}{0.35}{0.62}
+    Find out the finish time of each node. Then when you print out nodes in the reverse order of their finish time, that is the topological ordering of the graph.
+
+    You could have just a stack, and push node into the stack where you are updating the finish time of all node. This way you won't have to process the end time also.
+\end{lfigure}
+
+
+\codecaption{Strongely Connected Component}
+Defination: a set of node in a graph, for which you can reach any other node in the group are called strongely connected.
+
+A analogy of its application,is to think that as a miltary scientist, you want to destory you enemy road network. Now you have to find out as which points to destroy to affect their network in worst way.
+
+\begin{lfigure}{resources/strongely-connected-component.png}{0.35}{0.62}
+   \textbf{Algorithm To Find All Strongley Connected Component}
+   \begin{compactenum}
+    \item DFS - Find the finishing time of each vertex.
+    \item Reverse the edges in the graph.
+    \item Call DFS on the node in reverse graph, in reverse order of their finish time.
+   \end{compactenum}
+
+   Its hard to describe how it works, and its very high level and involves a lot of mathematics.
+\end{lfigure}
+
