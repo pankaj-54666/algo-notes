@@ -150,12 +150,19 @@ Now since any two node can have a maximum of V-1 edge between them. Hence, we ne
 
 \rfl{Observe that complexiyt $O(en)$ is much slower that bfs/dfs complexity which usually is $O(e+n)$} The reason is quite simple, in bfs/dfs each node is visited exactly once, but in here it can be visited again if it got re-labeled.
 
+\begin{code3}
+    //TO-DO: add code
+\end{code3}
+
 \codecaption{Bellmand Ford Algorithm}
 \textbf{Bellman Ford algorithm} is a chaotic version of above algorith. \footnote{\href{https://youtu.be/XIAQRlNkJAw?t=2335}{theory-ref}} 
 Bellman-Ford says that: go through every edge of your graph and scan forward through those edges. When you are all done do it again and again till n times. When you are all done, you will have shortest-path from source to each vertex and in can proff it to you.
 
 \textbf{breadth-first-scan} says, don't scan everything! Scan that got re-labeled only. And i can argue that,you don't have to scan more that n times.
 
+\begin{code3}
+    //TO-DO: add code
+\end{code3}
 
 
 
@@ -204,6 +211,7 @@ With above defination, the recurrance relation is: \begin{align}
 
 \codecaption{Floyd Warshell all pair Shortest Path (TC:dp)}
 As of all DP problem, the main enginnering is involved with the defination of the recurrance relations.
+\footnote{\href{https://youtu.be/v1qiRwuJU7g&t=1490}{theory-ref}}
 
 Let, \verb|f(x,y,k):=| shortest path from node-x to node-y when we are allowed to use node 1...k
 
@@ -254,6 +262,7 @@ int main()
 \end{minipage}
 \begin{minipage}{0.5\fullfigurelen}
 \begin{code3}[Iterative Code]
+    //code note yet tested
 
     //base case
     for(int x=1;x<=n;x++)
@@ -270,8 +279,11 @@ int main()
         {
             for(int y=1;y<=n;y++)
             {
-                dp[x][y] = min(dp[x][y],
-                            dp[x][k]+dp[k][y]);
+
+        if(dp[x][k] < INF && d[k][y] < INF)
+        dp[x][y] = min(dp[x][y],
+                    dp[x][k]+dp[k][y]);
+
             }
         }
     }
