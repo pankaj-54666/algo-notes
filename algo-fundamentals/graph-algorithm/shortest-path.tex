@@ -4,11 +4,11 @@
 
 \marginnote{Finding shortest from single source to single target, also finds out shortest path to all other nodes. And nobody is able to devise a algorithm that does better for first case only.}[2cm]
 
-There are a lot of versiion of shortest path.
+There are a lot of versiion of shortest path. \rfl{They all scan the vertex and update the distance[] and parent[], the main differance between any of them is the \textbf{order in which the scanning of vertex is done}}.
 \begin{compactenum}
     \item graph is undirected
     \item graph is directed.
-    \item All +ve Edges (aka Dijkastra Algorithm)\\$O(n^2)$ with matrix representatio. and $O(nlog(n))$ with Adjacency List with Heap.
+    \item All +ve Edges (aka Dijkastra Algorithm, works with directed/undirected)\\$O(n^2)$ with matrix representatio. and $O(nlog(n))$ with Adjacency List with Heap.
     \item On DAG. (algo. Breadth First Scanning and Bellman Ford) (directed graph but no cycle) (even with -ve edge weight) | $O(e)$
     \item General Case. (-ve weight and can have cycle) (what we are not allowing is that a cycle that has -ve weigh.) |a polynomial time algoritm | $O(n*e)$
     
@@ -42,11 +42,22 @@ Breath First Scanning: Scan node in their BFS order.
 \rule{\linewidth}{0.2em}
 
 \codecaption{Dijkastra}
+\intution{The constrain of only +ve edges, means the graph cannot have -ve weight for edge or a cycle.}
 \begin{lfigure}{resources/dijkastra.png}{0.3}{0.65}
-    Dijkastra solves shortest-path problem when we have only \rfl{+ve edges in the undirected graph}.
+    Dijkastra solves shortest-path problem when we have only \rfl{+ve edges} in the graph. \rfl{it works for directed as well as undirected graph}
+
     We keep all the node in the heap, then at each iteration we take minimum dis[] node from the heap and scan it.
 
-    Theorem x.y.z ensures that, if we select minimum from the heap at each time, then each node is scanned \textbf{only once}.
+    Theorem x.y.z ensures that, if we select minimum from the heap to scan at each time, then each node is scanned \textbf{only once}. ie. you scan every node exactly once. Once we pop the element from heap/red-black-tree, then you can be sure that you will no relable it again.
+
+    \textbf{Complexity}\\
+    Complexity of whole scan = (No of edges)
+    at each step we select minimum, whose compelxity is log.
+    Hence, overall complexity = $O(ElogV)$
+
+    \footnotetext{\href{https://www.youtube.com/watch?v=DiedsPsMKXc}{theory-ref}}
+
+    \footnotetext{\href{https://cp-algorithms.com/graph/dijkstra_sparse.html}{code-ref}}
 \end{lfigure}
 
 \codecaption{Dijkastra Implementation}
@@ -115,3 +126,32 @@ void dijkstra(int s) {
         \end{code3}
     \end{minipage}
 \end{fullwidth}
+
+\newpage
+\codecaption{Breadth First Scan | O(en)}
+Finding shortest-path with -ve edge weight. (But no -ve weight for cycle. i.e graph can have cycle with +ve weight)
+\begin{lfigure}{resources/bredth-first-scan-sp.png}
+{0.4}{0.57}  
+
+The order of scanning in breadth-first-scan is BFS. Any time we found that a already visited node can be reached in less distance, we \textbf{relable} that node and add it to queue again.
+
+Thre is a limit to the number of phases in the queue you can have for this algorithm. Its equal to V-1. (theorem x.y.z)
+\end{lfigure}
+
+\textbf{Justification as why number of phase has limit of V-1}\\
+Plausible reason as why we have this many phases in this graph. Here's is the plausible reason.
+
+In Dijkastra algorithm, once we scan something, you know it's got the best distance. In Toplogical Sorting, once you scan something, you know it has got the best distance. But, \textbf{in this algorithm after phase 0, all path that have zero edge have their correct distance}, after phase 1, all path that have one edge have their correct distance. After phase 2, all path that have 2 edge have their correct distance.
+
+Now since any two node can have a maximum of V-1 edge between them. Hence, we need to run above algorithm for V-1 phase.
+
+\rfl{Observe that complexiyt $O(en)$ is much slower that bfs/dfs complexity which usually is $O(e+n)$} The reason is quite simple, in bfs/dfs each node is visited exactly once, but in here it can be visited again if it got re-labeled.
+
+\codecaption{Bellmand Ford Algorithm}
+\textbf{Bellman Ford algorithm} is a chaotic version of above algorith. \footnote{\href{https://youtu.be/XIAQRlNkJAw?t=2335}{theory-ref}} 
+Bellman-Ford says that: go through every edge of your graph and scan forward through those edges. When you are all done do it again and again till n times. When you are all done, you will have shortest-path from source to each vertex and in can proff it to you.
+
+\textbf{breadth-first-scan} says, don't scan everything! Scan that got re-labeled only. And i can argue that,you don't have to scan more that n times.
+
+
+\codecaption{Floyd-Warshell}
