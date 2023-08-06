@@ -40,3 +40,78 @@ Take any two node of the graph, find the shortet path between them. Then the lon
 Breath First Scanning: Scan node in their BFS order.
 
 \rule{\linewidth}{0.2em}
+
+\codecaption{Dijkastra}
+\begin{lfigure}{resources/dijkastra.png}{0.3}{0.65}
+    Dijkastra solves shortest-path problem when we have only \rfl{+ve edges in the undirected graph}.
+    We keep all the node in the heap, then at each iteration we take minimum dis[] node from the heap and scan it.
+
+    Theorem x.y.z ensures that, if we select minimum from the heap at each time, then each node is scanned \textbf{only once}.
+\end{lfigure}
+
+\codecaption{Dijkastra Implementation}
+\begin{fullwidth}
+    \begin{minipage}{0.5\fullfigurelen}
+        \begin{code3}[Dijkastra With set]
+const int INF = 1000000000;
+vector<vector<pair<int, int>>> adj;
+vector<int> d; //dis[]
+vector<int> p; //par[]
+
+void dijkstra(int s) {
+    int n = adj.size();
+    d.assign(n, INF); 
+    p.assign(n, -1); 
+
+    d[s] = 0;
+    set<pair<int, int>> q;
+    q.insert({0, s});
+    while (!q.empty()) {
+        int u = q.begin()->second;
+        q.erase(q.begin());
+
+        for (auto [v,wt] : adj[u]) {
+            if (d[u] + wt < d[v]) {
+                q.erase({d[v], v});
+                d[v] = d[u] + wt;
+                p[v] = u;
+                q.insert({d[v], v});
+            }
+        }
+    }
+}
+
+        \end{code3}
+    \end{minipage}
+    \begin{minipage}{0.5\fullfigurelen}
+        \begin{code3}[Dijkastra with pq]
+void dijkstra(int s) {
+    int n = adj.size();
+    d.assign(n, INF);
+    p.assign(n, -1);
+
+    d[s] = 0;
+    using pii = pair<int, int>;
+    priority_queue<pii, vector<pii>, greater<pii>> q;
+    q.push({0, s});
+    while (!q.empty()) {
+        int u = q.top().second;
+        int d_u = q.top().first;
+        q.pop();
+
+        /*ignore invalid heap entry*/
+        if (d_u != d[u]) 
+            continue;
+
+        for (auto [v,wt] : adj[u]) {
+            if (d[u] + wt < d[v]) {
+                d[v] = d[u] + wt;
+                p[v] = u;
+                q.push({d[v], v});
+            }
+        }
+    }
+}
+        \end{code3}
+    \end{minipage}
+\end{fullwidth}
