@@ -346,6 +346,12 @@
         } 
 }
 {}
+\lstdefinestyle{scode}{
+    basicstyle=\small\ttfamily, 
+    frame=none,
+    breaklines=true,
+    backgroundcolor=\color{gray!10}
+}
 
 % see listing package documentation for more
 \newcommand{\icode}[1]{\lstinline|#1|}

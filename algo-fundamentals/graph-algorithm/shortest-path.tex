@@ -128,6 +128,9 @@ void dijkstra(int s) {
 \end{fullwidth}
 
 \newpage
+\codecaption{Topological Scanning | O(e)}
+For shortest path for a topological graph, if we just scan the vertex in their topological ordering, then after all the scan , we will our shortest path answer.
+
 \codecaption{Breadth First Scan | O(en)}
 Finding shortest-path with -ve edge weight. (But no -ve weight for cycle. i.e graph can have cycle with +ve weight)
 \begin{lfigure}{resources/bredth-first-scan-sp.png}
@@ -154,4 +157,124 @@ Bellman-Ford says that: go through every edge of your graph and scan forward thr
 \textbf{breadth-first-scan} says, don't scan everything! Scan that got re-labeled only. And i can argue that,you don't have to scan more that n times.
 
 
-\codecaption{Floyd-Warshell}
+
+
+\codecaption{All pair Shortest Path (TC:dp)}
+Start solving the problem from scratch.
+\intution{sometimes its easier to solve a problem if you make it harder.}
+
+We will discuss algorithm that will evolve int the following manner:
+$O(n^4) \rightarrow O(n^3*log n) \rightarrow O(n^3) $
+
+Let \verb|f(x,y,k,_):=| shortest path to get from node-x to node-y when you are allowed to use at most k edge.
+
+With above defination, the recurrance relation is: \begin{align}
+    f(x,y,k) &= \sum_{m=1}^{m=n} f(x,m,k-1) + f(m,y,1)\\
+    &=\sum f(x,m,k-1) + weight(m,y)
+\end{align}
+
+\begin{code3}[code]
+    //Not fully tested
+    //Base Case
+    for(int x=1;x<=n;x++)
+    {
+        for(int y=1;y<=n;y++)
+        {
+            dp[x][y][1] = g[x][y]; //adj matrix graph
+        }
+    }
+    
+    //Main Algorithm
+    for(int k=2;k<=n-1;k++)
+    {
+        for(int x=1;x<=n;x++)
+        {
+            for(int y=1;y<=n;y++)
+            {
+                for(int m=1;m<=n;m++)
+                {
+                    dp[x][y][k] = 
+                    min(dp[x][y][k], dp[x][m][k-1]+dp[m][y][1])
+                }
+            }
+        }
+    }
+    //complexity: O(n^4)
+\end{code3}
+
+\codecaption{Floyd Warshell all pair Shortest Path (TC:dp)}
+As of all DP problem, the main enginnering is involved with the defination of the recurrance relations.
+
+Let, \verb|f(x,y,k):=| shortest path from node-x to node-y when we are allowed to use node 1...k
+
+Now at k, we have option to either include the node-k or do not include it. Keeping this dp-intution in mind, our recurrance relation can be written as:
+\begin{align}
+    val1 &= f(x,y,k-1)\\
+    val2 &= f(x,m,k-1) + f(m,y,k-1)\\
+    f(x,y,k) &=  \min(val1,val2) \forall m\in[1,n]
+\end{align}
+
+\begin{fullwidth}
+    
+\begin{minipage}{0.5\fullfigurelen}
+\begin{lstlisting}[style=scode,caption=Recursive Code]
+//code not tested yet
+int findAns(int x,int y,int k)
+{
+    if(k==0)
+        return g[x][y]; //weight(x->y)
+
+    int val1; //do not use k^th node
+    int val2; //use the k^th node
+
+    val1 = findAns(x,y,k-1);
+
+    //k^th node can be any one amoung n
+    for(int m=1;m<=n;m++) 
+    {
+        val2 = 
+    min(val2,findAns(x,m,k-1) + findAns(m,y,k-1));
+    }
+
+    return min(val1,val2);
+}
+
+int main()
+{
+    for(int x=1;x<=n;x++)
+    {
+        for(int y=1;y<=n;y++)
+        {
+            findAns(x,y,n-1);
+        }
+    }
+}
+//Amortized Complexity: O(n^3)
+\end{lstlisting}
+\end{minipage}
+\begin{minipage}{0.5\fullfigurelen}
+\begin{code3}[Iterative Code]
+
+    //base case
+    for(int x=1;x<=n;x++)
+    {
+        for(int y=1;y<=n;y++)
+        {
+            dp[x][y] = g[x][y]; //weight(x->y)
+        }
+    }
+    //main logic
+    for(int k=1;k<=n-1;k++)
+    {
+        for(int x=1;x<=n;x++)
+        {
+            for(int y=1;y<=n;y++)
+            {
+                dp[x][y] = min(dp[x][y],
+                            dp[x][k]+dp[k][y]);
+            }
+        }
+    }
+\end{code3}
+\end{minipage}
+\end{fullwidth}

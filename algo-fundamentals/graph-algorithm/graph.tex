@@ -97,3 +97,23 @@ Above case will only happen if there is cycle is a graph. In fact this is a good
 \input{minimum-spanning-tree.tex}
 \input{graph-traversal.tex}
 \input{shortest-path.tex}
+
+\begin{exercise}
+    \textbf{Theoretical Questions:}
+    \begin{enumerate}
+        \item What happen if you run Bellman-Form for more than n-1 times?
+        \item can Dijkastra work with Directed graph if it has no -ve edge weight?
+        \item What is the fastest way to find single source shortest path? In which case it happens.
+    \end{enumerate}
+\end{exercise}
+
+\begin{exerciseHints}
+    \begin{enumerate}
+      
+    \item If the graph does not have a -ve weight cycle, then running it past n-1 times will not change the dis[] and par[].
+    But, if there has a -ve weight cycle, then running it will change the dis[]. (in fact you could use this information to detect -ive weight cycle and even print them.)
+
+    \item Yes,Dijkastra can work with either directed or undirected as long as graph do not have -ve edge weight.
+    \item single-source shortest path can be found in $O(e)$ times for a topological graph.
+    \end{enumerate}
+\end{exerciseHints}
