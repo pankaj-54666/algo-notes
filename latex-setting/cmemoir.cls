@@ -96,7 +96,7 @@
 
 \newcommand{\codecaption}[1]{ 
 {\vspace{.5cm}\Large \textbf{#1}} 
-\textcolor{gray}{\newline\rule{\linewidth}{2pt}}%
+\textcolor{gray}{\newline\rule[5pt]{\linewidth}{2pt}}%
 }
 
 \newenvironment{lfigure}[3]
