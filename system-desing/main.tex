@@ -1,0 +1,115 @@
+\documentclass{../latex-setting/cmemoir}
+\usepackage{scrextend}
+\usepackage{minitoc}
+\usepackage{shortvrb}
+
+% Question-Anser Summary Commands
+\newcounter{qcount}
+
+
+\newenvironment{test}[1]
+{
+    \textbf{#1}
+}
+{}
+
+\newenvironment{question}
+{
+    \stepcounter{qcount}
+    \textbf{(\theqcount)}
+}
+{}
+
+\newenvironment{answer}
+{
+    \begin{addmargin}[10em]{0em}
+    \textbf{Answer:}
+
+}
+{\end{addmargin}}
+\newcommand{\qs}{%
+    % \stepcounter{qcount}%
+    \begin{question}%
+}
+\newcommand{\qe}{ 
+    \end{question}
+}
+
+\newcommand{\as}{%
+    % \stepcounter{qcount}%
+    \begin{answer}%
+}
+\newcommand{\aend}{ 
+    \end{answer}
+}
+
+
+\newenvironment{qsummary}
+{
+    \newcommand{\qstart}
+}
+{}
+
+\begin{document}
+
+\chapter{Web Crawler}
+
+
+% \qus{
+%     What is a web crawler? 
+    
+%     \includegraphics[width=\marginparwidth]{example-image-a}
+% }
+
+% \ans{
+
+% }
+
+\qs What is a web crawler? \verb|qstart| \qe
+
+\qs What is a web crawler? 
+    
+    \includegraphics[width=\marginparwidth]{example-image-a} \qe
+
+\as
+    A web crawler is a system (made of multiple modules) that explores the internet for specific purpose.
+\aend
+
+\begin{question} 
+    Question2 \marginnote{Hello marginnote}
+\end{question}
+
+\begin{compactenum}
+    \item question1
+    \item Question2
+    \item question3
+    
+\end{compactenum}
+
+
+
+\begin{test}{What is a web crawler?}
+   
+    A web crawerl is a system that explores the word wide web (internet) to carry out specific task.
+
+    Some example of the web crawerl is.
+\end{test}
+
+\end{document}
+
+\begin{comment}
+    \question{
+
+    }
+    \solution{
+
+    }
+
+    Q:
+    A:
+
+    Q;
+    A:
+
+
+\end{comment}
