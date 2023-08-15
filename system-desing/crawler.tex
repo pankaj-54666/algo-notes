@@ -29,5 +29,23 @@ Now as we know what the system does, lets finilize what all feature we are requi
     \i What is the document we are designing our crawler for?
     \r{For now lets just say we need HTML, but our system should be flexible to extend for other type also with minimum changes.}
 
+    \i For how long do we need the downloaded data to be kept?
+    \r{For our business purpose we need to store at maximum 5 years.}
 
+    \i How about handling addition/deletion of a webpage?
+    \r{You should consider newly added and edited pages too, you can ignore the page beign deleted.}
+
+    \i Duplicate Content? How does the crawler respose to duplicate content?\marginnote{\small{As per data 23percentage content on internet is duplicat}}
+    \r{Just ignore them.}
+
+    Above are some of the sample question you can ask to clarify the system behaviour and working. This is a good time to be on same level as you and interview as what is expected from you to desing.
 \lend
+
+Besides above, there are many nonfunctional requirement of every system. They can vary from system to system (for example banking system need to be highly consistency, but that is not needed for chat server or photo storage, see \ref{chapter:cap} for more detials )
+
+Going through types and problems of a distirbuted system, we find that our crawler system needs to be (a) Highly Scalabile (scalability is required to extereme parallalization to handle billions of web pages.)
+
+Beside above this sytem also have extra non-functional requirement, which can be named as:
+(b) Robustness (The web is full of trap. Bad HTML, unresponsive server, malicions linke tec. The crawler must handle all these cases well without impacting the system)\\
+(c) Politines( The crawler should not make too many requirest to same host within short time interval)\\
+(d) Extensibility: our system should be flexible enough if we required to support other file type.
