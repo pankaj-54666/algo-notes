@@ -3,113 +3,82 @@
 \usepackage{minitoc}
 \usepackage{shortvrb}
 
+
+% NEW
+
+\newcommand{\lstart}{\begin{compactenum}}
+\newcommand{\lend}{\end{compactenum}}
+\renewcommand{\i}{\item}
+\renewcommand{\r}{\reply}
+
+\newcommand{\reply}[1]{R: #1 }
+
+% NEW END
 % Question-Anser Summary Commands
 \newcounter{qcount}
 
+\newcommand{\qicon}{\faQuestion\hspace{.3cm}}
+\newcommand{\sicon}{\\\faLightbulb\hspace{.3cm}}
 
-\newenvironment{test}[1]
-{
-    \textbf{#1}
-}
-{}
 
-\newenvironment{question}
+\newenvironment{question}[1]
 {
     \stepcounter{qcount}
-    \textbf{(\theqcount)}
-}
-{}
-
-\newenvironment{answer}
-{
-    \begin{addmargin}[10em]{0em}
-    \textbf{Answer:}
-
+    \textbf{(\theqcount) #1}
+    \addcontentsline{toc}{subsection}{#1} % 
+    \begin{addmargin}[2cm]{0cm}
 }
 {\end{addmargin}}
-\newcommand{\qs}{%
-    % \stepcounter{qcount}%
-    \begin{question}%
-}
-\newcommand{\qe}{ 
-    \end{question}
-}
 
-\newcommand{\as}{%
-    % \stepcounter{qcount}%
-    \begin{answer}%
-}
-\newcommand{\aend}{ 
-    \end{answer}
-}
+\newcommand{\qq}{}
 
 
-\newenvironment{qsummary}
-{
-    \newcommand{\qstart}
-}
-{}
 
 \begin{document}
+\tableofcontents
+
 
 \chapter{Web Crawler}
 
 
-% \qus{
-%     What is a web crawler? 
+\begin{exercise}[Web Crawler Design Question/Summary:]
+\begin{enumerate}
+    \item What is a web crawler system? 
+    \item Given some example in which internet is explored for specific purpose.
+    \item How many pages will the crawler will process  approximalely? (reply: 1B per month)
+    \item What do we need to store?
     
-%     \includegraphics[width=\marginparwidth]{example-image-a}
-% }
+\end{enumerate}
 
-% \ans{
+\end{exercise}
 
-% }
+\qicon What do we need to store?
+\sicon HTML only for now.
 
-\qs What is a web crawler? \verb|qstart| \qe
+\qicon How long we need to store the crawl result?
+\sicon Lets assume we need to store 5year worth of data.
 
-\qs What is a web crawler? 
-    
-    \includegraphics[width=\marginparwidth]{example-image-a} \qe
 
-\as
-    A web crawler is a system (made of multiple modules) that explores the internet for specific purpose.
-\aend
 
-\begin{question} 
-    Question2 \marginnote{Hello marginnote}
+\newpage
+\label{answers}
+\begin{question}{What is a web crawler?}
+   
+    A web crawerl is a system that explores the word wide web (internet) to carry out specific task. Some of the examples what normall web-crawlers are used are:
+    \begin{compactenum}[(i)]
+        \item Index Generation for search gian like google,yahoo etc.
+        \item Taking a time-snapshot of world wide web for archival or library purpose.
+        \item Detect copyright infrignment.
+        \item Detect sensitive code re-usage by anyone on the web.
+        \item Extract specific images for modal training.
+        \item etc \dots
+    \end{compactenum}
+
 \end{question}
 
-\begin{compactenum}
-    \item question1
-    \item Question2
-    \item question3
-    
-\end{compactenum}
+\qq { What are the systems that gets involved in desinging a large application?}
 
 
-
-\begin{test}{What is a web crawler?}
-   
-    A web crawerl is a system that explores the word wide web (internet) to carry out specific task.
-
-    Some example of the web crawerl is.
-\end{test}
+\include{crawler.tex}
 
 \end{document}
-
-\begin{comment}
-    \question{
-
-    }
-    \solution{
-
-    }
-
-    Q:
-    A:
-
-    Q;
-    A:
-
-
-\end{comment}

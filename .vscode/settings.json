@@ -138,5 +138,48 @@
         "unordered_map": "cpp",
         "string_view": "cpp",
         "initializer_list": "cpp"
+    },
+    "editor.tokenColorCustomizations": {
+        // Guide: https://www.youtube.com/watch?v=suaqd0te9Pw
+        /*  for scoep "support.function.be.latex" you pass any string upto any .
+
+        You can pass an array of element in the scope and they will be all same colored.
+
+        to find the scoep in text, open command platter and type > Developer: Inspect Editor token and scopes -> then bring your mouse over to keyword which scope you want to find
+        */
+        "textMateRules": [
+            {
+                "scope": [
+                 "support.function", 
+                 "keyword.control",
+                 "variable.parameter",
+                 "keyword.other",
+                 "punctuation.definition.function.latex",
+                 "punctuation.definition.arguments.begin.latex",
+
+                 "punctuation.definition.arguments.begin.latex", //not working for {
+                 "punctuation.definition.arguments.end.latex" //not working for }, TODO: please fix it
+                 ],
+                 "settings": {
+                 "foreground": "#1a26ae77",
+                //  "foreground": "#7d747bd4", //"#10021b66"
+                //  "fontStyle": "italic",
+                 }
+            }
+            /*
+            	support.function.be.latex : begin
+                variable.parameter.function.latex : solution in \begin{solution}
+
+                punctuation.definition.arguments.begin.latex :: \paragraph
+
+                keyword.control.newline.tex : \\
+
+                	support.function.general.tex :: marginnote etc
+
+            meta.function.environment.general.latex
+            */
+            
+            
+        ]
     }
 }
