@@ -1,21 +1,33 @@
 
 \chapter{Web Crawler}
 
-A web crawler is a system that does \lipsum[1].
+\qs{What is a web crawler?}
+    A web crawler is a system that explores the internet with specific goal in mind. The goal can be be something like. (aka applicatio of web crawler)
+    \ls
+        \i Generate a snapshot of Internet at current time.
+        \i Browse the internet for code duplicacy / piracy.
+        \i Browse the web for search index generation for gians like Google Search.
+        \i  Copyright Violation finding on document shared on internet.
+        \i Research finding of something related to some search.
+        \i download  all humans-dog interaction pics from instagram for ML modal training with the captions for machine modal traning.
+    \le
+\qe
+
+\q{List Some Applications of web crawler.}
 
 
-Applications/Sample Use Case"
+\ta{Design Considerations}
+Now as we know what the system does, lets finilize what all feature we are required to implement from this system. Also, with what performace (latency, availibity, consistency) is expected from our system.
+
 \lstart
-    \i Browse the internet.
-    \i yes
-    \i timeline
-    \i search index generation
-\lend
+    \i How many page download per month are we expecting? 
+    \r{let's suppose it 1B per month.}
+    
+    \i Are we desiging for a single website (like school webcrawler to see suspicision activtiy from each user profile) or we are planning for whole web?
+    \r{We are planning for whole web.}
 
-\textbf{Design Considerations}
-\begin{compactenum}
-    \i yes \r{lets suppose it 1B per month.}
-    \i normall
-    \i okay
-    \i okay2 
-\end{compactenum}
+    \i What is the document we are designing our crawler for?
+    \r{For now lets just say we need HTML, but our system should be flexible to extend for other type also with minimum changes.}
+
+
+\lend

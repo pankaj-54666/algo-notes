@@ -161,7 +161,8 @@
                  "punctuation.definition.arguments.end.latex" //not working for }, TODO: please fix it
                  ],
                  "settings": {
-                 "foreground": "#1a26ae77",
+                 "foreground": "#0678ebeb",
+                //  "foreground": "#adb5bdeb",
                 //  "foreground": "#7d747bd4", //"#10021b66"
                 //  "fontStyle": "italic",
                  }
