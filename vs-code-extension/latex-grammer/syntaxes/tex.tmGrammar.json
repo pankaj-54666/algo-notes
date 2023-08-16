@@ -6,7 +6,11 @@
       "patterns": [
         { "include": "#phone-number-pattern" },
         { "include": "#q-command" },
-        { "include": "#q-content" }
+        { "include": "#q-content" },
+        { "include": "#heading-a" },
+        { "include": "#question-qs" },
+        { "include": "#lstart-command" },
+        { "include": "#i-command" }
       ]
     },
     "phone-number-pattern": {
@@ -22,19 +26,33 @@
       },
       "endCaptures": {
         "0": { "name": "punctuation.definition.command.end.latex" }
-      } ,
-      "patterns": [
-        { "include": "#q-content" }
-    ] 
+      },
+      "patterns": [{ "include": "#q-content" }]
     },
     "q-content": {
-      "match":"(?<=\\q{)(.*?)(?=})",
-      "patterns": [
-          { "include": "#expression" } 
-      ],
+      "match": "(?<=\\q{)(.*?)(?=})",
+      "patterns": [{ "include": "#expression" }],
       "name": "string.other.q-content.color"
-  }
-
-
+    },
+    "heading-a": {
+      "match": "\\\\ta\\{([^}]+)\\}",
+      "captures": {
+        "1": { "name": "string.heading-a" }
+      }
+    },
+    "question-qs": {
+      "match": "\\\\qs\\{([^}]+)\\}",
+      "captures": {
+        "1": { "name": "string.question-qs" }
+      }
+    },
+    "lstart-command": {
+      "match": "\\\\lstart|\\\\lend",
+      "name": "latex.short.list.command"
+    },
+    "i-command": {
+      "match": "\\\\i",
+      "name": "latex.short.i.command"
+    }
   }
 }
