@@ -166,6 +166,19 @@
                 //  "foreground": "#7d747bd4", //"#10021b66"
                 //  "fontStyle": "italic",
                  }
+            },
+              {
+                "scope": [
+                 "string.other.q-content.color"
+                 ],
+                 "settings": {
+                 "foreground": "#eb0638eb",
+                 "fontSize": "14" 
+                //  "foreground": "#adb5bdeb",
+                //  "foreground": "#7d747bd4", //"#10021b66"
+                //  "fontStyle": "italic",
+                
+                 }
             }
             /*
             	support.function.be.latex : begin
@@ -182,6 +195,5 @@
             
             
         ]
-    }
-    
+    }    
 }
