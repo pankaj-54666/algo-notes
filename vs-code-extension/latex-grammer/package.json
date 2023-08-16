@@ -15,13 +15,13 @@
 				"command": "extension.helloWorld",
 				"title": "Hello World"
 			}
-		],
+],
 		"languages": [
 			{
 			  "id": "tex",
 			  "extensions": [".tex"]
 			}
-		  ],
+		],
 		  "grammars": [
 			{
 			  "language": "tex",
