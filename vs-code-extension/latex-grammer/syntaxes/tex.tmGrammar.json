@@ -1,0 +1,40 @@
+{
+  "scopeName": "source.tex",
+  "patterns": [{ "include": "#expression" }],
+  "repository": {
+    "expression": {
+      "patterns": [
+        { "include": "#phone-number-pattern" },
+        { "include": "#q-command" },
+        { "include": "#q-content" }
+      ]
+    },
+    "phone-number-pattern": {
+      "match": "\\b\\d{9}\\b",
+      "name": "string.other.phone-number"
+    },
+
+    "q-command": {
+      "begin": "\\q{",
+      "end": "\\}",
+      "beginCaptures": {
+        "0": { "name": "punctuation.definition.command.begin.latex" }
+      },
+      "endCaptures": {
+        "0": { "name": "punctuation.definition.command.end.latex" }
+      } ,
+      "patterns": [
+        { "include": "#q-content" }
+    ] 
+    },
+    "q-content": {
+      "match":"(?<=\\q{)(.*?)(?=})",
+      "patterns": [
+          { "include": "#expression" } 
+      ],
+      "name": "string.other.q-content.color"
+  }
+
+
+  }
+}

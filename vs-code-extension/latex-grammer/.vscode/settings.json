@@ -1,0 +1,13 @@
+{
+"editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": "keyword.letter",
+        "settings": {
+          "foreground": "#FF0000" // Red color
+        }
+      }
+    ]
+  }
+  
+}
