@@ -43,9 +43,11 @@ Now as we know what the system does, lets finilize what all feature we are requi
 
 Besides above, there are many nonfunctional requirement of every system. They can vary from system to system (for example banking system need to be highly consistency, but that is not needed for chat server or photo storage, see \ref{chapter:cap} for more detials )
 
-Going through types and problems of a distirbuted system, we find that our crawler system needs to be (a) Highly Scalabile (scalability is required to extereme parallalization to handle billions of web pages.)
-
-Beside above this sytem also have extra non-functional requirement, which can be named as:
-(b) Robustness (The web is full of trap. Bad HTML, unresponsive server, malicions linke tec. The crawler must handle all these cases well without impacting the system)\\
-(c) Politines( The crawler should not make too many requirest to same host within short time interval)\\
-(d) Extensibility: our system should be flexible enough if we required to support other file type.
+Going through types and problems of a distirbuted system, we find that our crawler system needs to be:
+\ls
+\i Highly Scalabile (scalability is required to extereme parallalization to handle billions of web pages.)
+    Beside above this sytem also have extra non-functional requirement, which can be named as:
+\i Robustness (The web is full of trap. Bad HTML, unresponsive server, malicions linke tec. The crawler must handle all these cases well without impacting the system)
+\i Politines( The crawler should not make too many requirest to same host within short time interval)
+\i Extensibility: our system should be flexible enough if we required to support other file type.
+\le

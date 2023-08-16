@@ -148,9 +148,16 @@
       //   }
       // },
       {
-        "scope": ["string.other.q-content.color"],
+        "scope": ["string.other.q-content.color","string.question-qs","string.heading-a"],
         "settings": {
           "foreground": "#7c06eb"
+          //  "fontStyle": "italic"
+        }
+      },
+      {
+        "scope": ["latex.short.list.command","latex.short.i.command"],
+        "settings": {
+          "foreground": "#000000"
           //  "fontStyle": "italic"
         }
       }
