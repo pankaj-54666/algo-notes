@@ -44,10 +44,30 @@ Now as we know what the system does, lets finilize what all feature we are requi
 Besides above, there are many nonfunctional requirement of every system. They can vary from system to system (for example banking system need to be highly consistency, but that is not needed for chat server or photo storage, see \ref{chapter:cap} for more detials )
 
 Going through types and problems of a distirbuted system, we find that our crawler system needs to be:
+
 \ls
-\i Highly Scalabile (scalability is required to extereme parallalization to handle billions of web pages.)
-    Beside above this sytem also have extra non-functional requirement, which can be named as:
-\i Robustness (The web is full of trap. Bad HTML, unresponsive server, malicions linke tec. The crawler must handle all these cases well without impacting the system)
-\i Politines( The crawler should not make too many requirest to same host within short time interval)
+\i Highly Scalabile : scalability is required to handle extreme parallalization to handle billions of web pages.
+
+Beside above this sytem also have extra non-functional requirement, which can be named as:
+
+\i Robustness : The web is full of trap. Bad HTML, unresponsive server, malicions linke tec. The crawler must handle all these cases well without impacting the system
+
+\i Politines: The crawler should not make too many requirest to same host within short time interval
+
 \i Extensibility: our system should be flexible enough if we required to support other file type.
 \le
+
+\ta{Estimations}
+
+\ta{HLD Proposal}
+Now, as we know what the system is and what features we are expected to implmement. Now its time to propose a high-level-desing of our solution.
+
+We will start from some seed URL. We will also have a system that decies which URL to process next(we will call it URL Frontier). Once the URL is finilized, we will pass it for URL downloader. Once the HTML is downloaded, we need to parse it for desired data( the desired data can be image,video,html link,search words etc). Once parsed, we will check if this data/content has already appeared or not. If not, then we will go to next steps.
+
+In the next step, we will extract all the link from the content. (If later we require to download images, this is where we will add additional module to download them). Then we will pass it to URL Filter. If the URL is already seen then it is dropped, else it is passed as biased parameter to URL Frontier. Which the restart the same process with different URL. 
+
+Few things to keep in mind when desigin with above steps:
+\begin{lstlisting}
+
+    - URL Frontier is the main component which is responsible for next URL determination.
+\end{lstlisting}
