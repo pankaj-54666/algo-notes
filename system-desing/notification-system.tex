@@ -1,0 +1,77 @@
+\chapter{Notification Sysyem}
+
+\ha{Flow}
+\ls
+    \i What is a notification system?
+    \i In which scenerio they are used? Give some common example then give.
+    \i Give a example where user is notificed about its ticket confirmation later.
+\le
+
+\ha{About the System} 
+A Notification system is a standalone system that is used to notify some short of events. It can be though as publisher and subscriber, publisher push the events to sent, and subscriber are those who are interested to these events.
+
+Although this pub-sub modal works well with monolithich system, but for distributed system we need to take care of a lot of things.
+
+\ha{Design Consideration and Solution/System Scope Finilization}
+
+\ls
+
+    \i Traffic: How many notificaion pe month we are targeting?
+    \r{Lets suppose its 1B per month.}
+
+    \i Notification Types and Target: Are we targeting for just SMS, or other types also like SMS,e-mail,PushNotification,NewsPaper Feed?
+    \r{Lets say we need to support multiple ways, and our system should be extendable as if it can be supported easily for later addition/removal.}
+
+    \i System Latency: How late is too much late?
+    \r{Lets suppose that we need to have a latency of 2s, but is okay to deliver late if the system in under heavy load but no more than 60s late. \b{soft real-time system}}
+
+    \i Notification Trigger: What triggers the notification?
+    \r{Notifcation can be trigger when publisher publish any message. Or a job is completed or a manual sending try or any such similar things}
+
+    \i Will user be able to opt-out?
+    \r{definately}
+\le
+
+
+
+\ha{HLD Proposal}
+Now, we know that we need a system that has publisher and substirubte to it. Lets try to propose a HLD, then we will imporove onto it.
+
+Word Explanation: 
+We will have a list of message publisher. These publisher will call our API to publish messages. We will provide a publisherServer for it. We will have a registrationServer which which sign-up upser and save their preference in database. It will also save registration info of publisher?. 
+
+Once the publisherServer recieve a message from dispatcher. It will then analayis then, do dome property append if required and pass it to dispatcherQueue of appropriate type. (ex: a dispatcher want to send sms and email only). The front of the queue will be connected to a workerServer, which have a list of threads which will take the message in paraller from queue and forward it to \u{already exposed third party API for devices}.
+
+\b{TODO: Now draw the digrama and explain work of each module and how they are connected. This completes the HLD}
+
+
+
+\ha{LLD / Finding issue with system and proposing solution to fix it.}
+
+\q{How to guarntee that message is delivered to device? aka Preventing Data Loss}
+As this is a distributed system, it can happen that workerServer collapsed upon reasing the message. In this case how would be recover the system/\u{make sure message will reach the device}?
+
+It can also happen that message is send to third-party, and third-party do not send ack to it?
+\r{we can mark the message sent only if we recieve the ack from third-party server. This will also have a drawback that what will happen if server had sent the ack but it did not reach our server? => in this we have no option as to re-send the data. \marginnote{idempotent receiver}}
+
+To mitigate worker crash issue, each worker can have logtable/logfile, which he will update status of message (like sending,sent,ack received) if it crashed, then he can re-read the logs and take appropriate decisions.
+
+\hb{Notification Template}
+Just like a word-template, we can have a notifcation template where the data can be populated for some field and then it is sent to user. By using this approach, we will have a less load on server and better design. We can later support pusblisher template also if they want their message to look different!
+
+\hb{Notification Setting}
+User would like to subscribe/re-subscribe and set daily notification setting etc. We need to provide user such facility. For this we will save user preferece in userDB. And during sending will check if user want the message or not.
+
+\hb{Notification Analytics}
+The manager would like to know if the message is read by user, clikced by user and time spent on reading, or similar analysits. We will collect all these data and save it to analyticsDB.
+Start -> pening -> sent | error -> devlivered -> click | unsubscribed
+
+\hb{Other Featurs}
+Rate Limiting: to avoid overwheliming ujser with too many notification, we should limit the number of notification per hr. 
+
+Retry Mechanics: When the third party faild to send notification, it will be queue in seperate retry queue. If the problem persist, then the developer is notificated via SMS or email.
+
+Monitoring: Developer and Project Owner would like to via total number of queud notification. It is a important factor, and can be used to detect server load and Auto-Scaling if needed.
+
+\ha{Summary}
+TODO: Add summarization 
