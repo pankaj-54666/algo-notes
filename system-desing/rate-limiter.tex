@@ -1,0 +1,77 @@
+\chapter{Rate Limiter}
+
+\ha{What is Rate Limter?}
+A rate limiter is s system that limits the number of request that can be made to a system during a fixed time interval. It is used to controll incoming traffic or outgoing traffic. Server implement rate limiter to avoid overload of their system and avoid DDoS attack and better user experiance for majority of users.
+
+In HTTP world, a rate limiter limits the number of client request allowed to be sent over a specified period. If the API request count exceeds the threshold defined by the rate limiter, all the excess calls are blocked.
+
+\hb{Real World use case of rate limiting system.}
+\lstart
+    \i A user can write no more than 2 post per second.
+    \i You can create a maximum of 10 accounts per day from same IP address.
+    \i You can claim reward no more than 5 times per week from same device.
+    \i Prevent resource starvation causes by DDoS attack.
+    \i Reduce cost and cost approximation by reducing allowed request per minute.
+    \i Allocating different API different priority  by assigining uneven timing to them.
+\lend
+
+
+
+\ha{Design Scope Discussion}
+
+List of query that need to be finilized before starting the design.
+
+\lstart
+    \i It's a client side rate limiting or server side?
+    \r Server Side.
+
+    \i What are the parameter upon which the rate limiter will throttle the request? Is it IP address, userID or other properties?
+    \r Let's say we want it to flexible.
+
+    \i Number of calls to the Rate limiter?
+    \r Lets say its 50M calls to the server upon which we want to intergrate the rate limiter.
+
+    \i Is the system distriburted?
+    \r Of Course.
+
+    \i Do we need to inform the user that their request are beign throttled/dropped?
+    \r Yes, a good system must not remain unambigous. We need to return 429 HTTP code in case the request get blocked due to rate limiting throttling. 
+\lend
+
+\hb{Non Funcitonal Requerement }
+Here are some of the non functional requirement that we need to consider while desiging our system.
+
+\lstart
+    \i The system must not introduce significient latency. i.e it should be a \u{low latency} system, and should not slow down the HTTP request.
+    
+    \i Use minimum memory.
+    \i  Exception Handling: return appropriate error-code upon different state.
+
+    \i High Fault tolerance: If there is any problem with the rate limiter(ex: a cache servers goes offline), it should not affect the entire system.
+\lend
+
+\ha{Algorithms For Rate Limiting}
+
+Where should the system be places?\\
+It can be placed at API gateway or standalone version in between client and API server or can be buit inside of API server.
+
+Rate Limting Algorithms.
+\ls
+    \i Token Bucket Algorithm.
+    \i Leaking Bucket
+    \i Fixed Widnow Counter
+    \i Sliding Window long
+    \i Sliding Window Counter
+\le
+
+
+
+\ha{HLD Proposal}
+Now as we understand the basic idea of rate limiting. It need to maintains a counter variable, and if the counter is above threshold then the subsequent request will be dropped.
+
+
+\ha{LLD | Desing Deep Dive}
+
+
+
+\ha{Wrap Up}
