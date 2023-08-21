@@ -8,6 +8,7 @@
         { "include": "#q-command" },
         { "include": "#q-content" },
         { "include": "#heading-a" },
+        { "include": "#heading-b" },
         { "include": "#question-qs" },
         { "include": "#lstart-command" },
         { "include": "#i-command" }
@@ -35,9 +36,15 @@
       "name": "string.other.q-content.color"
     },
     "heading-a": {
-      "match": "\\\\ta\\{([^}]+)\\}",
+      "match": "\\\\ha\\{([^}]+)\\}",
       "captures": {
         "1": { "name": "string.heading-a" }
+      }
+    },
+    "heading-b": {
+      "match": "\\\\hb\\{([^}]+)\\}",
+      "captures": {
+        "1": { "name": "string.heading-b" }
       }
     },
     "question-qs": {
