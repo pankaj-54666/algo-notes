@@ -99,6 +99,8 @@
 \textcolor{gray}{\newline\rule[5pt]{\linewidth}{2pt}}%
 }
 
+\newcommand{\todo}[1]{\hl{TODO: #1}}
+
 \newenvironment{lfigure}[3]
 {    
   % \begin{figure}

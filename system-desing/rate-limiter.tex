@@ -64,14 +64,92 @@ Rate Limting Algorithms.
     \i Sliding Window Counter
 \le
 
+Explain each of the above algorithms. In case of any query pleaser refer the book.
 
 
 \ha{HLD Proposal}
-Now as we understand the basic idea of rate limiting. It need to maintains a counter variable, and if the counter is above threshold then the subsequent request will be dropped.
+Now as we understand the basic idea of rate limiting. It need to maintains a counter variable, and if the counter is above threshold then the subsequent request will be dropped. 
 
+We need to pay attention that we are desigining a distributed system, so the counter will be incremented in a distributed way. 
+
+Also the counter cannot be stored in disk as it will slow down the operation. So we will use in-memory data-store like redis, which is fast and provide distributed INCREMENT and EXPIRE operations. 
+\marginnote{How redis prevent data-loss during system crash?}
+
+\begin{lfigure}{resources/rate-limiter-hld.png}{0.5}{0.4}
+    Rate limiter middleware is provided in between Client and API server. For every request, its corresponding count is checked from redis. If the count is above threshold then the request is dropped else it is allowed to pass to API server.
+\end{lfigure}
 
 \ha{LLD | Desing Deep Dive}
+    In the desing deep dive, we will analyse the HLD for possible improvement and possible paint point which we must remove for a better system.
 
+    \hb{ Distributed Rate Limiter | Solving Race Condition with minimum time:}
+    As we know in a distributed system, the counter can be updated by tho threads in parallel. To avoid the race condition, one obivious solution is to use lock on the counter variable. \b{But it will slow down the system.}
+    \rfl{Redis achieves atomicity by using a single-threaded architecture}
+    In here, single type of operation is performed on single thread to avoid race condition entirely.
+
+    \hb{Rate Limiting Rules(Storage,Actions):}
+    We haven't answersed quesitions like:\\
+     (a) How and rate limiting rules created and where are they stored?\\
+     (b) How to handle request that are rate limited?
+
+    (a) For First we can have a JSON structure that defines the rate limiter configuration. Its structure can be something like.
+    \begin{code3}
+        {
+            domain:"messaing|auth",
+            descriptors:
+            {
+                key:"message_type",
+                value:"marketing",
+                rate_limit_s:250s,
+                request_per_unit:5
+            }
+        }
+    \end{code3}
+
+    This set of JSON will be stored in disk, and some worker thread can upload it to cache for fast access.
+
+    (b) For second, we can add addition headers to the client response that descibes the system in full.
+    \begin{code3}
+        - X-Rate Limit-Remaining: The Remaning number of allowed request within the window.
+        - X-Ratelimit-Limit
+        - X-RateLimit-Retry-After
+    \end{code3}
+
+    
+    \hb{Synchronization Issue}
+    Again this problem will not arose in a single-thread architecture like redis.
+
+   \begin{lfigure}{resources/rate-limiter-lld.png}{0.7}{0.28}
+    Worker thread retrives the rules from disk and sotre them in cache. (cold cache?)
+    
+    Request beign dropped can be queue or dropped.
+   \end{lfigure}
+
+    \hb{Performance Optimization}
+    Performance Optimization is common amoung distributed system. Some of the ways for optimizatioin for a distriburted system are: CDN, Cache, Multiple Data Center, Faster Algoritms, Alternater Desing, Decouple video decoupling via event queue, batch processing, precomputation for faster run-time tradeoff.
+    
+    In Rate limiter case, we must provide multiple-data-center, else request from far away user can reach a large time to reach the rate-limiter system itself. One best approach use it to provide rate-limiter to region at which the API server itself are placed.
+
+    Along with it, during a sudden spike how can you change you alorithm that ensure that less number of site user experience system outage?
+
+    Should we support a hard-limit or soft-limit? In soft limit the number of request are allowed to vary by say 10per.
+
+    \hb{Monitoring}
+    Monitoring metrix is must for fine tuning the rate limiter bandwidth. We can track QPS and other different factor, and we can take decision based on them.
+
+    For example if rate limiting rules are too strict then relax them a bit. (rate limiting are too strict can be identified by the number of request being dropped per day.)
+    
+\ha{Further Discussion Points}
+\ls
+    \i Avoid Beign Rate Limited.
+\le
 
 
 \ha{Wrap Up}
+
+Rate limiter system is good problem that shows how you can desing a simple system and intergrate with existing system. Rate limiter also show how to chose between different atomicity levels and Snapshot Isolation Levels.
+\marginnote{See Data Intensive book for Atomicity Level and Isolation Levels}
+
+Multple data center is must for such type of system. Algorithm selection and explaining their working is also a critical part of this system.
+
+\todo{Summarize the chapter.}
