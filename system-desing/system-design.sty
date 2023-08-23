@@ -1,0 +1,53 @@
+% NEW
+
+\newcommand{\ta}[1]{ #1 } % Title One
+\renewcommand{\b}{\textbf}
+
+\newcommand{\qs}{\begin{question}}
+\newcommand{\qe}{\end{question}}
+
+\newcommand{\lstart}{\begin{enumerate}}
+\newcommand{\lend}{\end{enumerate}}
+
+\newcommand{\clstart}{\begin{compactenum}}
+\newcommand{\clend}{\end{compactenum}}
+
+\newcommand{\ls}{\begin{compactenum}}
+\renewcommand{\le}{\end{compactenum}}
+
+\newcommand{\ctitle}[1]{\vspace{2cm}\noindent #1 \\[-8pt]\rule{\textwidth}{0.4pt}}
+
+\renewcommand{\i}{\item}
+\renewcommand{\r}{\reply}
+\newcommand{\rr}{\hrule \hspace*{2cm}}
+
+\newcommand{\reply}[1][]{\newline\hspace*{0pt}\hfill R: #1 }
+
+% NEW END
+% Question-Anser Summary Commands
+\newcounter{qcount}
+
+\newcommand{\qicon}{\faQuestion\hspace{.3cm}}
+\newcommand{\sicon}{\\\faLightbulb\hspace{.3cm}}
+
+\newcommand{\ui}{- } %Unordered Item
+
+\newcommand{\q}[1][]{\stepcounter{qcount}
+\textbf{(\theqcount) #1}}
+
+
+\newenvironment{question}[1]
+{
+    \phantomsection
+    \stepcounter{qcount}
+    \textbf{(\theqcount) #1}
+    \addcontentsline{toc}{section}{#1} % 
+    \begin{addmargin}[2cm]{0cm}
+}
+{\end{addmargin}\phantomsection}
+
+\newcommand{\qq}{}
+\renewcommand{\u}{\underline}
+\renewcommand{\b}{\textbf}
+\newcommand{\ha}[1]{\vspace{0.5cm}\noindent #1 \\[-8pt]\rule{\textwidth}{1.5pt}}
+\newcommand{\hb}[1]{\vspace{0.3cm}\noindent #1 \\[-8pt]\rule{0.5\textwidth}{0.2pt}\newline}
