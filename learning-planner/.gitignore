@@ -1,0 +1,8 @@
+*.aux
+*.out
+*.log
+*.fls
+*.fdb_latexmk
+*.gz
+out/
+.DS_Store
