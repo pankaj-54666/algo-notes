@@ -13,7 +13,6 @@
         { "include": "#lstart-command" },
         { "include": "#i-command" },
         { "include": "#inline-code" },
-        { "include": "#text-note" },
         { "include": "#markdown-heading" }
       ]
     },
@@ -21,19 +20,15 @@
       "match": "\\b\\d{9}\\b",
       "name": "string.other.phone-number"
     },
-    "text-note": {
-      "match": "text-note",
-      "name": "text-note"
-    },
     "inline-code": {
       "match": "`.*`",
       "name": "inline-code"
     },
     "markdown-heading":{
       "match": "{text-note}\\[([^]]+)]",
-      "name": "markdown-heading",
+      "name": "markdown-heading-marker",
       "captures": {
-        "1": { "name": "string.heading" }
+        "1": { "name": "markdown-heading-content" }
       }
     },
     "q-command": {

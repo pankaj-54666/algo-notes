@@ -1,10 +1,7 @@
 # Latex Setting
 
 To create the project some setting and configuration has been followed.
-
-
-
-## I will list them down here.
+I will list them down here.
 
 (a) Latex Installation: Install Latex and check if can produce main.pdf file by compiling simple main.tex
 Installation Reference: `https://www.latex-project.org/get/`

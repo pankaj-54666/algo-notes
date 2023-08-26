@@ -1,5 +1,5 @@
 
-\ha{Latex Setup}
+\chapter{Latex Setup}
 
 
 \begin{text-note}[VS Code + Latex Setup]
@@ -25,5 +25,12 @@ It basically ignores any generated file.
 Now if you are using code, just `CTRL+S`.
 It will trigger the build command from setting.json and you pdf file will be present in \out folder.
 
+\end{text-note}
 
+\begin{text-note}[Latex Commands]
+    
+    (a) build file `latexmk main.tex`
+    (b) clearn auxialary file `latexmk -c`, `latexmk -C`
+        Will only work it output directory has not been changed
+    (c) specify \out directory `latexmk -outdir=./out`
 \end{text-note}

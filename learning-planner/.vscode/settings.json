@@ -162,11 +162,18 @@
         }
       },
       {
-        "scope": ["inline-code","text-note","markdown-headingb"],
+        "scope": ["inline-code","text-note"],
         "settings": {
           "foreground": "#a31515"
           //  "fontStyle": "italic"
-        }
+        },
+      },
+      {
+          "scope": "markdown-heading-content",
+          "settings": {
+            "foreground": "#0033ff"
+            //  "fontStyle": "italic"
+          }
       }
       /*
             	support.function.be.latex : begin
