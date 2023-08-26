@@ -1,7 +1,46 @@
 \documentclass{../latex-setting/cmemoir}
-\def\myjobname{planner}
+\usepackage{../system-desing/system-design}
+\usepackage[hybrid]{markdown}
+
+\lstnewenvironment{text-note}[1][]
+{
+  \lstset{
+        basicstyle=\ttfamily,
+        columns=fullflexible,
+        % keepspaces=true,
+        frame=single, %making is single will draw a border
+        framerule=0pt, %frame that is not visible (added to use margin)
+        backgroundcolor=\color{gray!10}, %to code background color
+        breaklines=true, % for text autowrap around boundary
+        % resetmargins=true,
+        breakindent=0em, % Adjust the indentation value as needed
+        % caption=#1
+        }
+        \phantomsection
+        % \addcontentsline{toc}{section}{#1}
+        \section{#1}
+       \vspace{-15pt}\rule{\textwidth}{1.5pt}
+        % \vspace{0.5cm}\noindent {\LARGE #1} \\[-8pt]\rule{\textwidth}{1.5pt}
+}
+{}
 
 \begin{document}
 
-    \include{planner.tex}
+\tableofcontents
+\clearpage
+
+\begin{markdown}
+    Hello *world* !
+    # helo
+\end{markdown}
+
+% \ttfamily
+\rmfamily
+
+    \lstinputlisting{latex-setting.md}
+    \clearpage
+    \include{latex-setting.tex}
+    % \include{planner.tex}
+
+
 \end{document}

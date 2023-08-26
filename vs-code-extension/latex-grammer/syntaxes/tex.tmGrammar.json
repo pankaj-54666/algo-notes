@@ -11,14 +11,31 @@
         { "include": "#heading-b" },
         { "include": "#question-qs" },
         { "include": "#lstart-command" },
-        { "include": "#i-command" }
+        { "include": "#i-command" },
+        { "include": "#inline-code" },
+        { "include": "#text-note" },
+        { "include": "#markdown-heading" }
       ]
     },
     "phone-number-pattern": {
       "match": "\\b\\d{9}\\b",
       "name": "string.other.phone-number"
     },
-
+    "text-note": {
+      "match": "text-note",
+      "name": "text-note"
+    },
+    "inline-code": {
+      "match": "`.*`",
+      "name": "inline-code"
+    },
+    "markdown-heading":{
+      "match": "{text-note}\\[([^]]+)]",
+      "name": "markdown-heading",
+      "captures": {
+        "1": { "name": "string.heading" }
+      }
+    },
     "q-command": {
       "begin": "\\q{",
       "end": "\\}",
@@ -60,6 +77,10 @@
     "i-command": {
       "match": "\\\\i",
       "name": "latex.short.i.command"
+    },
+    "test": {
+      "name": "test",
+      "match": "test-match"
     }
   }
 }

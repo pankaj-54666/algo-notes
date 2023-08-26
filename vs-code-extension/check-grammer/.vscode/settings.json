@@ -1,0 +1,28 @@
+{
+    "editor.tokenColorCustomizations": {
+      // Guide: https://www.youtube.com/watch?v=suaqd0te9Pw
+      /*  for scoep "support.function.be.latex" you pass any string upto any .
+  
+          You can pass an array of element in the scope and they will be all same colored.
+  
+          to find the scoep in text, open command platter and type > Developer: Inspect Editor token and scopes -> then bring your mouse over to keyword which scope you want to find
+          */
+      "textMateRules": [
+        {
+          "scope": ["inline-code"],
+          "settings": {
+            "foreground": "#d51945"
+            //  "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": ["latex.short.list.command","latex.short.i.command"],
+          "settings": {
+            "foreground": "#000000"
+            //  "fontStyle": "italic"
+          }
+        }
+      ]
+    }
+  }
+  
