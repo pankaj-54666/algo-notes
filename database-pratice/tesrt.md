@@ -62,8 +62,13 @@ window function
 aggregator functions : MAX,SUM,MIN,AVG
 GROUP BY : Date(month, year)
 
-useful functions: ROUND
+useful functions: ROUND,DATE
 
+userful keyworks: LIMIT
+
+## exercise2
+todo: add question from databasestart
+todo: add question from lc
 
 # mastering subquery
 
@@ -84,26 +89,29 @@ nested query vs correlated query
 > a correlated query is a type of nested query, where the outer query cannot run indepedently of the inner query.
 
 
+# excercise3
+todo: add question from databasestart
     
 
 ## views
+view is like a saved SELECT query and view act like a table.
+benifits: column seggregation and better security
+
+`CREATE VIEW AS table_name_temp AS select_statement`
+
+You can insert and update data using view name also!
+
+## CTEs
+Common Table Expression: query with a name inside other query 
+It helps simplify query, improve readiblity and breaks queries into modules.
+
+- multiple CTEs with one query.
+- CTEs in create view
+- CTES in creat table, update statement
+
+- Recusive CTE : todo
 
 
-
-userful keyworks: LIMIT
 
 # exercise2
 currency conversion problem from ms3 (l05)
-
-
-# triggers
-
-#
-
-
-
-
-
-
-
-# Exercise

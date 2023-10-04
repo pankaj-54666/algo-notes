@@ -146,3 +146,32 @@ SET b.comments = (
   FROM order_line o
   WHERE o.book_id = b.book_id
 );
+
+-- CTE example
+```sql
+WITH it_employees (emp_id,first_name,title) AS
+(
+    SELECT emp_id,first_name,title
+    FROM employee
+    WHERE dept_id = 2
+)
+SELECT first_name,title
+FROM it_employees
+```
+
+-- multiple CTEs in select statement
+WITH 
+it_employees (emp_id,first_name,title) AS
+(
+    SELECT emp_id,first_name,title
+    FROM employee
+    WHERE dept_id = 2
+),
+hr_employees (emp_id,first_name,title) AS
+(
+    SELECT emp_id,first_name,title
+    FROM employee
+    WHERE dept_id = 3
+)
+SELECT first_name,title
+FROM it_employees
