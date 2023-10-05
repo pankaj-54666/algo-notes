@@ -111,6 +111,14 @@ It helps simplify query, improve readiblity and breaks queries into modules.
 
 - Recusive CTE : todo
 
+# sample ERD for pratice & sample ERD design
+design train reservation server. (https://www.youtube.com/watch?v=PD6jpvAyRNo&ab_channel=DatabaseStar)
+
+HR database design
+
+see /erd folder
+
+
 
 
 # exercise2
