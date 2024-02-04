@@ -1,4 +1,4 @@
-
+== points to ponder ==
 
 == THE BIG PICTURE == 
 
@@ -11,11 +11,13 @@ e. Draw HLD and explain various system envolved.
      - 5 main parts : data-collection, data-transmision, data-storage, data-processing(data-processing + data-visualization)
      - 
 
-f. How we will be storing and structing our data?
-g. How does the all metrics data gets storage so that query is efficent and it does not take a lot of space wastage(billing reduction).
-SQL vs NoSQL vs fileSystem vs time-series DB.
+f. The data we are storing. Can you define the strucutre of the data that can hold all the details of any system metrics we need to store. (ie tables in case of sql is used.)
 
-h. ready
+g. Where will you store the data? will you use SQL or NoSQL or timseries database?
+Is it ready-heave or write-heave system?
+
+h. As we need to store large amount of data, and only the recent one may be required. How can you reduce the storage cost?
+
 
 
 
@@ -38,6 +40,20 @@ d.
 This is same as defining the design scope and aggregging what is under the scope current development.
 As we are desiging the monitoring and altering system, we can as following questions:
 ref:p132
+
+f. Data modelling of metrics system is an important part. As we need to have time series data, we need to to record set of values in timelines. example: instance0-12/12/23:12:00-cpu-25-per
+a single row of value can have following info:
+
+||COLUMN||    metrics-name | labels              | timestamp | value
+||ROW1  ||    cpu.load     | host:i631,env=prod  | 232423u   | 0.29
+
+
+g. 
+
+h.
+utlize cold-storage of old data. the old the data gets, we move it to coldest of the storge to save money.
+
+
 
 
 
@@ -74,3 +90,36 @@ Due to which, its better to chose industrial-scale time-series database which ar
 
 
 
+== DESIGN DEEP DIVE ==
+
+# QUESTIONS
+a. draw the HLD.
+
+# metrics-collection deep dive
+b. Discuss the data collections part of hld. You need to consider that you have to collect data from multiple system. And each system can auto-scale also.
+
+c. As the system is write-heavy will you use TCP or UDP?
+d. pull-model vs push-model for sending data from data-source(metrics-source) to metrics-collector.
+e. discuss the effect of adding additional metrics source in pull-model and push-model approach.
+f. discuss the effect of auto-scaling metrics-collector server in pull-model and push-model approach.
+g. why a load-balancer is attached before a auto-scaling cluster?
+
+draw metrics-collection snap-visualization
+
+
+
+#ANSWERS
+
+a. ref:metrics-system-hld.png(TODO)
+ metric source -> metrics collectors -> time-series database <- query-services <- alerting system | visualization service.
+
+alerting system -> email | text | HTTP endpoint(aka webhook)
+
+c. in PULL-MODEL the metrics collector server need to know the complete list of service endpoint to pull data from. On the source side there would be exposed HTTPEndpoint which will reply with appropiate response with metrics values. If the metrics service endpoints are fixed, then we can save them in simple some file. But the endpoints of the server are changing then we will be needing some service-discovery (like zookeeper) to map metrics-source to endpoints.
+
+Basically, every metrics source server register their avilability in zookeeper. Theafter metrics collector query each of server and gets theirs metrics value in row formate.
+
+in PUSH-MODEL each metrics-source-server will call http-endpoins fo metrics-collector server and pass the relevant in the body perodically. 
+
+g.
+a load-balancer is attached before a auto-scaling cluster because during the auto-scaling 
