@@ -1,0 +1,25 @@
+\begin{problem}{LC3207 Find the Number of Ways to Place People II}
+
+\footnotetext{Pratice Link: \href{https://leetcode.com/problems/find-the-number-of-ways-to-place-people-ii/}{LC3027}}
+
+\end{problem}
+
+
+\begin{fullwidth}
+
+\begin{solution}[starting at idx | $O(n^2)$]
+    \intution{Intution: count all rectangel starting at point p1}
+
+    This is similar to \textbf{count all subarray ending at idx and satifying certain constrain}. This time we have to count all rectangle satisfying the given constrain.
+
+    \begin{lfigure}{solved/res/lc3027-1.jpg}{.70}{.30}
+        intution exlanation in details.\\
+        As you fix p1, you need to track B.y maximum for all rectangle already formed for point p1.
+
+        check code for more details.
+    \end{lfigure}
+    
+\end{solution}
+
+
+\end{fullwidth}
