@@ -4,4 +4,5 @@ question    status  solution?   name                                            
 lc3026      solved  added       Maximum Good Subarray Sum                               ending at idx pattern.
 lc3027      solved  added       Find the Number of Ways to Place People II              ad-hoc, startign at idx pattern
 lc3029      solved  pending     Minimum Time to Revert Word to Initial State I           
-lc3031      pending pending     Minimum Time to Revert Word to Initial State II
+lc3031      pending pending     Minimum Time to Revert Word to Initial State II         z-function, o(n^2) is done. O(n) is a little hard, so skipped for now.
+                    skipped 
