@@ -118,6 +118,21 @@
   %  \end{figure}
 }
 
+\newenvironment{lfigurecp}[3]
+{    
+     \begin{fullwidth}
+        \begin{minipage}[c]{#2\fullfigurelen}
+            \includegraphics[width=\textwidth]{#1}
+        \end{minipage}\hspace{4mm}
+        \begin{minipage}[c]{#3\fullfigurelen} 
+        \parskip=.6em
+}
+{ 
+   \end{minipage}    
+   \end{fullwidth}
+  %  \vspace{0.3mm}
+}
+
 \newcommand{\texthighlight}[2]
 {\sethlcolor{#1}{\hl{#2}}}
 %hl stands for highlight
