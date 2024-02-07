@@ -1,0 +1,17 @@
+
+________________________________________________________
+single line desing considerations
+￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣
+Today, a relational databse running on a typical data center can support few thousands transactions per second.
+
+In which scenerio, NOP can fail. (Hint: a disabled account)
+
+Try Confirm/Cancle (TC/C) is also called distributed transactions by compensesation.
+
+In 2PC, all the local transactios are not done(rows still locked) when the second phase starts, while in TC/C, all local transactiosn are done(unlocked) when the second phase starts.
+
+Saga is the de-factor standard for handling distributed transaction in a microserice architecute.
+
+Event sourcing required the behaviour of the state machine to be deterministic. Therefore machine cannot allow random thing from outside  or inside to modify the system.
+
+when everyghin is file based, the system can fully utilize the maximum I/O throughtput of the underlaying computer hardware.
