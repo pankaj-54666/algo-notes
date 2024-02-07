@@ -405,6 +405,37 @@
 \setbox\hints=\vbox{}
 
 
+% input files listing 
+% Define your custom style
+\lstdefinestyle{fileInputStyle}{
+    basicstyle=\ttfamily,
+    columns=fullflexible,
+    keepspaces=true,
+    frame=single,
+    framerule=0pt,
+    breaklines=true,
+    resetmargins=true
+}
+
+
+% Define a new command using the custom style
+\newcommand{\fileinput}[2][]{
+    \lstinputlisting[style=fileInputStyle, caption=#2, #1]
+}
+
+%% use either via below way or above command %%
+% \lstinputlisting[
+%     basicstyle=\ttfamily,
+%             columns=fullflexible,
+%             keepspaces=true,
+%             frame=single, %making is single will draw a border
+%             framerule=0pt, %frame that is not visible (added to use margin)
+%             % backgroundcolor=\color{gray!10}, %to code background color
+%             breaklines=true, % for text autowrap around boundary
+%             resetmargins=true,
+%             caption="YES caption"
+% ]{txt/notification-system.txt}
+
 
 
 

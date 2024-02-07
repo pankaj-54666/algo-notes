@@ -1,1 +1,12 @@
 .DS_Store
+*.aux
+*.out
+*.log
+*.fls
+*.fdb_latexmk
+*.gz
+.DS_Store
+*.toc
+
+# Ignore the 'out/' folder at any depth
+**/out/
