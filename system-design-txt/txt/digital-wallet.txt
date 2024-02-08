@@ -15,3 +15,56 @@ Saga is the de-factor standard for handling distributed transaction in a microse
 Event sourcing required the behaviour of the state machine to be deterministic. Therefore machine cannot allow random thing from outside  or inside to modify the system.
 
 when everyghin is file based, the system can fully utilize the maximum I/O throughtput of the underlaying computer hardware.
+
+
+===
+== PART1: About The System ==
+
+# QUESTIONS:
+a. What is a Digital Wallet System?
+b. What are the things we need to consider when desigin such a system. (aks system requirements)
+c. Estimate number of server required to server 1M transactions?
+d. API Design
+e. Disucss three different high-level design.
+    Simple in-memory solution
+    Databse-based distributed transaction solution
+    Event Sourcing solutiion with reproducibility (for audit)
+
+# ANSWERS:
+a. 
+A digital wallet platform provide us a way for alternate payment. User deposite some money from their bank-account into the wallet. Which then will be managed by digital wallet system. And can be used to purchese items on internet and transfer money between different account.
+
+Bank-Account -> Digital-Wallet -> E-commerce Site
+
+So basically digital wallet has two main responsiblity:
+(a) Purchese item on e-commerce
+(b) tarnsfer of funds between wallet-account
+
+
+b. 
+Balance transfer betwen two wallet-account.
+Supports Reproducibility For audit purpose.
+System should be highly reliable.
+Foregin exchange into considerations? - No for current system complexity
+How many transactions-per-second (TPS) we are targeting? - 1M tps
+
+c. Assuming we need to server 1M request. As we know currently single server can handle ~1k request-per-sec.
+=> Number of server required  = 1M/1K = 10^6 / 10^3 = 10^3
+
+One thing need to consider is that, for each transfer operation, there will be two request generated. One for deduction of money , and second for addition of money to benificery account.
+
+d. POST /v1/wallet/balance_transfer
+request_params: 
+{
+    from_account:
+    to_account:
+    amount: str //<= why str? that way dealing with double type is avoided.
+    currency:
+    transaction_id
+}
+
+response_parms:
+{
+    status: "success" | "failure",
+    transaction_id: "str-id"
+}
