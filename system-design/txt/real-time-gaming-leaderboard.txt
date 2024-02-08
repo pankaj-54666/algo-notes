@@ -1,0 +1,78 @@
+
+PART-I: Understanding The System
+￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣
+What is a leaderboard?
+wha is meant by a real-time system?
+
+Important considerations when desigingin such a system? (aka Design Scope)
+
+After design scope discussion, can you summerize functional and non-functional requirements?
+
+Estimate WPS for external API.
+_______
+￣￣￣￣
+Write down the supporting APIS which our system must support.
+    Hint: update score of a user
+            get rank of a user
+            get top10 player of leaderboard
+
+Draw the HLD diagram.
+Explain the working of following component in above diagram.
+    TO-DO: diagram
+
+Explain the:
+    - How a win is registered?
+    - How a rank is get.
+    - How leader is updated?
+
+PART-II: HLD, Components in depth
+￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣
+(A) Using relational database as system data models.
+    - How user score & user information is stored?
+    - Describe the flow for 
+            "A user wins a point"
+            "top10 is requestd"
+            "user rank is requested"
+    
+    A relationsl database is not suitable for large number of read operations. Explain if we use this solution, then how our system performance is affected.
+
+(B) Using Redis as system underlaying data models.
+
+    "Redis is an in-memory data-store supporing key-value pairs. Since its works in-memory, it allows for faster reads and writes"
+
+    - Explain How redis sorted set will help achieve log(n) for add/find score.
+    - Describe API workign and complexity.
+        "Scroe a point"
+        "top10 retrival:
+        "get userRank"
+
+(C) Storage Requirement / Server Estimations
+
+
+PART-III: LLD, Deep Dive Individual Compoenent + Scalibility,Relibility,FaultTolerange,Security etc
+￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣
+Scalign Redis
+    - Adding or removing new redis nodes.
+    - uID to score mapping using either fixPartition or HashPartition.
+    - Discuss both partition in details.
+
+Brifely describe the NoSQL solution approach. Discuss the partition-key as game_name#{year-month}#p{partition-number}.
+    Hint:  parition_key | sort_key |        Attibutes
+                PK      |   score  |  user_id | email | phone
+
+Whats global secondary index, and what is the use of it in above.
+
+Discuss fault-tolerance, replication, concensus, etc w.r.t redis node working.
+
+________________________________________________________
+single line desing considerations
+￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣
+We want to present real-time result. And it would not be okay to display a batch of results.
+
+What if the scale didn't maater and we have only a few users? What will be system datab model in this case?
+
+
+
+
+
+
