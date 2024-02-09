@@ -1,0 +1,130 @@
+
+PART-I: Understanding The System
+￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣
+What is a reservation system?
+What is a hotel reservation booking system?
+
+Important considerations when designing such a system.
+List down the non-functional desing considerations of such a system.
+
+do the qps compute estimation and determine the query load to our system for each api.
+
+_______
+￣￣￣￣
+System API:
+    Considering that our system has hotels,rooms and user doing reservations. Can you write down the APIS our system must support?
+    Some of these can be admin APIs.
+
+Data Model:
+    Why will you chose SQL for this sytem?
+    Can you list down SQL benifits.
+
+    What are the various entity involved in the system. List them down.
+    Draw the DatabaseSchema.
+
+    Explain the status attribue in reservation table, and its possible values.
+
+    room_table stores the FK of hotel_id. How have you decided that room_table need to store FK of hotel_id?
+
+HLD Diagram:
+    Draw the diagram. (TO-DO: ref:book2/p201 || ref:/img/hotel-reservation-I-hld.png)
+    
+    Brifely explain each of the system involved. & their interaction with each other.
+        Hotel Service, 
+        Rate Service,
+        Reservation Service
+        Payment Service
+
+        What is the role of CDN? How can it benifit our current system?
+        What is gPRC(Remote Procedure Call), how can it benifit inter-service communications?
+
+
+PART-II + III: Design Deep Dive
+￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣
+
+For reservation we are using below "PUT /v1/reservation {startData,endData,hoteID,roomID,reservatioID}".
+As you can see we are passing roomID to be booked directly, but generally user is interested in roomType only.
+    Hence, change the above for better performance and user experience.
+    "{startData,endData,hoteID,roomTypeID,reservatioID} "
+
+List the attributes of room_type_inventory table.
+
+Common Problem During Booking & how to solve them:
+    concurrency Issue1: user click on book butoon twice.
+        Hint:Server share Idemptotent key, and client shares same for booking.
+
+    concurrency Issue2: multiple user try to book same type of room when there is only such room left.
+        Hint: Pessimistic Locking, Optimistic Locking, Database Constrain
+
+
+Scabiliby:  
+    How would you apply sharding on the databse?
+
+Caching:
+    Introduce "Inventory Cache": cache layer for "check room inventory" and "reserve room logic" (ref: /book2/p217:img)
+
+    How cache is udated? (async update from InventoryDB)
+    Read operation will be handled mostly by cache, but update operation can fail. Explain the update inventory flow.
+
+    If you thik carefully, you will find that inconsistency b/w invetory cache and database actually does not matter, as long as dtabase does the final invetory validation. Explain why.
+    Cachel layer will handle most of the read.
+
+
+Data Consistely amoung services
+    If we use single DB for various service, then managing of consisteny becomes simple. But if all services have different db(microservice db), then managing consistency amoung them is hard.
+
+    List down two ways in which data-consistency can be managed if different db is used for different service.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+________________________________________________________
+single line desing considerations
+￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣
+Address data inconsistency b/w microserver requires complicated mechanism the greatly increases the complexiy of overall desing. Hence, it is worth considering the monolithic if there is no need of microserves.
+
+
+
+=== PARRT-I Answers === 
+
+I.a 
+A reservation system that is used to do advance booking of service being provided by a business. Examples: IRCTC booking, BookMyShow Booking etc
+
+
+Important things to consider when desigin such a system:
+    - search a particular are before booking
+    - send booking confiratiom to both customer and user.
+    - Number of hotels our system need to support.(scale of our desing)
+        Hint: 5k hotels with 1M rooms in total.
+    - Do Customer pay online or when they first arrive.
+        Hint: for simplicity, lets assume online only.
+    - cancellation support?
+    - overbooking / Optimistic booking support?
+        What is it and how it is benifier to business.
+    - price for room is fixed/dynamic.
+        Good question, its dynamic.
+
+Non-Functional Desing Considerations:
+    Hight Concurrency support.
+        traffic load can increase during  a certain day/time for example in new-year. we should desing our system to support hight concurrency load.
+    
+    latency can take a hit: Its okay, if the website is a little slow at time.
+
+Data Consistely amoung services.
+    There are two ways to manage consistency amoung microservices.
+    2PC(two-phase commit) and Saga.
+
+    2PC is a blocking protocol and blocks the entry from upating unitl all operations is successful or not.
+    Wheres , Sata is a seuquence of local transaction. Each transaction updated and publised a message to trigger the next trasactions step. If a operation fails, then compensating transactions are executed to undo the changes.
+
