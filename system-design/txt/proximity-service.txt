@@ -1,0 +1,206 @@
+
+PART-I: Understanding The System
+￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣
+What is proximity service?
+List some real-word scenerio where proxiity server is used.
+
+What are the important things we need to consider when desingin such a system?
+
+List down the functional requriement after above discussion.
+List down the non-functional system requirement.
+
+compute estimation for qps and server memory
+
+_______
+￣￣￣￣
+List down the API which our service need to support.
+    For search api, discuss why the pagination option is mandatory.
+
+Data Model  
+    read/write system & how read replica vs cache helps when the system is read-heavy.
+    NoSQL vs SQL for a ready heavy-system?
+
+    DataSchema: 
+        business_table  |   stores business realted information
+        geo_index_table |   stored all business for that 2d-location
+    
+    List down the attributes for above two table.
+
+    Both table will need to be scaled, discuss that in desing deep dive section.
+
+    Draw the HLD Diagram.
+        location-based service.
+        business service.
+        database cluster with read replica.
+
+PART-II: HLD, Components in depth (or System in depth?)
+￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣
+
+Explain the following in details:
+    Location Bases Service (LBS) is a read-heavy service.
+   
+    The service need to be scaled durign peak hrs, and it can be easily scaled horizonatally as it is a stateless service.
+
+    There might be some replicaion lag between write node and read node, but this inconsistency is usally not an issue because business information does not change that frequently.
+
+Algorithms to fetch nearby business(which will be coded inside location based service)
+    - two dimensional search on db
+    - evently divide the grid. 
+    - GeoHash
+        discuss boundary issue1
+        discuss boundary issue2
+    - QuadTree
+    - Google S2 (Goodle s2 geometry library) (hash geofence support)
+
+
+Geohash in depth:
+    Discuss the uneven data distribution if we use the approach "evenly divide the grid"
+
+    how geohash can solve the issue if not enough business is found within the region. (Hint: expand the search area)
+
+    why the below query will fail to fetch nearyby business.
+        `SELECt * FROM geohash_index WHERE geohash LIKE '9q8zn%'`
+
+        What is the solution?
+            Hint: find nearby geohash in O(1) time, then find nearby business.
+
+QuadTree in depth:
+    What is a quadtree?
+    Memory sotrage requirement.
+    Numer of leaf node, if each node need to have at most 100 business.
+
+    If memory footprint is low, reson why still it is not good idea to store whole tree in single server.
+
+    As it can take a few minutes to build-up the tree. What is the operational implicaiton of such a long server start-up time?
+        
+        while the quadtree is being build the server cannot server traffic. How to handle this effecitely.
+            Hint: use blue/green deployment.
+        
+        How to update the quadtree ad business are added and remove over time?
+            Hint: next day update.
+
+        What will be cache invalidation impact on system when a lot of cache kye get invaiated in a nightly job?
+            Hint: ??
+    
+    GeoHash vs QuadTree Comparison. (ref: /book2/p22)
+
+
+PART-III: LLD, Deep Dive Individual Compoenent + Scalibility,Relibility,FaultTolerange,Security etc
+￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣
+Scaling the Location Based service and Business service.
+
+Scaling the business table.
+Scaling the geosptial index table.
+
+read-replica vs shard the databse solution for scalign the geosptial index table. (Hint: shard can be complicated in this case)
+
+Cache 
+    As the system is ready-heavy will the cache be benifier. (hint: yes)
+    As we are using read-replica, is caching still a good idea?
+
+    what to cache?
+        getohash -> business_id_list (list of business id in a grid)
+
+    How much to cache?
+        If we see out data change is less frequency, and we can cache the whole database in 5GB redis node. Hence, we should cache the entier db and place them across region to cut cross-continent latency.
+
+    Cache invlidation and updation. 
+
+Final desing diagram. (ref: book2/img/p30)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+________________________________________________________
+Part-O, single line desing considerations
+￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣
+
+Geosptial Search is search for relevant information on earths 2d surface.
+
+Search on 2D earths space is done via geospaticl index.
+The main idea of geospatial index is same for HashIndex or TreeIndex.
+Which is to divide the map into smaller aread and build indexes for fast search.
+
+    geospatial index aproaches:
+        HashIndex
+            EvenGrid
+            GeoHash
+            Cartesian Tree
+        TreeIndex
+            QuadTree
+            Google S2
+            RTree
+
+Geohash has 12 prevision levels, with geohash lenght 12 equals earth area of 3.7cm*1.9cm!
+
+
+====== ANSWERS =====
+
+I.a
+A proxmity service is used to discove nearby places such as resturants, hotels,theaters, museus etc. 
+
+Proxmity service is used to add additional feature in the existing app. like
+    k-nearest gas statins on google maps.
+    nearest resturant on Uber Food.
+
+
+I. api
+search business:
+    GET /v1/search/nearby req:{lat:,long:,radius:}  res:{total:INT,page:, businessarr:[{business_object}]}
+    It return the list of business in paginated format.
+
+business_details:   
+    GET /v1/business/:id    |   return detailed infromation about the business}
+    POST /v1/business/      |   add a business
+    PUT /v1/business/:id    |   update the business information
+    DELETE /v1/business/:id |   delete the business
+
+
+
+II.geohash
+GeoHash works by reducing the two dimensional space (log + lat) into a one-dimensional string of letters and digites. It recursively divides the workd into smaller and smaller grid with each additional bit.
+
+    At start whole word is dived into  00,01,10,11.
+    Next, each of these region is further divided into four region.
+    ex: 01 -> 0100,0101,0110,0111
+    this way whole world can be divided into however small region we want.
+    
+    Geohash has 12 prevision levels, with geohash lenght 12 equals earth area of 3.7cm*1.9cm!
+
+    Q: how long will the geostring be if we need to store area of 1km?
+    s: planet_size / 4^len = 1km => len ≃ 6 * 6
+
+II. QuadTree
+A quadtree parition 2d space by recursively subdividing the region into 4 quadtrants(grids) until the contents of the grid meet certain creteria. ex: business count is aread is <100
+
+    Quadtree is an in-memory solution and not a db solution. The data-strucutre is build at system startup.
+
+    q: how much space does we need to store whole quadtree?
+    s: lets assume each grid can have maximal of 100 business.
+        Hence, number of leaf node = total_business_count / business_count_of_sigle_node = 200M / 100 ≃ 2M
+
+        => number of internal node = 2M/2
+        total node  = 2M + .67M 
+        total space= 2 * 832byte + .67*64byte ≃ 1.71GB (quite small for modern server)
+
+    Even though a single server can hold the quadtree. Should we keep it it in sigle server?
+        Ans: No, depeding on the read volume, a single quadtree server might not have enough CPU or network bandwidth to server all request. In that case, we need to spread the read load amoung multiple quadtree server!
+
+
+
