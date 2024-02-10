@@ -1,0 +1,94 @@
+
+
+PART-I: Understanding The System
+￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣
+
+What is a nearby friend system?
+How it is different from proximity service / nearby business service?
+    Hint: its a real-time system + user location changes
+
+List some real-world scenerio where it is being used.
+    Hint: k-nearbest gas station on google map, nearyb resturant on uber eats.
+
+What the things we should keep in mind before desiginign such a system?
+
+List down the system requirement after above discussion.
+List down the non functional system requirement.
+
+QPS compute
+
+Draw the HLD diagram. And list down its compnents.
+
+PART-II: HLD, Components in depth (or System in depth?)
+￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣
+HLD
+    HLD1:  peer-to-peer networking
+    HLD2:   shared backend
+
+    Discuss shortcoming of above two approaches.
+
+    HLD: using redis pub-sub model + location cache + ways (ref: book2/img/p40)
+
+    Draw the HLD diagram and list down individual components.
+
+    Explain each compnent working & interaction in system.
+        why redis cache isused? How will the entry be invalidated?
+        What are the responsibility of WebSocketServer?
+        What is the responsibilty of API server?
+
+        Explain one complete flow of message from userA to its friedns.
+       
+
+    
+API Desing
+    Websocket need to support following:
+        Periodic locatio update
+        client receives location updates.
+        websocket initilization upon client connect/login.
+        subscribe to a new friend.
+        unsubscribe a friend.
+
+    HTTP request
+        update user profile.
+        add request.
+        search , etc.
+    
+Data Model  
+    Why redis is used as location cache?
+     Why don't we use a database to store location data?
+     What is good databse choice for locaion_history_table?
+
+PART-III: LLD, Deep Dive Individual Compoenent + Scalibility,Relibility,FaultTolerange,Security etc
+￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣
+
+Client Initilization Step (How to update client after first login.) (ref:book2/p46)
+
+Explain redis pub/sub working in details.
+
+How would you scale the redis pub/sub? (distributed redis pub/sub)
+    over-provisioned vs resize comparision.
+    Is redis pub/sub stateless or statefull?
+
+How the operation of adding/removing firiend is achieved?
+
+Hotspot issue. What is it and when can it happen in our case? how to deal with this issue?
+    Hint: split the load amoung new server
+
+Discuss the scaling of inidividual componentes:
+    API server scaling.
+    websocket server scaling.
+    user databse scaling using shard.
+    location cache scaling & invalidation.
+
+EXTRA FEATURE REQUEST: show  nearby random person  list who opted-in for location-sharing.
+    Hint: pub/sub with geohash as key id.
+
+
+________________________________________________________
+single line desing considerations
+￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣
+In proximity service, the address for business are fixed. wheres in nearby-friend the user location with change as the user moves. + nearby-firend need to display result in almost-real-time scenerio.
+
+
+
+    
