@@ -1,0 +1,47 @@
+\begin{problem}{kmp prefix function computation}
+    \footnotetext{Pratice Link: \href{https://cp-algorithms.com/string/prefix-function.html}{ref}}
+\end{problem}
+
+
+
+\begin{solution}[BruteForce | $O(n^3), O(n^2)$]
+
+    prefix function visuallization.\\
+    prefix function $O(n^3)$ computation.\\
+    prfixs function $O(n^2)$ computatio.
+
+    \codecaption{Understanding prefix function structure}
+    \begin{lfigure}{./resources/kmp-1.jpg}{0.80}{.15}
+        prefix function visuallization.\\
+        prefix function $O(n^3)$ computation.\\
+        prfixs function $O(n^2)$ computatio.
+
+    \end{lfigure}
+\end{solution}
+
+\begin{solution}[Linear Time Algorithm | $O(n)$]
+
+    \intution{past computed $\pi[i]$ have iformation of already matched index. We can use it to skip re-matching of character second time.}
+
+    \codecaption{KMP Algorithm Recursive Match}
+    \begin{lfigure}{./resources/kmp-2.jpg}{0.80}{.15}
+       $j = \pi[j-1]$ visuallization
+    \end{lfigure}
+
+
+\begin{code3}[prefix function computation in linear time]
+vector<int> prefix_function(string s) {
+    int n = (int)s.length();
+    vector<int> pi(n);
+    for (int i = 1; i < n; i++) {
+        int j = pi[i-1];
+        while (j > 0 && s[i] != s[j])
+            j = pi[j-1];
+        if (s[i] == s[j])
+            j++;
+        pi[i] = j;
+    }
+    return pi;
+}
+    \end{code3}
+\end{solution}
