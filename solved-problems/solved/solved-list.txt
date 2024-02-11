@@ -1,8 +1,12 @@
+All problems .cpp file are added.
+Some problem .tex are skiped in case it is not required.
 
-question    status  solution?   name                                                     Remarks
+question    diff    status  .tex?       name                                                    Remarks
 
-lc3026      solved  added       Maximum Good Subarray Sum                               ending at idx pattern.
-lc3027      solved  added       Find the Number of Ways to Place People II              ad-hoc, startign at idx pattern
-lc3029      solved  pending     Minimum Time to Revert Word to Initial State I           
-lc3031      pending pending     Minimum Time to Revert Word to Initial State II         z-function, o(n^2) is done. O(n) is a little hard, so skipped for now.
+lc3026              solved  added       Maximum Good Subarray Sum                               ending at idx pattern.
+lc3027              solved  added       Find the Number of Ways to Place People II              ad-hoc, startign at idx pattern
+lc3029              solved  pending     Minimum Time to Revert Word to Initial State I           
+lc3031              pending pending     Minimum Time to Revert Word to Initial State II         z-function, o(n^2) is done. O(n) is a little hard, so skipped for now.
+lc3035      medium  solved  skipped     Maximum Palindromes After Operations                    Hint: count all pairs. Then try to complete the string of smallest string to palindrome first.
+lc3036      hard    solved  skipped     Number of Subarrays That Match a Pattern II             Hint: convert s to pat[] array formate. Then use KMP to find pattern in s. (check KMP on algo-notes .tex)
                     skipped 
