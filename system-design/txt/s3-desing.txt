@@ -1,0 +1,237 @@
+   
+        
+PART-I: Understanding The System
+￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣
+What is meant by object storage like s3?
+What are three types of widely used storage system? (Hint:Block Storage, File Storage and Object Storage) (ref: book)
+
+What are the features currently supported by AWS S3 itself?
+Common Terminilogy explaintion related to stroage system. (Hint: Bucket, Object, Versioning, URI, SLA(service-level aggrement))
+
+___
+What are the key points which we must consider when desigining such a system?
+
+list down the functional requirement.
+list down the non-functional requirement.
+
+___
+Draw the HLD. (ref: /diagram/book2/fig9.4)
+Explain similarity between linux file system and our file system as per storage of data and metadata seperately.
+
+PART-II: HLD, Components in depth
+￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣
+Explain each component purpose.
+Discuss the following flow
+	(a) Data upload flow
+	(b) Data download flow
+
+PART-III: LLD, Deep Dive Individual Compoenent + Scalibility,Relibility,FaultTolerange,Security etc
+￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣
+
+Data Store in Depth
+	purpose: to retrive or persiste the object api server calls the data store.
+	Data Store Component Diagram (ref: /diagram/book2/fig9.8)
+		Data Routing Service
+		Placement Service (virtual cluster map)
+        Data nodes
+
+        Describe the data persistance (storage) flow
+        consistency vs latency tradeoff (eventual consistency vs strong consistency)
+
+        How data is organized at disk level?
+        How to save small files so that disk wastage is minimized?
+
+        Object Lookup. With eachdata file holding many small objects , how does the data node locate an object by UUID?
+        Choice b/w RocksDB(SSTable) and relational databse(B+ Tree) for storing object_mapping table. 
+	
+Guaranteing Data Durability 
+        Data relibility is extremely important for data Stroage systems. How can we create a storage system that offer six nindes of durability? Each failure case hash to be carefully consiered and data needs to be properly replicated.
+
+        How to handle Hardware failure?
+        How to handle domain failure? Impacts of differnet failure domains.
+        Multi Data center replication.
+
+        Assuming spinning hard drive having annual failure rate of 0.81%. How how copies of data should we maintain to achieve six 9 of durability? (Hint: 1 - (.0081)^3 ~ .999999 = 99.9999%)
+
+		Erasure Coding vs Replication.
+		Erasure Coding storage requirement and data correctness verification.
+
+Metadata Data Model
+	"discuss database schema followed by diving it to scale"
+
+	List down the query which this data model need to supports. (Hint: find objectID by objectName, insert and delete objectID based on objectName, List all object in a bucket sharing same prefix)
+	Give schema of bukcet_table and object_table.
+
+	Disucc scaling of bucket_table.
+	Disucs scaling of object_table.
+		- shard by bucket_id? What will be the common problems?
+		- shard by object_id?
+		- shard by bucket_name + object_name. (to eventual distribute the data use hash of bucket_name and object_name)
+
+		- Disscuss how to support all 3 API with above schema + in a scalable way using proposed scaling solution.
+
+		- Discuss listing API impact and logic modification when metadata table is partioned. (ref book2/page279)
+		- Discuss the sentence: "Since object storage is tuned for vast scale and high durability, object listing performance is rerely a priority. To take advance of this, we could denormilized the listing data into a separate table shareed by bucketID. This isolates the listing query to single databse which greatly simplief the implementation"
+
+Object Versioning
+	"The old version is marked as old_v1_ and new entry is enserted with same objectID?"
+	Discuss how our system achieves object versioning. Describe the full flow.
+
+Large File Uplaod Optimization
+	Discuss the multipart upload and role of garbage collector in it.
+
+Garbage Collections responsibility
+	- Lazy object deletion
+	- Orphand data deletion
+	- Corrupted data deletion and etc
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			
+         
+
+
+
+=========== ANSWERS =============
+
+I.a 
+Storage system like s3 means a system that supports s3 like feature which includes:
+	small and large size file download and upload.
+	object versioning
+	immutatble object
+	list all object created by user
+
+q: What are the features currently supported by AWS S3 itself?
+	S3 has grown over time. Incremental feature is impleted by s3 as per below timeline:
+		launched in 2006
+		support for versioning,bucket policy and multipart upload added in 2010
+		support for server-side encryption, multi-object delete and object expiration in 2011
+		support for life cycle policy, event notification and cross-region replication in 2014,2015
+		2trillion object stored till 2013, and 100trillion by 2021! (1trillion = 10^12. M(e6), B(e9), T(e12))
+	
+		
+			
+	
+q: What are the key points which we must consider when desigining such a system?
+
+	What features of s3 should be supported in our design?
+		Bucket Creation		yes
+		Object upload and downloading	yes, its a basic feature
+		Object Versioning
+		Listing object in bucket
+		server side encryption?		skipped for now
+
+	What is the typical data size?
+		we need to store file from KBs to GBs range efficently.
+	How much data storage per year?
+
+	What are the data durability guarntee and service availability guarneet?
+		data durability 	~ 6 nines (99.99999%)
+		service availibility	~ 4 nines (99.99%)
+
+q: Funcional Requirement
+	Application support object upload and download.
+	New version of same object should be versioned on the server.
+	user should be able to view all the object they have stored via ls command.
+	it must agree with the provided/advertised guarntee of data and avalibilty.
+		
+		
+q: Non Functional Requirement
+	implemnting the provided guarntee.
+	multi-part upload for large files (as single upload will negatively impact the user experince)
+	if possible, efficently storge as we will be having large amount of data.
+	the system will be write once, read many times (i.e read heavy??)
+
+
+II.
+Data Store in Depth
+	Data store responsibility is to perisit or retieve object. It handles external request from users and calls different internal services to fulfil those request.
+
+	Data Routing Service:(ref fig)
+		It provides RESTful or GRPC API to access the data node cluster. It is a stateless service so can be scaled by adding more server.
+		It has following responsibility:
+			- query the placement service to tget the best data node to store the data.
+			- read data from data node and return to API service.
+			- write data to data nodes.
+
+	Placement service:
+		It maintain a virtual cluster map of all the node connected data nodes(primary + replica + cross data center + cross host + cross partitioin ) which provides the physical topology of the the cluster. Placement Servies's tasks is to chose best data node to store the incoming object.
+			root- > {data center cluster} -> {Host Cluster} -> (partition cluster)
+
+		It continously moniters all data nodes through heartbeats.  
+		We can have cluster of 5/7 placement service node with some common consensus protocol.
+
+	Data Node:
+		The data node stores the actual object data. It ensures relibitlity and durability by replicating data to multiple data node (also called as replication group)
+		Data node has data servie running on it. Which perodically send hearbeats to placement service with information like:
+			- how many HDD or SSD does this data node manage?
+			- How much data is stored on each drive?
+
+		When the placemetn service recies the hearbeats for first time, it assigns an ID for this data node and adds it to the virtual cluster map AND inform following insturction to that data node:
+			- a unique ID of the data node.
+			- The virtual cluster map
+			- Where to replicate data.
+		OBSERVE: Data replication is done by data node and NOT by placement service! So that is why placement service instruct individual data node as to where to replicate data.
+
+
+q: Erasure Encoding
+	Compared to replication where the data router only needs to read data (for an object) from one healthy node, in erasure coding the data router hash to read data from at least 8 healthy nodes. This is a architectural desing tradeoff. we use a more complex solution with slower access speed, in exchange for highter durabiltiy and lower storage cost. For a object storage system where themain cost is storage , the tradeoff is worth considering.
+	replication storage overhead is 200% while is 50% for erasure encoding to achieve six 9 of durability.
+
+
+
+=== olm ==
+The placement service determins which data nodes(primay + replica) should be chosed to store to store object; across datacenter+acress machine + acress region + across partition.
+It make sure replica are physically seperated, and this seperation is key to high durability. (ref: f9.9virtual cluster map)
+
+if we wait for all replica to finish, this provides strong consistency BUT with latency cost (as we need to wait for slowest replica to sync). This is the trade-ff between consistency and latency.
+strong consistency vs eventually consistency.
+
