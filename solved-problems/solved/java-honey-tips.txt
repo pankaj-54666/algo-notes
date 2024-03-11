@@ -1,0 +1,27 @@
+/*
+#1 convert arraylist to array
+int arr[] = new list1.stream().mapToInt(x->x).toArray();
+
+#2 there is no .at(idx) in java, instead we have .get()
+
+#3 Accessing set or HashSet using iterator
+for(int x:set1)
+
+for(Iterator<Integer> it = set1.iterator(); it.hashNext();)
+{
+    int num = it.next(); //return the elemetn & forware the iterator.
+}
+
+#4 sorting
+int arr[] = new int[10];
+Arrays.sort(arr);
+Can't sort int[] in descending order in Java;
+
+ArrayList<Integer> arr2 = new ArrayList<>();
+Collections.sort(arr2);
+Collections.sort(arr2,(a,b)->b-a);
+
+
+#5 Java HashSet does not accept comperator. If you want set with custom ordering use TreeSetin
+
+*/
