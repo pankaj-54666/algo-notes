@@ -24,4 +24,14 @@ Collections.sort(arr2,(a,b)->b-a);
 
 #5 Java HashSet does not accept comperator. If you want set with custom ordering use TreeSetin
 
+#5 Working with String
+- we does not have a in-built function to get string of fixed size via String|StringBuffer|StringBuilder
+- If you want this, just use char[] or Character[] and use Arrays.fill(arr,'x'). Then convert back it to appropriate String Object of use.
+
+char str1[] = new char[N+1]; //I think java char[] does not have to null terminated,as it is just array and not like char[] in c++
+
+StringBuffer str = new StringBuffer(new String(str1) | str1);
+
+//If you want to do manupilation, better start for loop
+
 */
