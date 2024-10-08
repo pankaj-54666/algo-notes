@@ -1,0 +1,7 @@
+#c++ vs Java quivalence
+
+>mininum calulcation
+min(a,b)    Math.min(a,b)
+
+> return list having single element, or two element
+vector<int>{10}             Arrays.asList(10,20)

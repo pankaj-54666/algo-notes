@@ -35,3 +35,23 @@ StringBuffer str = new StringBuffer(new String(str1) | str1);
 //If you want to do manupilation, better start for loop
 
 */
+
+#question can we define collection comperator like this for primitive data type??
+    // min PQ
+        PriorityQueue<int[]> pq = new PriorityQueue<int[]>(new Comparator<int[]>() {  
+            public int compare(int[] a, int[] b) {
+                return Integer.compare(a[0]+a[1],b[0]+b[1]);
+            }
+        });
+
+
+
+# memoization & initilizatin of 2d array
+int mem[][] = new int[N][N];
+initlizlize to -1 via two for loops.
+
+java 0 cannot be casted back to true|false.
+so boolean mem[][] need to be checked further. (or use int array)
+
+int ans = mem[i][j] & then using answer below cannot be done in java. (as in c++ we use int &ans = mem[i][j])
+As in java primitive type are passed as copy ,but object as reference.

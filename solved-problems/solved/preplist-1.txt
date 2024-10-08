@@ -1,4 +1,8 @@
+
+#1: Heap - Top K Pattern, https://leetcode.com/list/e9sr11es/
 https://leetcode.com/discuss/interview-question/2069641/The-Only-Lists-You-Need-For-Your-Interview-Preparation
+
+____________________________________________________________________________
 
  LC215:Kth Largest Element in an Array
  /*
@@ -35,7 +39,7 @@ Approach3: using quicksort property that, all element smaller than x goes to lef
 
 */
 
- LC358: Rearrange String k Distance Apart
+LC358: Rearrange String k Distance Apart
  /* 
  Approach1: 
     Intution: try to place maximum char with most frequence at idx i + k
@@ -68,3 +72,34 @@ Approach3: Advance (implementation skipped for now)
             = O(fixed-time)
 
 */
+
+
+LC767: Reorganize String
+/*
+    Approach1: solve harder version of the problem LC358, then put k =2.
+    Approach2: try odd/even placement.
+    Approach3: use pq + queue (same as LC258). But this time as k=2, we can just store top of pq instead of storing entire queue.
+*/
+
+LC1439: Find the Kth Smallest Sum of a Matrix With Sorted Rows
+/*
+Approach1: BruteForce
+    one element from row0 can be mapped to 40element of row1, 40element from row2 ...  = 40^40 combinations for array starting with row0 => this will TLE, we cannot generate all possible array
+    
+    
+Approach2:
+    Intuition: staring from row[0]. can you iterative generate all the pairs & then filter the best k-pairs for next iteration?
+
+    ref: https://leetcode.com/problems/find-the-kth-smallest-sum-of-a-matrix-with-sorted-rows/discuss/609755/C%2B%2BSort-solution-easy-to-understand-with-brief-explanation.
+
+Approach3: 
+    Intuition: Similar to LC373. use the function used in that one, and call it for row2 to rown-1.
+
+    ref: https://leetcode.com/problems/find-the-kth-smallest-sum-of-a-matrix-with-sorted-rows/discuss/610701/C%2B%2BJavaPython-Binary-Search-O(m*k*log(m*5000))-MinHeap-O(m*k*logk)-Solutions
+
+
+
+*/
+
+
+#2________________________________________________________________________________
