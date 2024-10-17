@@ -2,9 +2,9 @@
 #1: Heap - Top K Pattern, https://leetcode.com/list/e9sr11es/
 https://leetcode.com/discuss/interview-question/2069641/The-Only-Lists-You-Need-For-Your-Interview-Preparation
 
-____________________________________________________________________________
 
- LC215:Kth Largest Element in an Array
+------------------------------------------------------------------------------------------
+LC215:Kth Largest Element in an Array
  /*
     Approach1: sort and get k^th element from array. | O(nlogn)
 
@@ -18,11 +18,13 @@ ____________________________________________________________________________
         use only mx-min for array size for less memory.
  */
 
+
 ------------------------------------------------------------------------------------------
 LC264: Ugly Number-Intution
 /*
     Intution:check lc264-1.png
 */
+
 
 ------------------------------------------------------------------------------------------
 LC347: Top K Frequent Elements 
@@ -40,9 +42,9 @@ Approach3: using quicksort property that, all element smaller than x goes to lef
     implementation: TO-DO: (skipped,as it is above medium)
 
 */
---------
+
+------------------------------------------------------------------------------------------
 LC358: Rearrange String k Distance Apart
---------
  /* 
  Approach1: 
     Intution: try to place maximum char with most frequence at idx i + k
@@ -53,13 +55,15 @@ LC358: Rearrange String k Distance Apart
 Approach2:
     Intution: put all frequency in map. Then use pq and q. pq will give the char with most frequeny count, and q will help extract all character which are already placed. & only send char to pq again when q.size()>=k.
 */
-------------------------------------------------------------------------------------------
 
+
+------------------------------------------------------------------------------------------
 LC451: Sort Characters By Frequency
 /*
     Intution: count character count &then use it in custom stl sorting via custom comperator
 */
 
+------------------------------------------------------------------------------------------
 LC692: Top K Frequent Words
 /*
 Approach1: do custom sorting based on count of words. | O(nlogn), n = count of words
@@ -75,8 +79,9 @@ Approach3: Advance (implementation skipped for now)
             = O(fixed-time)
 
 */
-------------------------------------------------------------------------------------------
 
+
+------------------------------------------------------------------------------------------
 LC767: Reorganize String
 /*
     Approach1: solve harder version of the problem LC358, then put k =2.
@@ -84,6 +89,8 @@ LC767: Reorganize String
     Approach3: use pq + queue (same as LC258). But this time as k=2, we can just store top of pq instead of storing entire queue.
 */
 
+
+------------------------------------------------------------------------------------------
 LC1439: Find the Kth Smallest Sum of a Matrix With Sorted Rows
 /*
 Approach1: BruteForce
@@ -99,40 +106,5 @@ Approach3:
     Intuition: Similar to LC373. use the function used in that one, and call it for row2 to rown-1.
 
     ref: https://leetcode.com/problems/find-the-kth-smallest-sum-of-a-matrix-with-sorted-rows/discuss/610701/C%2B%2BJavaPython-Binary-Search-O(m*k*log(m*5000))-MinHeap-O(m*k*logk)-Solutions
-
-
-
 */
 ------------------------------------------------------------------------------------------
-
-
-
-
-
-
-PROBLEM NAME: LC1439, Find the Kth Smallest Sum of a Matrix With Sorted Rows
-HINTS
-    Approach1:
-    Approach2:
-    Approach2:
-
-SOLUTIONS:
-    solution1 (in-short)
-
-
-REMARKS:
-------------------------------------------------------------------------------------------
-
-
-PROBLEM NAME:
-HINTS
-
-
-SOLUTIONS
-
-REMARKS
-------------------------------------------------------------------------------------------
-
-
-
-#2________________________________________________________________________________
