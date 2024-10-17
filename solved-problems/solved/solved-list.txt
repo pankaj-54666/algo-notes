@@ -10,3 +10,6 @@ lc3031              pending pending     Minimum Time to Revert Word to Initial S
 lc3035      medium  solved  skipped     Maximum Palindromes After Operations                    Hint: count all pairs. Then try to complete the string of smallest string to palindrome first.
 lc3036      hard    solved  skipped     Number of Subarrays That Match a Pattern II             Hint: convert s to pat[] array formate. Then use KMP to find pattern in s. (check KMP on algo-notes .tex)
                     skipped 
+
+
+question    diff    status  hint.txt    hint.png    .cpp    .tex?       name   
