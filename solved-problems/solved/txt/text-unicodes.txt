@@ -1,0 +1,43 @@
+
+
+§ Important unicode 
+￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣
+    LightWeight Bullets: ◻︎ ○ ▷ ☆
+    HeavyWeight Bullets: ◼︎ ● ▶︎ ★
+    Othes Bullets: ▣ 🗡️ ߷ 
+
+
+§ Important Links
+￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣
+    ▷ all unicode list: https://symbl.cc/en/unicode-table/#cjk-unified-ideographs-extension-a
+        unicode arrows: https://symbl.cc/en/unicode-table/#arrows
+        box drawing + geometric shapes: https://symbl.cc/en/unicode-table/#geometric-shapes
+
+    ▷ in mac (maybe on window also?) you can press command + option + space key to open the unicode selection panel, through which you can select most frequent or any unicode! 
+
+
+
+§ Important Formatting Tools:
+￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣
+
+߷ underline text: https://symbl.cc/en/tools/strikethrough-text/
+                     ͟T͟h͟i͟s͟ ͟i͟s͟ ͟a͟n͟ ͟e͟x͟a͟m͟p͟l͟e͟e͟e͟e͟e͟e͟ 
+                     ̤T̤h̤i̤s̤ ̤i̤s̤ ̤a̤n̤ ̤e̤x̤a̤m̤p̤l̤e̤dfdf
+
+                    type letter then paste this  ̲
+                    Combining Macron Below ̱ 
+                    Combining Low Line ̲
+                    Combining Double Low Line ̳
+                    
+                    d͢df͢  dg͢j͢j͢j͢j͢j͢j͢j͢ dfd vdfdf fd̳
+
+
+߷ ████████ 80% Completed
+߷ ✔ completed successfuly
+߷  ✘ pending
+߷ Idea Tag: 💡 ⚡ 🧠 ❖ 🛠️ 📌 ✍ ⭐ ◉ 📅 
+߷ 
+߷ 
+߷ 
+
+                  

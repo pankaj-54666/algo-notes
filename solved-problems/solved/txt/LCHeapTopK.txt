@@ -1,6 +1,16 @@
 
+PART-I: Problem Lists
+￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣ 
 #1: Heap - Top K Pattern, https://leetcode.com/list/e9sr11es/
 https://leetcode.com/discuss/interview-question/2069641/The-Only-Lists-You-Need-For-Your-Interview-Preparation
+
+
+PART-II: Hints & Solutions
+￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣
+
+PART-II: Hints & Solutions
+￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣
+
 
 
 ------------------------------------------------------------------------------------------

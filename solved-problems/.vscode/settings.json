@@ -10,7 +10,7 @@
                 "-interaction=nonstopmode",
                 "-file-line-error",
                 "-pdf",
-                "-outdir=%OUTDIR%",
+                "-outdir=./out",
                 "%DOC%"
             ],
             "env": {}
