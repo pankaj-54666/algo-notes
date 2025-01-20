@@ -1,0 +1,6 @@
+noted-list.txt          :: list down all noted problems
+tagged-list.txt         :: list down problem for which you want to remember the domain
+pending-list-hard.txt   :: list down the problem which i cant solved even after reading the solution & devoting +1 day
+
+preplist_LCHeadTopK.txt :: TopK heap pattern problem, not yet started
+preplist_LCStudy75.txt  :: not yet started
