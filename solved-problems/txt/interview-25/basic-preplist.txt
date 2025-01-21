@@ -1,0 +1,34 @@
+
+# DS Algo Coding
+	All Aditya Verma Playlist -> goal is to attemp all problem
+	Do Striver79 sheet
+	LogicMojo problem list, solve again
+
+step2:
+	Revisit the old saved problem & note them in txt if needed 
+
+	Do DailyLeetCode, and weekly LC contest, understnad LC weekly problem in weekdays for pending problem
+
+step3:
+	follow other user ri, pk review their solved problem & solved them.
+	discuss with them in case of any question query for fast learning
+
+
+# System Desing
+	ByteByteGo -> know skeleton for known problems type
+	Check GauravSen systemdesing interview(to know as what is expected)
+
+stage2:
+	GauravSend system desing video <- very high +ve review, but is it needed? <- can be skipped if above suffict.
+	3MockInterview per week on 
+	
+
+
+
+
+
+
+
+--- REFERENCES ----
+https://www.youtube.com/@TheAdityaVerma 
+striver79 sheet link: https://takeuforward.org/interview-sheets/strivers-79-last-moment-dsa-sheet-ace-interviews

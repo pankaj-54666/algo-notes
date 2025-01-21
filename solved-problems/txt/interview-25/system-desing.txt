@@ -1,0 +1,12 @@
+
+# System Desing Minimal 
+Items to work on:
+	Gaurav Sen -> System desing video walkthrough?
+	ByteByteGo system desing book,at least store all flow in memory.
+
+	Gaurav Sen -> Sytem desing mock interview video to know what type of question and response is expected.
+
+	interviewbit -> system desing interview with other user
+
+
+
