@@ -1,0 +1,5 @@
+
+LC2017	Grid Game	M5	
+	Tricky question, you will be tempted to use dynamic programming to solve the issue. But the question is desinged such that pattern recoginition will help you solve it quickly.
+
+	Learning -> if dp fails/its get too complicated, try other way of solution paradigm like greedy, ad-hoc, pattern-recoginition, graph, stack,queue, graph, range query, and others!
