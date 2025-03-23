@@ -16,13 +16,34 @@ step3:
 
 # System Desing
 	ByteByteGo -> know skeleton for known problems type
-	Check GauravSen systemdesing interview(to know as what is expected)
+	Check GauravSen systemdesing interview with other applicants(to know as what is expected)
 
+	https://www.youtube.com/@SystemDesignInterview -> how to approach the actual interview, and how to build the flow while discussing and improving the system.
+
+
+	Whats HLD, and LLD?
 stage2:
 	GauravSend system desing video <- very high +ve review, but is it needed? <- can be skipped if above suffict.
-	3MockInterview per week on 
+	3MockInterview per week on
+
+
+# Java Language Preparation
+	Need to solve alot of problems in java
+	core and advance java concepts
+	general java questions
+	make proficenty in java same as c,cpp
+
+
+# SpringBoot Revision & Questions
 	
 
+# Behaviour question
+
+# Projects Worked on, and other similar question
+have a story to tell in interesting manner.
+
+# do you need portofoli?
+Yes, but only if above basics are completed by you
 
 
 
