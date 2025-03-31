@@ -1,6 +1,178 @@
 {
-    "files.associations": {
-        "vector": "cpp",
-        "iosfwd": "cpp"
+  "latex-workshop.latex.tools": [
+    {
+      "name": "latexmk",
+      "command": "latexmk",
+      "args": [
+        "-xelatex",
+        "-shell-escape",
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-pdf",
+        // "-outdir=%OUTDIR%",
+        "-outdir=./out",
+        "%DOC%"
+      ],
+      "env": {}
+    },
+    {
+      "name": "lualatexmk",
+      "command": "latexmk",
+      "args": [
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-lualatex",
+        "-outdir=%OUTDIR%",
+        "%DOC%"
+      ],
+      "env": {}
+    },
+    {
+      "name": "xelatexmk",
+      "command": "latexmk",
+      "args": [
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-xelatex",
+        "-outdir=%OUTDIR%",
+        "%DOC%"
+      ],
+      "env": {}
+    },
+    {
+      "name": "latexmk_rconly",
+      "command": "latexmk",
+      "args": ["%DOC%"],
+      "env": {}
+    },
+    {
+      "name": "pdflatex",
+      "command": "pdflatex",
+      "args": [
+        "-shell-escape",
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "%DOC%"
+      ],
+      "env": {}
+    },
+    {
+      "name": "bibtex",
+      "command": "bibtex",
+      "args": ["%DOCFILE%"],
+      "env": {}
+    },
+    {
+      "name": "rnw2tex",
+      "command": "Rscript",
+      "args": [
+        "-e",
+        "knitr::opts_knit$set(concordance = TRUE); knitr::knit('%DOCFILE_EXT%')"
+      ],
+      "env": {}
+    },
+    {
+      "name": "jnw2tex",
+      "command": "julia",
+      "args": ["-e", "using Weave; weave(\"%DOC_EXT%\", doctype=\"tex\")"],
+      "env": {}
+    },
+    {
+      "name": "jnw2texminted",
+      "command": "julia",
+      "args": [
+        "-e",
+        "using Weave; weave(\"%DOC_EXT%\", doctype=\"texminted\")"
+      ],
+      "env": {}
+    },
+    {
+      "name": "pnw2tex",
+      "command": "pweave",
+      "args": ["-f", "tex", "%DOC_EXT%"],
+      "env": {}
+    },
+    {
+      "name": "pnw2texminted",
+      "command": "pweave",
+      "args": ["-f", "texminted", "%DOC_EXT%"],
+      "env": {}
+    },
+    {
+      "name": "tectonic",
+      "command": "tectonic",
+      "args": ["--synctex", "--keep-logs", "%DOC%.tex"],
+      "env": {}
     }
+  ],
+  "files.associations": {
+    "vector": "cpp",
+    "iosfwd": "cpp",
+    "array": "cpp",
+    "deque": "cpp",
+    "string": "cpp",
+    "unordered_map": "cpp",
+    "string_view": "cpp",
+    "initializer_list": "cpp"
+  },
+  "editor.tokenColorCustomizations": {
+    // Guide: https://www.youtube.com/watch?v=suaqd0te9Pw
+    /*  for scoep "support.function.be.latex" you pass any string upto any .
+
+        You can pass an array of element in the scope and they will be all same colored.
+
+        to find the scoep in text, open command platter and type > Developer: Inspect Editor token and scopes -> then bring your mouse over to keyword which scope you want to find
+        */
+    "textMateRules": [
+     // {
+      //   "scope": [
+      //     "support.function",
+      //     "keyword.control",
+      //     "variable.parameter",
+      //     "keyword.other",
+      //     "punctuation.definition.function.latex",
+      //     "punctuation.definition.arguments.begin.latex",
+
+      //     "punctuation.definition.arguments.begin.latex", //not working for {
+      //     "punctuation.definition.arguments.end.latex" //not working for }, TODO: please fix it
+      //   ],
+      //   "settings": {
+      //     "foreground": "#0678ebeb"
+      //     //  "foreground": "#adb5bdeb",
+      //     //  "foreground": "#7d747bd4", //"#10021b66"
+      //     //  "fontStyle": "italic",
+      //   }
+      // },
+      {
+        "scope": ["string.other.q-content.color","string.question-qs","string.heading-a"],
+        "settings": {
+          "foreground": "#7c06eb"
+          //  "fontStyle": "italic"
+        }
+      },
+      {
+        "scope": ["latex.short.list.command","latex.short.i.command"],
+        "settings": {
+          "foreground": "#000000"
+          //  "fontStyle": "italic"
+        }
+      }
+      /*
+                support.function.be.latex : begin
+                variable.parameter.function.latex : solution in \begin{solution}
+
+                punctuation.definition.arguments.begin.latex :: \paragraph
+
+                keyword.control.newline.tex : \\
+
+                    support.function.general.tex :: marginnote etc
+
+            meta.function.environment.general.latex
+            */
+    ]
+  }
 }
