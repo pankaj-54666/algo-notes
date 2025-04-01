@@ -1,0 +1,154 @@
+\chapter{LogicMojo Question List}\label{chp:LogicMojo}
+
+This chapter list down all the question I have solved from logicmojo.
+Revising it once again will make sure, you at least have enough grasp of one of the learning path!
+
+I think it will make your understand and revision up to | 70% |
+
+\hl{You need to mark each question complete, if you written the pragamatic code for each}
+
+\rfl{Irrespective of the desired complexity asked, always try to start from brute force and then list all ways the given problem can be solved.}
+
+Its okay, if this section repeates problem from section.
+
+{\smaller[1] 
+\begin{exercise}[Must Solve Stack List]
+
+    \ctext{ Standard Sorting Things}
+
+    \begin{compactenum}
+        \item Can you list down at least 5 type of sorting alorithm?
+        \item Please implement following sorting algo with pragamatic code:
+        \begin{compactenum}
+             \item Merge Sort 
+             \item Quick Sort
+             \item  Heap Sort
+             \item Counting Sort
+
+             \item Bubble Sort
+             \item Insertion Sort
+             \item Selection Sort
+             
+             \item Radix Sort
+             \item Bucket Sort
+             \item  TODO mark as done, when you have added pragmatic code for each
+             
+        \end{compactenum}
+
+        \item Problems utilizing sorting technique:
+            \begin{compactenum}
+                \item Find $ k^{\text{th}} $ largest element in an unsorted array using quicksort.
+                \item Dutch National Flag Problem (\href{https://leetcode.com/problems/sort-colors/description/}{LC75})
+                \item Inversion count using merge sort
+                \item Inversion count using quick sort
+            \end{compactenum}
+        
+        \item What is stable sort algorithm? can you list down few?
+        \item You need to utilize paraller processing while sorting? which algo would you chose and why?
+        \item You have a large dataset to sort, which sorting algo would you use?
+
+        \newlist{Sorting Alorithm Based Problems}
+        \item Find maximum element in rotate sorted array.
+        \item Find given element k, in a rotate sorted array.
+        \item lowerbound and upperbound for normal array without duplication
+        \item above with duplicates
+        \item above with duplicate + sorted sorted array
+    \end{compactenum}
+
+    % 2nd set
+    \ctext{cont.. logicmojo list}
+    \begin{compactenum}
+    \item move all zero to the end of the array while maintaing the relative order or non-zero element.
+    \item Jump Game Problem, but this time solve using array traversal. 
+    \href{https://leetcode.com/problems/jump-game/description/}{LC55}
+    \footnote{There exist DP solution, but this time you just iterate and try to solve}
+    \item remove duplicate element from sorted array in place.
+    
+    \item Write an algorithm to find out next greater number to given number with the same set of digits
+    \item Find an element in array (=k), before which all number are less than k, and after which all greater than k.
+    \item Find if two rectange overlap or not.
+    \item List of arrival and departure time is given, Find the minimum number of platforms are required for the railway as no train waits.
+    \\Similar Problems
+    \begin{compactenum}
+        \item LC56 Merge Interval,
+        \item LC3169 Count Days without meeting (sorted by start time or end time)
+        \item LC453
+        \item LC252,LC253 Meeting Rooms
+        \item LC1235 Maximum Profit in Job Scheduling
+        \item LC3414 Maximum Score of non-overlapping interval.
+        \item Try to solve by soring start time, then end time $<-$notice the logic difference
+    \end{compactenum}
+    \vspace{4pt}
+    \item Distribute candy to children  with some rule. LC135
+    
+    \item print matrix in spiral order in $O(1)$ space complexity.
+    \item print matix element in diagonal order in $O(1)$ space complexity.
+    \item Array of size n, having integer in 1 to n with some duplicates. you need find frequency of all element in array in $O(n)$ time and $O(1)$ space.
+    \item find majority element of the array in best time complexity. LC169,LC229
+    
+    \item Stock Selling Problem
+    \begin{compactenum}
+        \item you can hold a single stock a time. LC122
+        \item you are allowed at most 2 transaction LC123
+        \item at most k transactions. LC188
+        \item with cooldown days LC309
+        \item with transaction fee LC714
+    \end{compactenum}
+
+\item remove duplicate letter from string in $O(1)$ time complexity.
+\item Rotate the matrix clockwise direction by $90 ^\circ $ in $O(1)$ space complexity.
+\item  You are in a party of N people, where only one person is known to everyone. Such a person may be present at the party, if yes, he/she doesn’t know anyone at the party. Your task is to find the celebrity at the party.
+\item Find subarray whose sum is ZERO. the array has both positive and negative number.
+\begin{compactenum}
+    \item 2sum problem
+    \item 3sum problem
+\end{compactenum}
+\item Find next smallest palindrome larger than this given number x.
+\item Find the contiguous subarray within an $array[]$ of length N which has the largest sum in Time Complexity $O(n)$ and Space Complexity $O(1)$. (aka Kadan's Algorithm)
+\begin{compactenum}
+    \item Can you extend/modify above algo to find subarray that has sum exactly k?
+\end{compactenum}
+\item Find kth smallest element in that in an unsorted integer array in Time Complexity O(n) and Space Complexity $O(1)$. (Hint: use quicksort) 
+\item Given an array of integers and a number K. Find the count of distinct elements in every window of size K in the array. \constrain{ $TC (n)$, $SC (n)$ }
+    
+\vspace{5pt}
+
+\item Given an array where every element occurs two times, except one element which occurs only once. Find the element that occurs once in $O(1)$ space. (Hint: use xor)
+
+\item Given an array in which all numbers except two are repeated once. (i.e. we have 2n+2 numbers and n numbers are occurring twice and the remaining two have occurred once). Find those two numbers in the most efficient way.
+\item Find square root of Guven Num without sqrt() function in Time Complexity $O(Logn)$ and No Space Complexity. (Hint: can you find the binary search solution too?)
+\item A 2-D array of 1's and 0's is given. Find the row with max 1's in Time Complexity $O(nlogn)$ and Space Complexity $O(1)$ . The array is sorted row wise.
+
+\vspace{5pt}
+\item Trapping rainwater problem. LC42
+\begin{compactenum}
+    \item 2D version LC407, too hard
+    \item LC11 Container with most water.
+\end{compactenum}
+
+\vspace{3pt}
+\item Given an array $A[]$ of N positive integers. The task is to find the maximum of $j - i$ with the constraint of $A[i] <= A[j]$. Time Complexity : $O(n)$Space Complexity : $O(n)$.
+
+\item Given an unsorted Array, Find the count of Inversion required to make this array sorted in Time Complexity:$O(nlogn)$
+
+\item There are two sorted arrays A and B of size m and n respectively. Find the median of the two sorted arrays. The overall run time complexity should be $O(log n)$ and Space Complexity $O(1)$. (Hint: can you solve again usign binary search this time?)
+
+\item Given two sorted arrays of size m and n respectively, you are tasked with finding the element that would be at the k’th position of the final sorted array Time Complexity: $O(log n + log m)$.
+
+\item Design a data structure which performs the following operations(Insert an element/Remove an element /find random element) in $O(1)$ time.
+\item You need to design a data structure which support below operation in O(1) time complexity
+    \\ Insert() add element
+    \\ remove() delete element 
+    \\ findMiddle()   return middle element
+    \\ deleteMiddle() delete the middle element.
+
+\item Given two strings string1 and string2 , return the minimum window in string1 which will contain all the characters in string2 in Time Complexity $O(n)$ and Space Complexity $O(1)$.
+\item You are given a string. You have to find the smallest substring which contains all the distinct characters of the given string.
+Try solving this question in O(n), using the sliding window technique.
+
+
+
+\end{compactenum}
+
+\end{exercise}
+}

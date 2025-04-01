@@ -437,7 +437,24 @@
 % ]{txt/notification-system.txt}
 
 
+\newcommand{\newlist}[1]{
+    \vspace{5pt} 
+    \begin{center}
+        \textbf{#1}
+    \end{center}
+    \vspace{-5pt}
+    \noindent\rule{\linewidth}{1pt}
+    \setcounter{enumi}{0} 
+}
 
+\newcommand{\ctext}[1]{
+    \vspace{5pt} 
+    \begin{center}
+        \textbf{#1}
+    \end{center}
+    \vspace{-13pt}
+    \noindent\rule{\linewidth}{1pt}
+}
 
 
 % end marker
