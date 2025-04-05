@@ -456,6 +456,11 @@
     \noindent\rule{\linewidth}{1pt}
 }
 
+\newcommand{\lstproblem}[1]{%
+  \subsection*{#1}%
+  \addcontentsline{toc}{section}{#1}%
+}
+
 
 % end marker
 \endinput

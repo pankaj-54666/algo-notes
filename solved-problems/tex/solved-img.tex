@@ -1,16 +1,23 @@
-\chapter{Solved Image Problem List}\label{ch:solved-img}
+% b/w txt and tex, a image with txt solution
 
 Image based solution note down.
 
-% \input{./res/LC1024-video-stitching-sol.jpg}
+\begin{problem}{3026. Maximum Good Subarray Sum}
+    
+    \footnotetext{Pratice Link: \href{https://leetcode.com/problems/maximum-good-subarray-sum/}{LC3026}}
+    
+    \end{problem}
+\begin{solution}[greedy,dp]
+        
 
-\codecaption{LC1024, Video Stitching}
-\begin{lfigure}{res/LC1024-video-stitching-sol.jpg}
-    {0.6}{0.4} 
-    There exist two solution for this problem.
+    \codecaption{LC1024, Video Stitching}
+    \begin{lfigure}{res/LC1024-video-stitching-sol.jpg}
+        {0.6}{0.4} 
+        There exist two solution for this problem.
 
-    DP solution is a nice variatin of take/not-take dp. with \textbf{take} only applicable, if idx start at a time less than \textbf{end}
+        DP solution is a nice variatin of take/not-take dp. with \textbf{take} only applicable, if idx start at a time less than \textbf{end}
 
-    Other solution is greedy, once we pick i, we have a set of j to pick from.
-    there are a lot of edge cases in this.
-\end{lfigure}
+        Other solution is greedy, once we pick i, we have a set of j to pick from.
+        there are a lot of edge cases in this.
+    \end{lfigure}
+\end{solution}

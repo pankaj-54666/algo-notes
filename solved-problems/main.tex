@@ -5,13 +5,29 @@
 \frontmatter
 % Three-level Table of Contents
 
+\setcounter{tocdepth}{1}
 \tableofcontents
+
+\renewcommand\contentsname{Contents(+Hints)}
+\newpage
+\setcounter{tocdepth}{3}
+\tableofcontents
+
+
 
 \mainmatter{}
 
+\part{TEX Solutions}
+\import{./tex}{solved-tex.tex}
 
-\import{./tex}{solved.tex}
+\part{JPG Solutions}
 \import{./tex}{solved-img.tex}
+
+\part{TXT Solutions}
+\import{./tex}{solved-txt.tex}
+
+\part{Pattern Based Classification}
+\import{./}{patterns.tex}
 
 % \input{./test.txt} % One point, input cannot be nested.
 
