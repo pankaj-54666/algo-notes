@@ -69,11 +69,32 @@ It simulates bubbling of element to top layer, where all sorted element are pres
      \footnote{ref file: merge-sort.cpp}
  \end{lfigure}
 
+
+ \section{Quick Sort}
+ The quicksort algorithm has a worst-case running time of $O(n^2)$ on an input array
+of n numbers. Despite this slow worst-case running time, quicksort is often the best
+practical choice for sorting because it is remarkably efficient on the average: its
+expected running time is  $O(nlog(n))$, and the constant factors hidden in the $O(nlog(n))$
+notation are quite small. It also has the advantage of sorting in place, and it works well even in virtual-memory environments
  
+$quickSort(0,arr.size()-1,arr)$
+\begin{figure}
+     \codecaption{Pivot Selection and Split }
+     \includegraphics[width=\dimexpr\textwidth]{resources/sorting-quick-sort-1-split.png}
+\end{figure}
+
+\begin{figure}
+     \codecaption{Parition Implementation}
+     \includegraphics[width=\dimexpr\textwidth+\marginparwidth]{resources/sorting-quick-sort-2-partition.png}
+\end{figure}
 
 
+\begin{lfigure}{resources/sorting-quick-sort-paritition2.png}{0.45}{0.38}
+     \includegraphics[width=\marginparwidth]{resources/sorting-quick-sort-paritition1.png}
+\end{lfigure}
 
 
+\clearpage
 \begin{exercise}[Sorting Algorithm Questions]
 
      \begin{compactenum}
