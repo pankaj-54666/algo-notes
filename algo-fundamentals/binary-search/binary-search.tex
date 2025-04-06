@@ -4,13 +4,85 @@ Binary Search is search algorithm that reduces the normal O(n) complexiy of sear
 
 To binary search we need to sort our input first. There are different sorting algorithm, a few of which are listed below.
 \begin{compactenum}
-    \item insertion sort
-    \item bubble sort
+     \item bubble sort
+     \item selection sort
+     \item insertion sort
+    
     \item merge sort | Based on Divide and Conquere
     \item quick sort | Based on Divide and Conquere
+    \item heap sort
+    \item 
     \item Radix sort
     \item \dots
 \end{compactenum}
+
+\section{Bubble Sort}
+Simplest sorting algorithm.
+It simulates bubbling of element to top layer, where all sorted element are present!
+\begin{marginfigure}
+     
+\caption{Can you reason why this is not a bubble sort?}
+     \includegraphics[width=\marginparwidth]{resources/sorting-not-bubble-sort.png}
+ \end{marginfigure}
+
+ \includegraphics[width=7cm]{resources/sorting-bubble-sort.png}
+
+ \section{Insertion Sort}
+ Like we swap cards in our hands.
+
+ \includegraphics[width=12cm]{resources/sorting-insertion-sort.png}
+ 
+
+ \section{Selection Sort}
+ Select the first largest and place it on top!
+ 
+ Select the largest element from unsorted part and then place it on the top of unsorted part!
+
+ A Pratial example is sorting cloths on the bed! You pick biggest one, place it on box, then pick 2nd biggest one, and so on.
+ 
+ \includegraphics[width=12cm]{resources/sorting-selection-sort.png}
+
+ \section{Merge Sort}
+ Merge Sort is in-place,stable sorting algorithm. It is fastest algorith, which sort the array in $O(n*log(n))$ time.
+
+ \begin{marginfigure}
+    
+
+
+     \includegraphics[width=\marginparwidth]{resources/sorting-merge-sort-division.jpg}
+     \caption{visualizing array splitting in merge-sort}
+
+ \end{marginfigure}
+
+ \vspace{1.7cm} 
+ \begin{lfigure}{resources/sorting-merge-sort-main.png}{0.6}{0.38}
+
+     
+     \includegraphics[width=5cm]{resources/sorting-merge-sort-base.png}
+
+     There are 3 main part of merge sort algorithm.
+     \begin{compactenum}
+          \item  Split the array recursively 
+          \item complete function merge(arr,l,mid,r) where [l,mid] [mid+1,r] part is sorted
+          \item implement the $merge(arr,l,mid,r)$ function 
+     \end{compactenum}
+     \footnote{ref file: merge-sort.cpp}
+ \end{lfigure}
+
+ 
+
+
+
+
+\begin{exercise}[Sorting Algorithm Questions]
+
+     \begin{compactenum}
+          \item 
+     \end{compactenum}
+
+     
+\end{exercise}
+
 
 \begin{exercise}[Binary Search Fundamental Question List:]
     Given a sorted array write the code for following:
