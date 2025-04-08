@@ -45,6 +45,7 @@ It simulates bubbling of element to top layer, where all sorted element are pres
  \section{Merge Sort}
  Merge Sort is in-place,stable sorting algorithm. It is fastest algorith, which sort the array in $O(n*log(n))$ time.
 
+
  \begin{marginfigure}
     
 
@@ -173,6 +174,14 @@ $quickSort(0,arr.size()-1,arr)$
     }
 \end{code3}
 \footnote{ref: /code/heap-sort.cpp}
+
+
+\section{Counting Sort}
+Counting sort means, couting the frequency of element first.
+Then updating the array.
+
+Its complexiy is $O(n)$.
+Its only be used when the integer range on $arr[]$ can be mapped into $<= 10^6$ unique integers.
 
 
 
