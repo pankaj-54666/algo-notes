@@ -43,7 +43,7 @@
 
 
 % NEW PROBLEM
-\begin{problem}{LC2999 Count the Number of Powerful Integers}
+\begin{problem}{LC2999 Count the Number of Powerful Integers,HARD}
     Return the total number of powerful integers in the range [start..finish] also ends with suffix s.
     \footnotetext{Pratice Link: \href{https://leetcode.com/problems/count-the-number-of-powerful-integers/}{LC2999}}
 \end{problem}
@@ -68,5 +68,53 @@
             One for point to notice is that how would you, make sure the the string being created at suffix index does not cross the original numer?!
                 ex: end = 1023 and suffix = 24
     */
+    \end{code2}
+\end{solution}
+
+% NEW PROBLEM
+\begin{problem}{LC3272 Find the Count of Good Integers, HARD}
+    Count number of good initeger having exactly n(<=10) digits.
+    A number is good, if its digit can be rearrange to form n digit string, which is palindrome + is divisible by k.
+
+    \footnotetext{Pratice Link: \href{https://leetcode.com/problems/find-the-count-of-good-integers}{LC3272}}
+\end{problem}
+
+\begin{solution}[hints]
+    recursion enumeration + combinatory
+    \begin{code2}
+        /*
+        Tryout1: f(idx,k,n) = count of all integers that satisifes the contraiint
+        at idx, we have option to put 0-9 integer.
+    
+            => issue is that, we need exactly n integers. And trying out all option at idx, will lead us TLE
+        
+        Tryout2: How about start from first 9 digit palindrome and start from there?
+    
+        Tryout3: How about taking palindrome contraint into account, ans instead of s[1..9] just find s[1..5] string , ans assume rest to be duplicate!!
+                This was the total integer count the recursion can generate (when its not proned with k) is 10^5
+    
+                => which is within acceptable limit!
+    
+        Appraoch1:
+            Intution:  as 10^9 crosses the limit, how about shrinking out problem space as 10^5 as,the rest number will be fixed once the palindrom first half is known.
+    
+            Now there are two case , EVEN = _ _ _ _, ODD = _ _ _
+            Solve for simple EVEN case first via recursion, then extend to ODD case.
+    
+            As the s[1..5] even if you enumerate and take decision check the corretness, it is withing time limit!
+    
+            challenge: FOR 1 find s, how to rearrange the s to make sure its divisable by k??
+            Hint: we don't need to!!
+    
+                How about counting all number from which this k divisible number be reached!! (REVERSE)
+    
+        Hard Problem Insight:
+            As we know, hard problem can be thought of mixure of 2 medium problem + implemention & debug difficulty added up
+    
+            This can be though of as follwing two subproble in incremental fasion:
+            (a) list down all 5 char long string, (which made to x by by 1st part of palindrome repeat) ,which  are divisibl by k
+            (b) For every such palindrome, can you count FROM how many number can be rearranged to reach this same exact number?! All number should be n digits long.
+            (c) For any palindrome target ss, if its digit gets repeated, then that will count as duplict, so skip those.
+    */    
     \end{code2}
 \end{solution}
