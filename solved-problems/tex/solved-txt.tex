@@ -34,10 +34,39 @@
 
     Approach1: use heap to find kth largest!
 
-    Appraoch: Dutch National Flag Problem
+    Approach2: Dutch National Flag Problem
         tips for clean code (check sortColors2)
         hint: first move 2 to right, so you need to worry about 0,1 ONLY
     */
     \end{code2}
 \end{solution}
 
+
+% NEW PROBLEM
+\begin{problem}{LC2999 Count the Number of Powerful Integers}
+    Return the total number of powerful integers in the range [start..finish] also ends with suffix s.
+    \footnotetext{Pratice Link: \href{https://leetcode.com/problems/count-the-number-of-powerful-integers/}{LC2999}}
+\end{problem}
+
+
+\begin{solution}[hints]
+
+    \begin{hints}
+        count from $0...end - count$ from $0...start-1$
+        + recursion 
+        + memoization
+    \end{hints}
+    \begin{code2}
+    /*
+        Approach1: try to create recursion where the digit range can be picked!
+
+        Appraoch2: other way to solve it, isto split the problem in two part.
+            val1 = [0...end] and val2 = [0...start-1] Now, our ans would be val1-val2
+
+            This greately simplifes the problem.
+
+            One for point to notice is that how would you, make sure the the string being created at suffix index does not cross the original numer?!
+                ex: end = 1023 and suffix = 24
+    */
+    \end{code2}
+\end{solution}
